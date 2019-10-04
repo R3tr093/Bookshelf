@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core'
-import { Apollo } from 'apollo-angular'
-import gql from 'graphql-tag'
-import { queriesServices } from './services/queries.services';
+import { Component, OnInit } from '@angular/core';
+import { Apollo } from 'apollo-angular';
+import gql from 'graphql-tag';
+import { QueriesServices } from './services/queries.services';
 
 @Component({
   selector: 'app-root',
@@ -11,10 +11,10 @@ import { queriesServices } from './services/queries.services';
 export class AppComponent implements OnInit {
   title = 'Bookshelf';
 
-  Hello : string;
+  Hello: string;
 
 
-  constructor(apollo: Apollo, private queriesService: queriesServices) {
+  constructor(apollo: Apollo, private QueriesService: QueriesServices) {
     apollo
       .query({
         query: gql`
@@ -26,15 +26,14 @@ export class AppComponent implements OnInit {
                 }
               }
           }
-          
         `,
       })
-      .subscribe(console.log)
+      .subscribe(console.log);
   }
 
-  ngOnInit(){
+  ngOnInit(): void {
 
-    this.Hello = this.queriesService.hello;
+    this.Hello = this.QueriesService.hello;
 
   }
 }

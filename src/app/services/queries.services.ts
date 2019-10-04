@@ -1,3 +1,4 @@
-export class queriesServices {
-    hello = " bonjour ";
+
+export class QueriesServices {
+    hello = ' bonjour ';
 }
