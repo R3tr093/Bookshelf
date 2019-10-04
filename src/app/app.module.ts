@@ -12,6 +12,8 @@ import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { ApolloLink } from 'apollo-link';
 
+import { queriesServices } from './services/queries.services';
+
 
 @NgModule({
   imports: [
@@ -20,9 +22,11 @@ import { ApolloLink } from 'apollo-link';
     HttpClientModule,
     ApolloModule,
     HttpLinkModule,
+    
   ],
   declarations: [AppComponent],
   bootstrap: [AppComponent],
+  providers: [queriesServices]
 })
 
 
