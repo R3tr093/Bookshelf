@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
 import { Apollo } from 'apollo-angular'
 import gql from 'graphql-tag'
 import { queriesServices } from './services/queries.services';
@@ -8,8 +8,12 @@ import { queriesServices } from './services/queries.services';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'Bookshelf';
+
+  Hello : string;
+
+
   constructor(apollo: Apollo, private queriesService: queriesServices) {
     apollo
       .query({
@@ -26,5 +30,11 @@ export class AppComponent {
         `,
       })
       .subscribe(console.log)
+  }
+
+  ngOnInit(){
+
+    this.Hello = this.queriesService.hello;
+
   }
 }
