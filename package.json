@@ -22,12 +22,13 @@
     "apollo-angular": "^1.7.0",
     "apollo-angular-link-http": "^1.8.0",
     "apollo-cache-inmemory": "^1.6.3",
-    "core-js": "^3.2.1",
+    "apollo-client": "^2.6.4",
+    "graphql": "^14.5.8",
     "graphql-tag": "^2.10.1",
-    "intl": "^1.2.5",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
-    "zone.js": "~0.9.1"
+    "zone.js": "~0.9.1",
+    "intl": "^1.2.5"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.803.4",

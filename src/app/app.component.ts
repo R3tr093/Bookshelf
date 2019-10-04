@@ -1,6 +1,7 @@
 import { Component } from '@angular/core'
 import { Apollo } from 'apollo-angular'
 import gql from 'graphql-tag'
+import { queriesServices } from './services/queries.services';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,7 @@ import gql from 'graphql-tag'
 })
 export class AppComponent {
   title = 'Bookshelf';
-  constructor(apollo: Apollo) {
+  constructor(apollo: Apollo, private queriesService: queriesServices) {
     apollo
       .query({
         query: gql`
