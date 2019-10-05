@@ -9,31 +9,51 @@ import { QueriesServices } from './services/queries.services';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  
   title = 'Bookshelf';
-
-  Hello: string;
-
+  
+  books: any;
 
   constructor(apollo: Apollo, private QueriesService: QueriesServices) {
-    apollo
-      .query({
-        query: gql`
-          {
-              books(all:true) {
-                nodes
-                {
-                  title
-                }
-              }
-          }
-        `,
-      })
-      .subscribe(console.log);
-  }
 
-  ngOnInit(): void {
+    this.getBooks(apollo);
 
-    this.Hello = this.QueriesService.hello;
+    setTimeout(() => {
+
+      for(let i = 0; i < this.books.data.books.nodes.length; i++)
+      {
+        console.log(this.books.data.books.nodes[i].title)
+      }
+      
+
+    },3000)
 
   }
+
+  ngOnInit(){}
+ 
+  // This function call the services queries and resolve by getting data from this call into books. ** Take an instance of apollo as parameter **
+  getBooks(apollo: Apollo){
+      
+    let request = new Promise((resolve, reject) => {
+    
+      // Asking to the service for use getBooks function.
+      this.books = this.QueriesService.getBooks(apollo);
+    
+      setTimeout(
+    
+        () => {
+          
+          // Set the value of this.books with the return of the queriesServices.
+          resolve(this.books = this.QueriesService.books);
+    
+        }, 2000
+    
+        );
+  })};
+
+  
+
+
+
 }
