@@ -16,6 +16,11 @@ export class AppComponent implements OnInit {
 
   constructor(apollo: Apollo, private QueriesService: QueriesServices) {
 
+    //Examples
+
+    // get all the books ( display theses title in console )
+    
+    /*
     this.getBooks(apollo);
 
     setTimeout(() => {
@@ -24,9 +29,21 @@ export class AppComponent implements OnInit {
       {
         console.log(this.books.data.books.nodes[i].title)
       }
-      
+    },10000)
+    */
 
-    },3000)
+
+     // get a single book ( display this title  in console)
+     this.QueriesService.getBook(apollo, "dsd");
+
+     setTimeout(() => {
+        console.log(QueriesService.books.data.book.title)
+    },5000)
+    
+  
+    
+
+ 
 
   }
 
