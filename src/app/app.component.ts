@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 import { QueriesServices } from './services/queries.services';
+import { AuthServices} from './services/auth.services';
 
 @Component({
   selector: 'app-root',
@@ -14,8 +15,10 @@ export class AppComponent implements OnInit {
   
   books: any;
 
-  constructor(apollo: Apollo, private QueriesService: QueriesServices) {
+  constructor(apollo: Apollo, private QueriesService: QueriesServices, private AuthService: AuthServices) {
 
+    this.AuthService.isAuth = false;
+    
     //Examples
 
     // get all the books ( display theses title in console )
@@ -46,7 +49,7 @@ export class AppComponent implements OnInit {
 
     //this.QueriesService.postBooks(apollo)
     
-
+    console.log(this.AuthService.isAuth)
  
 
   }

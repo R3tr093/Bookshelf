@@ -22,6 +22,7 @@ export class QueriesServices extends Mutation {
                 nodes
                 {
                   title
+                  author
                 }
               }
           }

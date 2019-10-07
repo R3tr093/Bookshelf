@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 import { QueriesServices } from '../services/queries.services';
+import { AuthServices} from '../services/auth.services';
 
 @Component({
   selector: 'app-library',
@@ -12,22 +13,38 @@ export class LibraryComponent implements OnInit {
 
   books : any;
   booksTitle: any;
+  booksAuthor: any;
 
-  constructor(apollo: Apollo, private QueriesService: QueriesServices) {
+  constructor(apollo: Apollo, private QueriesService: QueriesServices, private AuthService: AuthServices) {
     
     // get all the books ( display theses title in console )
     this.booksTitle = [];
+    this.booksAuthor = [];
+
     
+
     this.getBooks(apollo);
+
+    
 
     setTimeout(() => {
 
+
+     
+
       for(let i = 0; i < this.books.data.books.nodes.length; i++)
       {
-        console.log(this.books.data.books.nodes[i].title)
+        this.booksAuthor.push(this.books.data.books.nodes[i].author)
         this.booksTitle.push(this.books.data.books.nodes[i].title)
       }
-    },5000)
+
+  },5000);
+    
+    
+
+
+
+   
     
   }
 

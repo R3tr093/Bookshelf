@@ -14,6 +14,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloLink } from 'apollo-link';
 
 import { QueriesServices } from './services/queries.services';
+import { AuthServices} from './services/auth.services';
 import { ErrorComponent } from './error/error.component';
 import { Content } from '@angular/compiler/src/render3/r3_ast';
 import { type } from 'os';
@@ -46,7 +47,12 @@ const appRoutes: Routes =
   ],
   declarations: [AppComponent, ErrorComponent, LibraryComponent],
   bootstrap: [AppComponent],
-  providers: [QueriesServices]
+  providers: [
+  
+    QueriesServices,
+    AuthServices
+
+  ]
 })
 
 // Setting token and apollo. 
