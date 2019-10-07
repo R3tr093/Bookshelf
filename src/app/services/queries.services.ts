@@ -1,14 +1,15 @@
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 import { stringify } from 'querystring';
+import {Mutation} from 'apollo-angular';
 
 
 
-export class QueriesServices {
-    
- 
+export class QueriesServices extends Mutation {
+
 
   books : any;
+  
 
   // -> This function provide all the books and theses titles in the API. ** Take as parameter an instance of apollo **
 
@@ -68,14 +69,16 @@ export class QueriesServices {
       );
   }
 
+  
 
 
-  postBooks(apollo: Apollo) {
+  postBooks(apollo: Apollo)
+  { 
     apollo
       .mutate({
-        mutation: gql`
+        mutation: gql`mutation
           {
-            addBook(book: {isbn: "dsd",title: "hey",author: "paul",editor: "paulInc", schools:["liege"], lang: "FR", format:PHYSICAL})
+            addBook(book: {isbn: "test",title: "hey",author: "paul",editor: "paulInc", schools:["liege"], lang: "FR", format:PHYSICAL})
             {isbn
              title 
              author
@@ -89,8 +92,7 @@ export class QueriesServices {
       })
       .subscribe(
         (value) => {
-          this.books = value;
-          return value;
+          console.log("Data has been successfully posted !")
         },
         (error) => {
           console.log('Oh my god , an error occurred fix it bro ! : ' + error);
