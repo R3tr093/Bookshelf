@@ -1,1 +1,5 @@
-test
+- > display a book details from services
+
+- > display books home data from services
+
+- > work on update request 

@@ -20,6 +20,7 @@ import { Content } from '@angular/compiler/src/render3/r3_ast';
 import { type } from 'os';
 import { LibraryComponent } from './library/library.component';
 import { AuthComponent } from './auth/auth.component';
+import { ArticleComponent } from './article/article.component';
 
 
 
@@ -30,6 +31,7 @@ const appRoutes: Routes =
 [
     { path: '',component: AuthComponent },
     { path: 'library', component: LibraryComponent},
+    { path: 'article/:isbn', component: ArticleComponent},
     { path: '**', component: ErrorComponent }
 ];
 
@@ -46,7 +48,7 @@ const appRoutes: Routes =
     )
 
   ],
-  declarations: [AppComponent, ErrorComponent, LibraryComponent, AuthComponent],
+  declarations: [AppComponent, ErrorComponent, LibraryComponent, AuthComponent, ArticleComponent],
   bootstrap: [AppComponent],
   providers: [
   
