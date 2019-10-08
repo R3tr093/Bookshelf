@@ -25,7 +25,7 @@ export class AuthComponent implements OnInit {
     //this.AuthService.addUser(apollo);
 
     // This function can logged in an user from the API
-    this.AuthService.logInUser(apollo);
+    this.AuthService.logInUser(apollo, "hamilton19","secret");
     
   
   }
@@ -33,22 +33,5 @@ export class AuthComponent implements OnInit {
   ngOnInit() {
   }
 
-  logIn(){
-    
-    let condition = true;
-
-    if(condition)
-    {
-      this.AuthService.isAuth = true;
-      console.log(this.AuthService.isAuth)
-      //window.location.replace('library')
-    }
-
-    if(!condition){
-      this.AuthService.isAuth = false;
-      console.log(this.AuthService.isAuth)
-    }
-
-  }
 
 }

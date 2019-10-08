@@ -46,12 +46,13 @@ export class AuthServices {
     );
   };
 
-  logInUser(apollo: Apollo){
+
+  logInUser(apollo: Apollo, $logIn: String, $pass : String){
     apollo
     .mutate({
       mutation: gql`mutation
       {
-      loginWithBasic(login: "hamilton19", pass: "secret", useCookie: false)
+      loginWithBasic(login: "${$logIn}", pass: "${$pass}", useCookie: false)
         {
           connected
           token
@@ -66,7 +67,7 @@ export class AuthServices {
     `
     }).subscribe(
       (value) => {
-        
+        this.isAuth = true;
         console.log(value.data);
 
       },
