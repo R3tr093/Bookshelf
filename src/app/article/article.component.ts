@@ -20,12 +20,19 @@ export class ArticleComponent implements OnInit {
   // get the article isbn
   target : string;
 
+  count : number;
+  isLoaded : boolean;
+
   book : any;
+
   title : string;
 
  
 
   constructor(apollo: Apollo, private QueriesService: QueriesServices, private AuthService: AuthServices) {
+
+    this.isLoaded = false;
+    this.count = 1000;
 
     this.isAuth();
     
@@ -70,17 +77,18 @@ export class ArticleComponent implements OnInit {
               // Set the value of this.books with the return of the queriesServices.
               resolve(this.book = this.QueriesService.books.data.book);
               this.title = this.book.title;
-
+              this.isLoaded = true;
             }
 
             else
             {
               this.getBook(apollo,this.target)
+              this.count = this.count + 500;
             }
 
             
 
-          }, 5000
+          }, this.count
       
           );
         });
