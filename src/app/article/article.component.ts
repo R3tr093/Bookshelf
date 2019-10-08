@@ -37,7 +37,7 @@ export class ArticleComponent implements OnInit {
     this.isAuth();
     
     this.urlCheck();
-
+    this.title = "ok";
         
     this.getBook(apollo,this.target)
     
@@ -70,11 +70,11 @@ export class ArticleComponent implements OnInit {
         setTimeout(
       
           () => {
-            
+           
 
-            if(this.QueriesService.books !== undefined)
+            if(this.QueriesService.books.data.book !== undefined)
             {   
-              // Set the value of this.books with the return of the queriesServices.
+
               resolve(this.book = this.QueriesService.books.data.book);
               this.title = this.book.title;
               this.isLoaded = true;
