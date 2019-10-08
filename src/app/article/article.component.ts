@@ -19,9 +19,18 @@ export class ArticleComponent implements OnInit {
   // get the article isbn
   target : string;
 
+  book : any;
 
   constructor(apollo: Apollo, private QueriesService: QueriesServices, private AuthService: AuthServices) {
     this.urlCheck();
+
+        
+    this.getBook(apollo,this.target)
+
+     setTimeout(() => {
+        console.log(QueriesService.books.data.book.title)
+    },5000)
+    
   }
 
   ngOnInit() {
@@ -36,5 +45,25 @@ export class ArticleComponent implements OnInit {
 
     
   }
+
+    // This function call the services queries and resolve by getting data from this call into books. ** Take an instance of apollo as parameter **
+    getBook(apollo: Apollo, param){
+      
+      let request = new Promise((resolve, reject) => {
+      
+        // Asking to the service for use getBooks function.
+        this.book = this.QueriesService.getBook(apollo,param);
+      
+        setTimeout(
+      
+          () => {
+            
+            // Set the value of this.books with the return of the queriesServices.
+            resolve(this.book = this.QueriesService.books);
+      
+          }, 2000
+      
+          );
+    })}; 
 
 }
