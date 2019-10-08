@@ -12,6 +12,8 @@ export class AuthServices {
 
   usrToken : any;
 
+  report : string;
+
   addUser(apollo: Apollo, $email : string, $logIn: String, $pass : String){
     apollo
     .mutate({
@@ -33,12 +35,12 @@ export class AuthServices {
     }).subscribe(
       (value) => {
         this.usrToken = value;
-        localStorage.setItem("token", this.usrToken.data.registerWithBasic.token);
+        localStorage.setItem("token", this.usrToken.data.loginWithBasic.token);
         console.log("User as registered successfully, you can be proud of you ! ");
 
       },
       (error) => {
-        console.log('Oh my god , an error occurred fix it bro ! : ' + error);
+        console.log(error)
       },
       () => {
         console.log('Request has been successfully send.!');
@@ -68,11 +70,13 @@ export class AuthServices {
     }).subscribe(
       (value) => {
         this.isAuth = true;
-        console.log(value.data);
+        this.usrToken = value;
+        localStorage.setItem("token", this.usrToken.data.loginWithBasic.token);
+       
 
       },
       (error) => {
-        console.log('Oh my god , an error occurred fix it bro ! : ' + error);
+        console.log(error)
       },
       () => {
         console.log('Request has been successfully send.!');

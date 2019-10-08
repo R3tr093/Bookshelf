@@ -12,6 +12,8 @@ import  { AuthServices } from '../services/auth.services';
 })
 export class AuthComponent implements OnInit {
 
+  info : string;
+
   constructor(apollo: Apollo, private QueriesService: QueriesServices, private AuthService: AuthServices) {
     
     if(this.AuthService.isAuth !== true && this.AuthService.isAuth !== false)
@@ -27,6 +29,10 @@ export class AuthComponent implements OnInit {
 
     // This function can post a new user into the API
     //this.AuthService.addUser(apollo, "mossiat.jeoffrey@outlook.com", "hamilton19", "secret");
+
+
+   
+    
 
     // This function can logged in an user from the API
     this.AuthService.logInUser(apollo, "hamilton19","secret");
