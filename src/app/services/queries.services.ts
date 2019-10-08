@@ -78,38 +78,7 @@ export class QueriesServices extends Mutation {
       );
   }
 
- 
 
-  addUser(apollo: Apollo){
-    apollo
-    .mutate({
-      mutation: gql`mutation
-      {
-      registerWithBasic(target:{collection: JUNIOR, email: "mossiat.jeoffrey@outlook.com"}, login: "hamilton19", pass: "secret", useCookie: false)
-        {
-          connected
-          token
-          headers
-          csrfToken
-        }
-      
-        
-          
-        
-      }
-    `
-    }).subscribe(
-      (value) => {
-        console.log(value)
-      },
-      (error) => {
-        console.log('Oh my god , an error occurred fix it bro ! : ' + error);
-      },
-      () => {
-        console.log('Request has been successfully send.!');
-      }
-    );
-  };
 
   postBooks(apollo: Apollo)
   { 

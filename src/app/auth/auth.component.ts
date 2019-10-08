@@ -20,7 +20,7 @@ export class AuthComponent implements OnInit {
       console.log(this.AuthService.isAuth)
     }
     
-    this.QueriesService.addUser(apollo);
+    this.AuthService.addUser(apollo);
     
   
   }
