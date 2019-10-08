@@ -21,32 +21,13 @@ export class AppComponent implements OnInit {
     
     //Examples
 
-    // get all the books ( display theses title in console )
-    
-    /*
-    this.getBooks(apollo);
-
-    setTimeout(() => {
-
-      for(let i = 0; i < this.books.data.books.nodes.length; i++)
-      {
-        console.log(this.books.data.books.nodes[i].title)
-      }
-    },10000)
-    */
+ 
 
 
-     // get a single book ( display this title  in console)
-         
-    /* 
-    this.getBook(apollo,"dsd")
 
-     setTimeout(() => {
-        console.log(QueriesService.books.data.book.title)
-    },5000)
-    */
   
-
+    // --> Is actually provided by server need parameter to be really usefull
+    
     //this.QueriesService.postBooks(apollo)
     
     
@@ -55,49 +36,8 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(){}
- 
 
 
-  // This function call the services queries and resolve by getting data from this call into books. ** Take an instance of apollo as parameter **
-  getBooks(apollo: Apollo){
-      
-    let request = new Promise((resolve, reject) => {
-    
-      // Asking to the service for use getBooks function.
-      this.books = this.QueriesService.getBooks(apollo);
-    
-      setTimeout(
-    
-        () => {
-          
-          // Set the value of this.books with the return of the queriesServices.
-          resolve(this.books = this.QueriesService.books);
-    
-        }, 2000
-    
-        );
-  })};
-
-
-  // This function call the services queries and resolve by getting data from this call into books. ** Take an instance of apollo as parameter **
-  getBook(apollo: Apollo, param){
-      
-    let request = new Promise((resolve, reject) => {
-    
-      // Asking to the service for use getBooks function.
-      this.books = this.QueriesService.getBook(apollo,param);
-    
-      setTimeout(
-    
-        () => {
-          
-          // Set the value of this.books with the return of the queriesServices.
-          resolve(this.books = this.QueriesService.books);
-    
-        }, 2000
-    
-        );
-  })}; 
 
   
 
