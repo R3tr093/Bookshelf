@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 
-import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 
 import { HttpHeaders } from '@angular/common/http';
@@ -21,16 +20,20 @@ import { type } from 'os';
 import { LibraryComponent } from './library/library.component';
 import { AuthComponent } from './auth/auth.component';
 import { ArticleComponent } from './article/article.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
-
-
-
+import { NgZorroAntdModule, NZ_I18N, en_US } from "ng-zorro-antd";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import en from "@angular/common/locales/en";
       
 
 const appRoutes: Routes = 
 [
-    { path: '',component: AuthComponent },
+    { path: '',component: RegisterComponent },
     { path: 'library', component: LibraryComponent},
+    { path: 'login', component: LoginComponent},
+    { path: 'register', component: RegisterComponent},
     { path: 'article/:isbn', component: ArticleComponent},
     { path: '**', component: ErrorComponent }
 ];
@@ -42,16 +45,20 @@ const appRoutes: Routes =
     HttpClientModule,
     ApolloModule,
     HttpLinkModule,
+    NgZorroAntdModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only
     )
 
   ],
-  declarations: [AppComponent, ErrorComponent, LibraryComponent, AuthComponent, ArticleComponent],
+  declarations: [AppComponent, ErrorComponent, LibraryComponent, AuthComponent, ArticleComponent, LoginComponent, RegisterComponent],
   bootstrap: [AppComponent],
   providers: [
-  
+    {provide: NZ_I18N,
+    useValue: en_US},
     QueriesServices,
     AuthServices
 
