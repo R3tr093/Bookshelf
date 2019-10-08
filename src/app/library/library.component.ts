@@ -17,6 +17,9 @@ export class LibraryComponent implements OnInit {
 
   constructor(apollo: Apollo, private QueriesService: QueriesServices, private AuthService: AuthServices) {
     
+    this.isAuth();
+
+    
     // get all the books ( display theses title in console )
     this.booksTitle = [];
     this.booksAuthor = [];
@@ -70,5 +73,13 @@ export class LibraryComponent implements OnInit {
       
           );
     })};
+
+
+    isAuth(){
+      if(!this.AuthService.isAuth)
+      {
+        window.location.replace("/");
+      }
+    }
 
 }
