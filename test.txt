@@ -1,5 +1,7 @@
-- > display a book details from services
+--> Display a standard book list
 
-- > display books home data from services
+--> Display a standard single book
 
-- > work on update request 
+------------------------------------
+
+--> Filter books by schools

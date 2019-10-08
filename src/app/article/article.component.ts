@@ -3,6 +3,7 @@ import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 import { QueriesServices } from '../services/queries.services';
 import  { AuthServices } from '../services/auth.services';
+import { from } from 'rxjs';
 
 
 @Component({
@@ -26,16 +27,13 @@ export class ArticleComponent implements OnInit {
 
   constructor(apollo: Apollo, private QueriesService: QueriesServices, private AuthService: AuthServices) {
 
-    this.book = ["a","b","c"];
-    
-
     this.isAuth();
     
     this.urlCheck();
 
         
     this.getBook(apollo,this.target)
-
+    
    
     
   }
@@ -56,26 +54,41 @@ export class ArticleComponent implements OnInit {
     // This function call the services queries and resolve by getting data from this call into books. ** Take an instance of apollo as parameter **
     getBook(apollo: Apollo, param){
       
+
       let request = new Promise((resolve, reject) => {
       
         // Asking to the service for use getBooks function.
         this.book = this.QueriesService.getBook(apollo,param);
-      
+
         setTimeout(
       
           () => {
             
-           // Set the value of this.books with the return of the queriesServices.
-           resolve(this.book = this.QueriesService.books.data.book);
-           this.title = this.book.title;
 
-          }, 10000
+            if(this.QueriesService.books !== undefined)
+            {   
+              // Set the value of this.books with the return of the queriesServices.
+              resolve(this.book = this.QueriesService.books.data.book);
+              this.title = this.book.title;
+
+            }
+
+            else
+            {
+              this.getBook(apollo,this.target)
+            }
+
+            
+
+          }, 5000
       
           );
-    })};
+        });
+    };
+
+    
 
     isAuth(){
-      this.AuthService.isAuth = true;
       if(!this.AuthService.isAuth)
       {
         window.location.replace('/');

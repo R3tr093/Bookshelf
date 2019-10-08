@@ -39,14 +39,23 @@ export class LibraryComponent implements OnInit {
       
           () => {
             
-            // Set the value of this.books with the return of the queriesServices.
-            resolve(this.books = this.QueriesService.books);
-            this.books = Array.from(this.books.data.books.nodes);
+
+            if(this.QueriesService.books !== undefined)
+            {
+              // Set the value of this.books with the return of the queriesServices.
+              resolve(this.books = this.QueriesService.books);
+              this.books = Array.from(this.books.data.books.nodes);
+            }
+
+            else
+            {
+              this.getBooks(apollo)
+            }
             
 
 
       
-          }, 10000
+          }, 5000
       
           );
     })};
