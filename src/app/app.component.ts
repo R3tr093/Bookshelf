@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
 
   constructor(apollo: Apollo, private QueriesService: QueriesServices, private AuthService: AuthServices) {
 
-    this.AuthService.isAuth = false;
+    
     
     //Examples
 
@@ -49,7 +49,7 @@ export class AppComponent implements OnInit {
 
     //this.QueriesService.postBooks(apollo)
     
-    console.log(this.AuthService.isAuth)
+    
  
 
   }

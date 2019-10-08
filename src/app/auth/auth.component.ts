@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Apollo } from 'apollo-angular';
+import gql from 'graphql-tag';
+import { QueriesServices } from '../services/queries.services';
+import  { AuthServices } from '../services/auth.services'
+
 
 @Component({
   selector: 'app-auth',
@@ -7,9 +12,36 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthComponent implements OnInit {
 
-  constructor() { }
+  constructor(apollo: Apollo, private QueriesService: QueriesServices, private AuthService: AuthServices) {
+    
+    if(this.AuthService.isAuth !== true && this.AuthService.isAuth !== false)
+    {
+      this.AuthService.isAuth = false;
+      console.log(this.AuthService.isAuth)
+    }
+    
+    
+  
+  }
 
   ngOnInit() {
+  }
+
+  logIn(){
+    
+    let condition = true;
+
+    if(condition)
+    {
+      this.AuthService.isAuth = true;
+      console.log(this.AuthService.isAuth)
+    }
+
+    if(!condition){
+      this.AuthService.isAuth = false;
+      console.log(this.AuthService.isAuth)
+    }
+
   }
 
 }
