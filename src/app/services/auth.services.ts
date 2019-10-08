@@ -45,6 +45,39 @@ export class AuthServices {
       }
     );
   };
+
+  logInUser(apollo: Apollo){
+    apollo
+    .mutate({
+      mutation: gql`mutation
+      {
+      loginWithBasic(login: "hamilton19", pass: "secret", useCookie: false)
+        {
+          connected
+          token
+          headers
+          csrfToken
+        }
+      
+        
+          
+        
+      }
+    `
+    }).subscribe(
+      (value) => {
+        
+        console.log(value.data);
+
+      },
+      (error) => {
+        console.log('Oh my god , an error occurred fix it bro ! : ' + error);
+      },
+      () => {
+        console.log('Request has been successfully send.!');
+      }
+    );
+  };
   
 
   

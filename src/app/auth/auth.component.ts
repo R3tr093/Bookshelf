@@ -20,7 +20,12 @@ export class AuthComponent implements OnInit {
       console.log(this.AuthService.isAuth)
     }
     
-    this.AuthService.addUser(apollo);
+
+    // This function can post a new user into the API
+    //this.AuthService.addUser(apollo);
+
+    // This function can logged in an user from the API
+    this.AuthService.logInUser(apollo);
     
   
   }
