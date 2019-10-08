@@ -12,12 +12,12 @@ export class AuthServices {
 
   usrToken : any;
 
-  addUser(apollo: Apollo){
+  addUser(apollo: Apollo, $email : string, $logIn: String, $pass : String){
     apollo
     .mutate({
       mutation: gql`mutation
       {
-      registerWithBasic(target:{collection: JUNIOR, email: "mossiat.jeoffrey@outlook.com"}, login: "hamilton19", pass: "secret", useCookie: false)
+      registerWithBasic(target:{collection: JUNIOR, email: "${$email}"}, login: "${$logIn}", pass: "${$pass}", useCookie: false)
         {
           connected
           token
@@ -34,7 +34,7 @@ export class AuthServices {
       (value) => {
         this.usrToken = value;
         localStorage.setItem("token", this.usrToken.data.registerWithBasic.token);
-        console.log(value);
+        console.log("User as registered successfully, you can be proud of you ! ");
 
       },
       (error) => {

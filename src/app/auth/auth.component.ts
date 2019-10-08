@@ -21,8 +21,12 @@ export class AuthComponent implements OnInit {
     }
     
 
+    // TODO
+
+    // = > Ensure you get all data is needed to register or login by the form.
+
     // This function can post a new user into the API
-    //this.AuthService.addUser(apollo);
+    //this.AuthService.addUser(apollo, "mossiat.jeoffrey@outlook.com", "hamilton19", "secret");
 
     // This function can logged in an user from the API
     this.AuthService.logInUser(apollo, "hamilton19","secret");
