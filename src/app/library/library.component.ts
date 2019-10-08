@@ -12,10 +12,18 @@ import { AuthServices} from '../services/auth.services';
 export class LibraryComponent implements OnInit {
 
   books : any;
+  
+  count : number;
+  isLoaded : boolean;
 
   
   constructor(apollo: Apollo, private QueriesService: QueriesServices, private AuthService: AuthServices) {
     
+
+    this.isLoaded = false;
+    this.count = 1000;
+
+
     // Ensure user is auth
     this.isAuth();
 
@@ -45,17 +53,19 @@ export class LibraryComponent implements OnInit {
               // Set the value of this.books with the return of the queriesServices.
               resolve(this.books = this.QueriesService.books);
               this.books = Array.from(this.books.data.books.nodes);
+              this.isLoaded = true;
             }
 
             else
             {
-              this.getBooks(apollo)
+              this.getBooks(apollo);
+              this.count = this.count + 500;
             }
             
 
 
       
-          }, 5000
+          }, this.count
       
           );
     })};

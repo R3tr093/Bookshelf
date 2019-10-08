@@ -1,8 +1,18 @@
 <h1>Library</h1>
 
-<div id="main">
 
-    <p id="booksList" *ngFor="let element of books">
+ <!-- Carry the loading -->
+<div class="d-flex justify-content-center" *ngIf="isLoaded === false" id="loading">
+    <div class="spinner-border  text-primary" role="status">
+        
+    </div>
+</div>
+ <!-- Main frame -->
+<div id="main" *ngIf="isLoaded === true" >
+
+    
+    
+    <p id="booksList"  *ngFor="let element of books">
 
         {{element.title}}
         <br>

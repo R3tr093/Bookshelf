@@ -1,6 +1,14 @@
 <h1></h1>
 
-<div id="main">
+<div class="d-flex justify-content-center" *ngIf="isLoaded === false" id="loading">
+    <div class="spinner-border  text-primary" role="status">
+        
+    </div>
+    
+   
+</div>
+
+<div id="main" *ngIf="isLoaded === true">
 
     <p id="book">
 
