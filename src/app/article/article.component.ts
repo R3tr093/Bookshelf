@@ -20,18 +20,23 @@ export class ArticleComponent implements OnInit {
   target : string;
 
   book : any;
+  title : string;
+
+ 
 
   constructor(apollo: Apollo, private QueriesService: QueriesServices, private AuthService: AuthServices) {
 
+    this.book = ["a","b","c"];
+    
+
+    this.isAuth();
     
     this.urlCheck();
 
         
     this.getBook(apollo,this.target)
 
-     setTimeout(() => {
-        console.log(QueriesService.books.data.book.title)
-    },5000)
+   
     
   }
 
@@ -60,13 +65,22 @@ export class ArticleComponent implements OnInit {
       
           () => {
             
-            // Set the value of this.books with the return of the queriesServices.
-            resolve(this.book = this.QueriesService.books);
-      
-          }, 2000
+           // Set the value of this.books with the return of the queriesServices.
+           resolve(this.book = this.QueriesService.books.data.book);
+           this.title = this.book.title;
+
+          }, 10000
       
           );
     })};
+
+    isAuth(){
+      this.AuthService.isAuth = true;
+      if(!this.AuthService.isAuth)
+      {
+        window.location.replace('/');
+      }
+    }
 
 
 }
