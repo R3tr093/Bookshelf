@@ -29,7 +29,7 @@ export class AuthComponent implements OnInit {
 
   logIn(){
     
-    let condition = false;
+    let condition = true;
 
     if(condition)
     {

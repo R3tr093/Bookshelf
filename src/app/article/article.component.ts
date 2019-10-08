@@ -22,6 +22,9 @@ export class ArticleComponent implements OnInit {
   book : any;
 
   constructor(apollo: Apollo, private QueriesService: QueriesServices, private AuthService: AuthServices) {
+    
+    this.isAuth();
+    
     this.urlCheck();
 
         
@@ -64,6 +67,13 @@ export class ArticleComponent implements OnInit {
           }, 2000
       
           );
-    })}; 
+    })};
+    
+    isAuth(){
+      if(!this.AuthService.isAuth)
+      {
+        window.location.replace("/");
+      }
+    }
 
 }
