@@ -12,42 +12,15 @@ import { AuthServices} from '../services/auth.services';
 export class LibraryComponent implements OnInit {
 
   books : any;
-  booksTitle: any;
-  booksAuthor: any;
 
+  
   constructor(apollo: Apollo, private QueriesService: QueriesServices, private AuthService: AuthServices) {
     
-   
-
-    
-    // get all the books ( display theses title in console )
-    this.booksTitle = [];
-    this.booksAuthor = [];
-
-    
+    // Ensure user is auth
+    this.isAuth();
 
     this.getBooks(apollo);
 
-    
-
-    setTimeout(() => {
-
-
-     
-
-      for(let i = 0; i < this.books.data.books.nodes.length; i++)
-      {
-        this.booksAuthor.push(this.books.data.books.nodes[i].author)
-        this.booksTitle.push(this.books.data.books.nodes[i].title)
-      }
-
-  },5000);
-    
-    
-
-
-
-   
     
   }
 
@@ -66,11 +39,31 @@ export class LibraryComponent implements OnInit {
       
           () => {
             
-            // Set the value of this.books with the return of the queriesServices.
-            resolve(this.books = this.QueriesService.books);
+
+            if(this.QueriesService.books !== undefined)
+            {
+              // Set the value of this.books with the return of the queriesServices.
+              resolve(this.books = this.QueriesService.books);
+              this.books = Array.from(this.books.data.books.nodes);
+            }
+
+            else
+            {
+              this.getBooks(apollo)
+            }
+            
+
+
       
-          }, 2000
+          }, 5000
       
           );
     })};
+
+    isAuth(){
+      if(!this.AuthService.isAuth)
+      {
+        window.location.replace('/');
+      }
+    }
 }

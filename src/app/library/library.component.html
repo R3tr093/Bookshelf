@@ -1,18 +1,16 @@
+<h1>Library</h1>
+
 <div id="main">
 
-    <p id="booksList" *ngFor="let element of booksTitle">
+    <p id="booksList" *ngFor="let element of books">
 
-        {{element}}
+        {{element.title}}
+        <br>
+        Auteur {{element.author}}
+        <a routerLink="/article/{{element.isbn}}" routerLinkActive="active"><button> See more</button></a>
+
+
         
     </p>
-
-    <p id="booksAuthor" *ngFor="let element of booksAuthor">
-
-        {{element}}
-        
-    </p>
-
-
-
 
 </div>
