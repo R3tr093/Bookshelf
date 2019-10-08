@@ -53,6 +53,7 @@ export class LibraryComponent implements OnInit {
               // Set the value of this.books with the return of the queriesServices.
               resolve(this.books = this.QueriesService.books);
               this.books = Array.from(this.books.data.books.nodes);
+              console.log(this.books)
               this.isLoaded = true;
             }
 

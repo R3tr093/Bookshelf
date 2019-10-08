@@ -21,9 +21,14 @@ export class QueriesServices extends Mutation {
               books(all:true) {
                 nodes
                 {
+                  availabilities
+                  {
+                    available
+                  }
                   title
                   author
                   isbn
+                  cover 
                 }
               }
           }
@@ -53,7 +58,8 @@ export class QueriesServices extends Mutation {
           book(isbn: "${$bookID}") 
           {
             title 
-            author 
+            author
+            cover 
           }
         }
         `,

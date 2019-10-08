@@ -12,15 +12,21 @@
 
     
     
-    <p id="booksList"  *ngFor="let element of books">
+    <div id="booksList"  *ngFor="let element of books">
 
-        {{element.title}}
+        <h3>{{element.title}}</h3>
         <br>
-        Auteur {{element.author}}
+        <img src="{{element.cover}}"><br><br>
+
+        <p><em> Auteur : {{element.author}} </em></p><br>
+
         <a routerLink="/article/{{element.isbn}}" routerLinkActive="active"><button> See more</button></a>
 
+         <p *ngIf="element.availabilities[0].available === true">Article disponible !</p>
+         <p *ngIf="element.availabilities[0].available === false">Article non disponible !</p>
 
+        <br><hr>
         
-    </p>
+    </div>
 
 </div>
