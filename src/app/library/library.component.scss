@@ -10,4 +10,38 @@ header {
   width: 100%;
   height: 900px;
   background-color: #ccc;
+  display: none;
+}
+
+// Main Lib CSS
+.library {
+  display: grid;
+  grid-template-columns: 1fr 1280px 1fr;
+}
+#Library {
+  grid-column: 2;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 40px;
+  background: #f2efef;
+}
+.main-book {
+  margin: 10px;
+  width: 225px;
+  height: 340px;
+  text-align: center;
+  border: 5px solid white;
+  background: white;
+}
+.main-book:hover {
+  box-shadow: 0 0px 6px rgba(33, 33, 33, 1);
+}
+.main-book-cover {
+  height: 270px;
+  width: 215px;
+}
+.main-book-author {
+  font-size: 22px;
 }
