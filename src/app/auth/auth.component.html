@@ -49,6 +49,17 @@
                 <label> Your user name : </label>
                 <input id="regName" type="text" required />
 
+                <div id="regSpinner">
+                  <div class="d-flex justify-content-center ">
+                   <div class="spinner-border text-primary" role="status">
+                     <span class="sr-only">Loading...</span>
+                   </div>
+                  </div>
+                </div>
+
+                <p id="regError" class="error"> </p>
+                <p id="regValidate"> </p>
+
                 <button (click)='registerUser()' type="button" >Register</button>
 
                 <button (click)="swipeForm()"> go to logIn </button>
@@ -113,6 +124,16 @@
                     <input id="logPass" type="password" placeholder="Password"/>
 
                     <button class="login-form-button" (click)='logIn()'>Log in</button>
+
+                    <div id="logSpinner">
+                    <div class="d-flex justify-content-center ">
+                     <div class="spinner-border text-primary" role="status">
+                       <span class="sr-only">Loading...</span>
+                     </div>
+                    </div>
+                  </div>
+
+                    <p id="logError" class="error"></p>
 
             </form>
       </div>

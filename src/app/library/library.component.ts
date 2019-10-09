@@ -22,7 +22,7 @@ export class LibraryComponent implements OnInit {
     // Set some variables for loading displaying
     this.isLoaded = false;
   
-
+   
     // Get all books
     this.getBooks(apollo);
 

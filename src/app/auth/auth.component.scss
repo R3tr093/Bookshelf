@@ -3,6 +3,22 @@
     display: none;
 }
 
+.error
+{
+  color : red;
+  font-style: italic;
+}
+
+#logSpinner
+{
+  display: none;
+}
+
+#regSpinner
+{
+  display: none;
+}
+
 #logIn
 {
 

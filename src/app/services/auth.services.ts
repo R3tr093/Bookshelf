@@ -40,7 +40,7 @@ export class AuthServices {
 
       },
       (error) => {
-        console.log(error)
+        this.report = error;
       },
       () => {
         console.log('Request has been successfully send.!');
@@ -73,12 +73,12 @@ export class AuthServices {
         this.usrToken = value;
         localStorage.setItem("token", this.usrToken.data.loginWithBasic.token);
         window.location.replace('library')
-        console.log(this.isAuth)
+       
        
 
       },
       (error) => {
-        console.log(error)
+        this.report = error;
       },
       () => {
         console.log('Request has been successfully send.!');
