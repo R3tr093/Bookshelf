@@ -21,7 +21,7 @@ export class LibraryComponent implements OnInit {
     
     // Set some variables for loading displaying
     this.isLoaded = false;
-    this.count = 1000;
+    this.count = 3000;
 
     // Get all books
     this.getBooks(apollo);
