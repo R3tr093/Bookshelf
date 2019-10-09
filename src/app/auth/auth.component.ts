@@ -29,7 +29,7 @@ export class AuthComponent implements OnInit{
   ngOnInit() {
   }
 
-  logIn(name,pass)
+  logIn()
   {
     let logName =  (<HTMLInputElement>document.getElementById("logName")).value;
 
@@ -40,7 +40,7 @@ export class AuthComponent implements OnInit{
     
   }
 
-  registerUser(mail,name,pass)
+  registerUser()
   {
     let regName =  (<HTMLInputElement>document.getElementById("regName")).value;
 

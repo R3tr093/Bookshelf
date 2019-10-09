@@ -38,18 +38,18 @@
             <form>
 
                 <label>Your user mail :</label>
-                <input type="email" id="email" />
+                <input type="email" id="email" required />
 
                 <label>Password : </label>
-                <input type="password" id="password"/>
+                <input type="password" id="password" required/>
 
                 <label>Confirm password : </label>
-                <input type="password" id="password2"/>
+                <input type="password" id="password2" required/>
 
                 <label> Your user name : </label>
-                <input id="regName" type="text" />
+                <input id="regName" type="text" required />
 
-                <button (click)='registerUser("mossiat.jeoffrey@outlook.com", "hamilton19", "secret")' type="button" >Register</button>
+                <button (click)='registerUser()' type="button" >Register</button>
 
                 <button (click)="swipeForm()"> go to logIn </button>
 
@@ -112,7 +112,7 @@
 
                     <input id="logPass" type="password" placeholder="Password"/>
 
-                    <button class="login-form-button" (click)='logIn("hamilton19","secret")'>Log in</button>
+                    <button class="login-form-button" (click)='logIn()'>Log in</button>
 
             </form>
       </div>
