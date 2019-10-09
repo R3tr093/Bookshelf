@@ -31,15 +31,25 @@ export class AuthComponent implements OnInit{
 
   logIn(name,pass)
   {
-    
-    this.AuthService.logInUser(this.apollo, name,pass);
+    let logName =  (<HTMLInputElement>document.getElementById("logName")).value;
+
+    let logPass =  (<HTMLInputElement>document.getElementById("logPass")).value;
+
+    this.AuthService.logInUser(this.apollo,logName,logPass);
 
     
   }
 
   registerUser(mail,name,pass)
   {
-    this.AuthService.addUser(this.apollo, mail,name,pass);
+    let regName =  (<HTMLInputElement>document.getElementById("regName")).value;
+
+    let regPass =  (<HTMLInputElement>document.getElementById("password")).value;
+
+    let regMail =  (<HTMLInputElement>document.getElementById("email")).value;
+    
+    
+    this.AuthService.addUser(this.apollo, regMail,regName, regPass);
   }
 
   swipeForm(){
