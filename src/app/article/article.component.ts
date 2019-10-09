@@ -32,8 +32,7 @@ export class ArticleComponent implements OnInit {
   constructor(apollo: Apollo, private QueriesService: QueriesServices, private AuthService: AuthServices) {
 
     this.isLoaded = false;
-    this.count = 1000;
-
+    this.count = 3000;
     
     
     this.urlCheck();
@@ -93,10 +92,4 @@ export class ArticleComponent implements OnInit {
           );
         });
     };
-
-    
-
-    
-
-
 }

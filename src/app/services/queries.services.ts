@@ -21,14 +21,9 @@ export class QueriesServices extends Mutation {
               books(all:true) {
                 nodes
                 {
-                  availabilities
-                  {
-                    available
-                  }
                   title
                   author
                   isbn
-                  cover 
                 }
               }
           }
@@ -59,7 +54,35 @@ export class QueriesServices extends Mutation {
           {
             title 
             author
-            cover 
+            cover
+            editor
+            format
+            
+            availabilities
+            {
+              school
+              {
+                name
+              }
+            	available
+            } 
+            
+            reviews
+            {
+              nodes
+              {
+                reviewer
+                {
+                  name
+                }
+                comment
+                note
+                createdAt
+                {
+                  timestamp
+                }
+              }
+            } 
           }
         }
         `,
@@ -78,6 +101,7 @@ export class QueriesServices extends Mutation {
       );
   }
 
+  
 
 
   postBooks(apollo: Apollo)
