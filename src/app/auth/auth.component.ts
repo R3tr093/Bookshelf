@@ -100,7 +100,7 @@ export class AuthComponent implements OnInit{
 
           if(this.AuthService.report !== undefined)
           {
-            document.getElementById("regSpinner").style.display = "none";
+            
             
             this.report = this.AuthService.report;
 
@@ -122,8 +122,11 @@ export class AuthComponent implements OnInit{
 
           else
           {
-            document.getElementById('regValidate').textContent = "Account successfully created ! "
+            document.getElementById('regValidate').textContent = "Account successfully created ! ";
+            
           }
+
+          document.getElementById("regSpinner").style.display = "none";
 
         }, this.count
 
