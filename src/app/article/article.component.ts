@@ -21,7 +21,7 @@ export class ArticleComponent implements OnInit {
   // get the article isbn
   target : string;
 
-  count : number;
+  count : number = 0;
   isLoaded : boolean;
 
   book : any;
@@ -40,9 +40,7 @@ export class ArticleComponent implements OnInit {
   constructor(apollo: Apollo, private QueriesService: QueriesServices, private AuthService: AuthServices) {
 
     this.isLoaded = false;
-    this.count = 3000;
-    
-    
+
     this.urlCheck();
     this.title = "ok";
     this.author = "ok";
