@@ -72,6 +72,8 @@ export class AuthServices {
         this.isAuth = true;
         this.usrToken = value;
         localStorage.setItem("token", this.usrToken.data.loginWithBasic.token);
+        window.location.replace('library')
+        console.log(this.isAuth)
        
 
       },

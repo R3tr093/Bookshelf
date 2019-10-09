@@ -6,6 +6,8 @@
 
 <p> place here your register form</p>
 
+<button (click)='registerUser("mossiat.jeoffrey@outlook.com", "hamilton19", "secret")'> Register </button>
+
 <button (click)="swipeForm()"> Login yourself </button>
 
 
@@ -18,7 +20,7 @@
 
     <p> Place here your log in form </p>
 
-    <a routerLink="/library" routerLinkActive="active"><button> Log In </button></a>
+    <button (click)='logIn("hamilton19","secret")'> Log In </button>
 
     <button (click)="swipeForm()"> Register yourself </button>
 

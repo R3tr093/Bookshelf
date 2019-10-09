@@ -23,10 +23,6 @@ export class LibraryComponent implements OnInit {
     this.isLoaded = false;
     this.count = 1000;
 
-
-    // Ensure user is auth
-    this.isAuth();
-
     // Get all books
     this.getBooks(apollo);
 
@@ -70,14 +66,4 @@ export class LibraryComponent implements OnInit {
       
           );
     })};
-
-
-    // Redirect url
-    isAuth()
-    {
-      if(!this.AuthService.isAuth)
-      {
-        window.location.replace('/');
-      }
-    }
-}
+  }

@@ -10,30 +10,20 @@ import  { AuthServices } from '../services/auth.services';
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss']
 })
-export class AuthComponent implements OnInit {
+export class AuthComponent implements OnInit{
 
   registerForm : boolean;
 
+  apollo: Apollo;
+
   constructor(apollo: Apollo, private QueriesService: QueriesServices, private AuthService: AuthServices) {
     
-    if(this.AuthService.isAuth !== true && this.AuthService.isAuth !== false)
-    {
-      this.AuthService.isAuth = false;
-      console.log(this.AuthService.isAuth)
-    }
+
+    this.apollo = apollo;
     
     this.registerForm = false;
 
-
-    // This function can post a new user into the API
-    //this.AuthService.addUser(apollo, "mossiat.jeoffrey@outlook.com", "hamilton19", "secret");
-
-
-   
-    
-
-    // This function can logged in an user from the API
-    this.AuthService.logInUser(apollo, "hamilton19","secret");
+     this.AuthService.addUser(apollo, "mossiat.jeoffrey@outlook.com", "hamilton19", "secret");
     
   
   }
@@ -41,13 +31,24 @@ export class AuthComponent implements OnInit {
   ngOnInit() {
   }
 
+  logIn(name,pass)
+  {
+    
+    this.AuthService.logInUser(this.apollo, name,pass);
+
+    
+  }
+
+  registerUser(mail,name,pass)
+  {
+    this.AuthService.addUser(this.apollo, mail,name,pass);
+  }
+
   swipeForm(){
 
     let registerElt = document.getElementById('register');
     let logInElt = document.getElementById('logIn');
-
-    console.log(this.registerForm)
-
+    
     if(registerElt !== undefined && logInElt !== undefined)
     {
 
@@ -73,9 +74,6 @@ export class AuthComponent implements OnInit {
     {
       this.registerForm = false;
     }
-
-    console.log(this.registerForm)
-
 
   }
 
