@@ -1,3 +1,28 @@
 <h1>Authentication</h1>
 
-<a routerLink="/library" routerLinkActive="active"><button (click)="logIn()"> Log In </button></a>
+<div id="register">
+
+<h3>Register form </h3>
+
+<p> place here your register form</p>
+
+<button (click)='registerUser("mossiat.jeoffrey@outlook.com", "hamilton19", "secret")'> Register </button>
+
+<button (click)="swipeForm()"> Login yourself </button>
+
+
+
+</div>
+
+<div id="logIn">
+
+    <h3> Log in form </h3>
+
+    <p> Place here your log in form </p>
+
+    <button (click)='logIn("hamilton19","secret")'> Log In </button>
+
+    <button (click)="swipeForm()"> Register yourself </button>
+
+</div>
+

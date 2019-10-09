@@ -10,16 +10,20 @@ import  { AuthServices } from '../services/auth.services';
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss']
 })
-export class AuthComponent implements OnInit {
+export class AuthComponent implements OnInit{
+
+  registerForm : boolean;
+
+  apollo: Apollo;
 
   constructor(apollo: Apollo, private QueriesService: QueriesServices, private AuthService: AuthServices) {
     
-    if(this.AuthService.isAuth !== true && this.AuthService.isAuth !== false)
-    {
-      this.AuthService.isAuth = false;
-      console.log(this.AuthService.isAuth)
-    }
+
+    this.apollo = apollo;
     
+    this.registerForm = false;
+
+     this.AuthService.addUser(apollo, "mossiat.jeoffrey@outlook.com", "hamilton19", "secret");
     
   
   }
@@ -27,20 +31,48 @@ export class AuthComponent implements OnInit {
   ngOnInit() {
   }
 
-  logIn(){
+  logIn(name,pass)
+  {
     
-    let condition = true;
+    this.AuthService.logInUser(this.apollo, name,pass);
 
-    if(condition)
+    
+  }
+
+  registerUser(mail,name,pass)
+  {
+    this.AuthService.addUser(this.apollo, mail,name,pass);
+  }
+
+  swipeForm(){
+
+    let registerElt = document.getElementById('register');
+    let logInElt = document.getElementById('logIn');
+    
+    if(registerElt !== undefined && logInElt !== undefined)
     {
-      this.AuthService.isAuth = true;
-      console.log(this.AuthService.isAuth)
-      //window.location.replace('library')
+
+      if(!this.registerForm)
+      {
+        logInElt.style.display = "none"
+        registerElt.style.display = "block";
+      }
+
+      if(this.registerForm)
+      {
+        logInElt.style.display = "block"
+        registerElt.style.display = "none";
+      }
     }
 
-    if(!condition){
-      this.AuthService.isAuth = false;
-      console.log(this.AuthService.isAuth)
+    if(!this.registerForm)
+    {
+      this.registerForm = true;
+    }
+
+    else
+    {
+      this.registerForm = false;
     }
 
   }

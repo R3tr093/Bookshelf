@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 
+import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 
 import { HttpHeaders } from '@angular/common/http';
@@ -15,25 +16,20 @@ import { ApolloLink } from 'apollo-link';
 import { QueriesServices } from './services/queries.services';
 import { AuthServices} from './services/auth.services';
 import { ErrorComponent } from './error/error.component';
-import { Content } from '@angular/compiler/src/render3/r3_ast';
-import { type } from 'os';
+
 import { LibraryComponent } from './library/library.component';
 import { AuthComponent } from './auth/auth.component';
 import { ArticleComponent } from './article/article.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
 
-import { NgZorroAntdModule, NZ_I18N, en_US } from "ng-zorro-antd";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import en from "@angular/common/locales/en";
+
+
+
       
 
 const appRoutes: Routes = 
 [
-    { path: '',component: RegisterComponent },
+    { path: '',component: AuthComponent },
     { path: 'library', component: LibraryComponent},
-    { path: 'login', component: LoginComponent},
-    { path: 'register', component: RegisterComponent},
     { path: 'article/:isbn', component: ArticleComponent},
     { path: '**', component: ErrorComponent }
 ];
@@ -45,20 +41,16 @@ const appRoutes: Routes =
     HttpClientModule,
     ApolloModule,
     HttpLinkModule,
-    NgZorroAntdModule,
-    FormsModule,
-    ReactiveFormsModule,
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only
     )
 
   ],
-  declarations: [AppComponent, ErrorComponent, LibraryComponent, AuthComponent, ArticleComponent, LoginComponent, RegisterComponent],
+  declarations: [AppComponent, ErrorComponent, LibraryComponent, AuthComponent, ArticleComponent],
   bootstrap: [AppComponent],
   providers: [
-    {provide: NZ_I18N,
-    useValue: en_US},
+  
     QueriesServices,
     AuthServices
 
@@ -75,9 +67,11 @@ export class AppModule {
 
 
       const token = localStorage.getItem('token');
+      
 
       operation.setContext({
         headers: {
+          // Remove this by const token ? 
           Authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoia2V5IiwidWlkIjoiZjc2NzA2NjItYjlkOC00NDA3LWI5MTQtZmUzOGZhZGVmZjA5Iiwia2V5IjoiZTYwMjA1ZmMiLCJpYXQiOjE1Njk5MTQxMjR9.XT1tE1yAreWN82NTpAyaEKw-zKq26bGHaFAQ19BjMB8'          
 
         }

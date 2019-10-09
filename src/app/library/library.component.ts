@@ -19,14 +19,11 @@ export class LibraryComponent implements OnInit {
   
   constructor(apollo: Apollo, private QueriesService: QueriesServices, private AuthService: AuthServices) {
     
-
+    // Set some variables for loading displaying
     this.isLoaded = false;
     this.count = 1000;
 
-
-    // Ensure user is auth
-    this.isAuth();
-
+    // Get all books
     this.getBooks(apollo);
 
     
@@ -69,11 +66,4 @@ export class LibraryComponent implements OnInit {
       
           );
     })};
-
-    isAuth(){
-      if(!this.AuthService.isAuth)
-      {
-        window.location.replace('/');
-      }
-    }
-}
+  }
