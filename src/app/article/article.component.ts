@@ -34,7 +34,7 @@ export class ArticleComponent implements OnInit {
     this.isLoaded = false;
     this.count = 1000;
 
-    this.isAuth();
+    
     
     this.urlCheck();
     this.title = "ok";
@@ -96,12 +96,7 @@ export class ArticleComponent implements OnInit {
 
     
 
-    isAuth(){
-      if(!this.AuthService.isAuth)
-      {
-        window.location.replace('/');
-      }
-    }
+    
 
 
 }

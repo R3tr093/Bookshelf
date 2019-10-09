@@ -23,7 +23,7 @@ export class AuthComponent implements OnInit{
     
     this.registerForm = false;
 
-     this.AuthService.addUser(apollo, "mossiat.jeoffrey@outlook.com", "hamilton19", "secret");
+ 
     
   
   }
