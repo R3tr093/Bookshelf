@@ -4,6 +4,7 @@ import gql from 'graphql-tag';
 import { QueriesServices } from '../services/queries.services';
 import  { AuthServices } from '../services/auth.services';
 import { from } from 'rxjs';
+import { Url } from 'url';
 
 
 @Component({
@@ -26,6 +27,13 @@ export class ArticleComponent implements OnInit {
   book : any;
 
   title : string;
+  author : string;
+  editor : string;
+  lang : string;
+  cover : string;
+  format : string;
+  available : string;
+
 
  
 
@@ -37,6 +45,12 @@ export class ArticleComponent implements OnInit {
     
     this.urlCheck();
     this.title = "ok";
+    this.author = "ok";
+    this.editor="ok";
+    this.lang="ok";
+    this.cover="ok";
+    this.format="ok";
+  
         
     this.getBook(apollo,this.target)
     
@@ -76,6 +90,12 @@ export class ArticleComponent implements OnInit {
 
               resolve(this.book = this.QueriesService.books.data.book);
               this.title = this.book.title;
+              this.author= this.book.author
+              this.editor=this.book.editor
+              this.cover=this.book.cover
+              this.lang = this.book.lang.name;
+              this.format=this.book.format
+              this.available=this.book.availabilities[0].available ? "Available" : "Not available";
               this.isLoaded = true;
             }
 
@@ -93,3 +113,7 @@ export class ArticleComponent implements OnInit {
         });
     };
 }
+
+
+
+  

@@ -1,28 +1,20 @@
 <main>
-
   <!-- Carry the loading -->
   <div class="d-flex justify-content-center" *ngIf="isLoaded === false" id="loading">
     <div class="spinner-grow  text-primary" role="status"></div>
   </div>
 
   <!-- Header frame -->
-  <header>
-
-  </header>
+  <header></header>
 
   <!-- Main frame -->
-  <main>
-    <div id="main" *ngIf="isLoaded === true" >
-      <p id="booksList"  *ngFor="let element of books">
-        {{element.title}}
-        <br>
-        <img src="{{element.cover}}"><br><br>
-
-        <p><em> Auteur : {{element.author}} </em></p><br>
-
-        <a routerLink="/article/{{element.isbn}}" routerLinkActive="active"><button> See more</button></a>
-      </p>
+  <div class="library">
+    <div id="Library" *ngIf="isLoaded === true">
+      <div routerLink="/article/{{ element.isbn }}" routerLinkActive="active"
+        *ngFor="let element of books; let i = index" class="main-book main-book-{{ i }} ">
+        <img class="main-book-cover" src="{{ element.cover }}" /><br /><br />
+        <span class="main-book-author"><em>{{ element.author }} </em></span><br />
+      </div>
     </div>
-  </main>
-
+  </div>
 </main>

@@ -62,6 +62,10 @@ export class QueriesServices extends Mutation {
             cover
             editor
             format
+            lang {
+              code
+              name
+            }
             
             availabilities
             {
@@ -106,7 +110,7 @@ export class QueriesServices extends Mutation {
       );
   }
 
-  
+    
 
 
   postBooks(apollo: Apollo)
@@ -127,6 +131,7 @@ export class QueriesServices extends Mutation {
           }
         `,
       })
+    
       .subscribe(
         (value) => {
           console.log("Data has been successfully posted !")
@@ -140,5 +145,51 @@ export class QueriesServices extends Mutation {
       );
   }
 
+
+
+  addReview(apollo: Apollo)
+  { 
+    apollo
+      .mutate({
+        mutation: gql`mutation
+          {
+            addBookReview(bookISBN: "978-2-10-077678-8", review: {
+              lang: "",
+              note: "FIVE"
+            }) {
+      note
+      reviewer {
+        name
+        slug
+      }
+      book {
+        reviews {
+          edges {
+            cursor
+            node {
+              note
+            }
+          }
+          totalCount
+        }
+      }
+      uid
+    }
+          }
+        `,
+      })
+    
+      .subscribe(
+        (value) => {
+          console.log("Data has been successfully posted !")
+        },
+        (error) => {
+          console.log('Oh my god , an error occurred fix it bro ! : ' + error);
+        },
+        () => {
+          console.log('Request has been successfully send.!');
+        }
+      );
+  }
  
 }
