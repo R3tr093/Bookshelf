@@ -1,32 +1,28 @@
-<h1>Library</h1>
+<main>
 
+  <!-- Carry the loading -->
+  <div class="d-flex justify-content-center" *ngIf="isLoaded === false" id="loading">
+    <div class="spinner-grow  text-primary" role="status"></div>
+  </div>
 
- <!-- Carry the loading -->
-<div class="d-flex justify-content-center" *ngIf="isLoaded === false" id="loading">
-    <div class="spinner-border  text-primary" role="status">
-        
-    </div>
-</div>
- <!-- Main frame -->
-<div id="main" *ngIf="isLoaded === true" >
+  <!-- Header frame -->
+  <header>
 
-    
-    
-    <div id="booksList"  *ngFor="let element of books">
+  </header>
 
-        <h3>{{element.title}}</h3>
+  <!-- Main frame -->
+  <main>
+    <div id="main" *ngIf="isLoaded === true" >
+      <p id="booksList"  *ngFor="let element of books">
+        {{element.title}}
         <br>
         <img src="{{element.cover}}"><br><br>
 
         <p><em> Auteur : {{element.author}} </em></p><br>
 
         <a routerLink="/article/{{element.isbn}}" routerLinkActive="active"><button> See more</button></a>
-
-         <p *ngIf="element.availabilities[0].available === true">Article disponible !</p>
-         <p *ngIf="element.availabilities[0].available === false">Article non disponible !</p>
-
-        <br><hr>
-        
+      </p>
     </div>
+  </main>
 
-</div>
+</main>

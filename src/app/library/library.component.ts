@@ -12,11 +12,11 @@ import { AuthServices} from '../services/auth.services';
 export class LibraryComponent implements OnInit {
 
   books : any;
-  
+
   count : number;
   isLoaded : boolean;
 
-  
+
   constructor(apollo: Apollo, private QueriesService: QueriesServices, private AuthService: AuthServices) {
     
     // Set some variables for loading displaying
@@ -26,7 +26,7 @@ export class LibraryComponent implements OnInit {
     // Get all books
     this.getBooks(apollo);
 
-    
+
   }
 
   ngOnInit() {
@@ -34,16 +34,16 @@ export class LibraryComponent implements OnInit {
 
     // This function call the services queries and resolve by getting data from this call into books. ** Take an instance of apollo as parameter **
     getBooks(apollo: Apollo){
-      
+
       let request = new Promise((resolve, reject) => {
-      
+
         // Asking to the service for use getBooks function.
         this.books = this.QueriesService.getBooks(apollo);
-      
+
         setTimeout(
-      
+
           () => {
-            
+
 
             if(this.QueriesService.books !== undefined)
             {
@@ -58,12 +58,12 @@ export class LibraryComponent implements OnInit {
               this.getBooks(apollo);
               this.count = this.count + 500;
             }
-            
 
 
-      
+
+
           }, this.count
-      
+
           );
     })};
   }
