@@ -12,7 +12,7 @@ import  { AuthServices } from '../services/auth.services';
 })
 export class AuthComponent implements OnInit {
 
-  info : string;
+  registerForm : boolean;
 
   constructor(apollo: Apollo, private QueriesService: QueriesServices, private AuthService: AuthServices) {
     
@@ -22,10 +22,8 @@ export class AuthComponent implements OnInit {
       console.log(this.AuthService.isAuth)
     }
     
+    this.registerForm = false;
 
-    // TODO
-
-    // = > Ensure you get all data is needed to register or login by the form.
 
     // This function can post a new user into the API
     //this.AuthService.addUser(apollo, "mossiat.jeoffrey@outlook.com", "hamilton19", "secret");
@@ -43,5 +41,42 @@ export class AuthComponent implements OnInit {
   ngOnInit() {
   }
 
+  swipeForm(){
+
+    let registerElt = document.getElementById('register');
+    let logInElt = document.getElementById('logIn');
+
+    console.log(this.registerForm)
+
+    if(registerElt !== undefined && logInElt !== undefined)
+    {
+
+      if(!this.registerForm)
+      {
+        logInElt.style.display = "none"
+        registerElt.style.display = "block";
+      }
+
+      if(this.registerForm)
+      {
+        logInElt.style.display = "block"
+        registerElt.style.display = "none";
+      }
+    }
+
+    if(!this.registerForm)
+    {
+      this.registerForm = true;
+    }
+
+    else
+    {
+      this.registerForm = false;
+    }
+
+    console.log(this.registerForm)
+
+
+  }
 
 }
