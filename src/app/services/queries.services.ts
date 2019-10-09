@@ -24,6 +24,11 @@ export class QueriesServices extends Mutation {
                   title
                   author
                   isbn
+                  cover
+                  availabilities
+                  {
+                    available
+                  } 
                 }
               }
           }
