@@ -22,15 +22,21 @@ export class LibraryComponent implements OnInit {
 
 
   constructor(apollo: Apollo, private QueriesService: QueriesServices, private AuthService: AuthServices) {
+    
+    this.AuthService.usrToken = localStorage.getItem('token');
 
     // Set some variables for loading displaying
     this.isLoaded = false;
 
     this.apollo = apollo;
-  
    
     // Get all books
     this.getBooks(apollo);
+    
+     
+
+    //DEBUG
+    this.QueriesService.addReview(apollo)
 
 
   }
@@ -78,15 +84,11 @@ export class LibraryComponent implements OnInit {
               this.getBooks(apollo);
               this.count = this.count + 500;
             }
-
-
-
-
           }, this.count
-
-          );
+        );
     })};
 
+    // Hide and show the form
     displayForm(){
 
       if(!this.isDisplayForm)
@@ -107,6 +109,7 @@ export class LibraryComponent implements OnInit {
       }
     }
 
+    // Read data &&  process to a post request
     formProcess(){
 
       let isbn =   String((<HTMLInputElement>document.getElementById("isbn")).value);

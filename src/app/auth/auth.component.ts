@@ -3,6 +3,7 @@ import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 import { QueriesServices } from '../services/queries.services';
 import  { AuthServices } from '../services/auth.services';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 
 @Component({
@@ -15,17 +16,20 @@ export class AuthComponent implements OnInit{
   registerForm : boolean;
 
   apollo: Apollo;
+  router: Router;
 
   report : any;
 
   count : number = 2000;
 
-  constructor(apollo: Apollo, private QueriesService: QueriesServices, private AuthService: AuthServices) {
+  constructor(router: Router, apollo: Apollo, private QueriesService: QueriesServices, private AuthService: AuthServices) {
     
 
     this.apollo = apollo;
+    this.router = router;
     
     this.registerForm = false;
+
 
 
   }
@@ -46,7 +50,7 @@ export class AuthComponent implements OnInit{
 
       let logPass =  (<HTMLInputElement>document.getElementById("logPass")).value;
 
-      this.AuthService.logInUser(this.apollo,logName,logPass);
+      this.AuthService.logInUser(this.router,this.apollo,logName,logPass);
 
       setTimeout(
 
@@ -55,17 +59,7 @@ export class AuthComponent implements OnInit{
 
           document.getElementById("logSpinner").style.display = "none";
 
-          this.report = this.AuthService.report;
-          
-          this.report = this.report.message;
-
-          let message = this.report;
-
-          message = message.split("L")
-
-          this.report = message[1];
-
-          document.getElementById('logError').textContent = this.report;
+          document.getElementById('logError').textContent = "Error : invalid credentials.";
 
           this.count = this.count + 500;
           
