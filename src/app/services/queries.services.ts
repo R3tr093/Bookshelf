@@ -119,13 +119,14 @@ export class QueriesServices extends Mutation {
       .mutate({
         mutation: gql`mutation
           {
-            addBook(book: {isbn: "test",title: "hey",author: "paul",editor: "paulInc", schools:["liege"], lang: "FR", format:PHYSICAL})
+            addBook(book: {isbn: "test",title: "hey",author: "paul",editor: "paulInc", schools:["liege"], cover: "", lang: "FR", format:PHYSICAL})
             {isbn
              title 
              author
              editor
              lang
               {code}
+             cover
              format
             }
           }

@@ -11,10 +11,28 @@
   <div class="library">
     <div id="Library" *ngIf="isLoaded === true">
       <div routerLink="/article/{{ element.isbn }}" routerLinkActive="active"
-        *ngFor="let element of books; let i = index" class="main-book main-book-{{ i }} ">
+        *ngFor="let element of books; let i = index" class="is{{element.availabilities[0].available}} main-book main-book-{{ i }} ">
         <img class="main-book-cover" src="{{ element.cover }}" /><br /><br />
         <span class="main-book-author"><em>{{ element.author }} </em></span><br />
+       
       </div>
     </div>
   </div>
+
+  <button id="addBookBtn" title="Add a book"></button>
+
+  <div id="addBookForm">
+
+    <form>
+
+
+
+
+
+      
+    </form>
+
+
+  </div>
+
 </main>

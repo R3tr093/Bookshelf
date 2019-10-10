@@ -123,10 +123,15 @@ export class AuthComponent implements OnInit{
           else
           {
             document.getElementById('regValidate').textContent = "Account successfully created ! ";
-            
+   
           }
 
           document.getElementById("regSpinner").style.display = "none";
+
+          setTimeout(function(){
+            document.getElementById('regValidate').textContent = "";
+            document.getElementById('regError').textContent = "";
+          },5000)
 
         }, this.count
 

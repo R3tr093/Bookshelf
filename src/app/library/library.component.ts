@@ -37,6 +37,7 @@ export class LibraryComponent implements OnInit {
 
       let request = new Promise((resolve, reject) => {
 
+        this.QueriesService.books = "wait";
         // Asking to the service for use getBooks function.
         this.books = this.QueriesService.getBooks(apollo);
 
@@ -45,7 +46,7 @@ export class LibraryComponent implements OnInit {
           () => {
 
 
-            if(this.QueriesService.books !== undefined)
+            if(this.QueriesService.books !== "wait")
             {
               // Set the value of this.books with the return of the queriesServices.
               resolve(this.books = this.QueriesService.books);
