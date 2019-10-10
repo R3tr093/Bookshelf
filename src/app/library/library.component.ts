@@ -16,11 +16,17 @@ export class LibraryComponent implements OnInit {
   count : number = 0;
   isLoaded : boolean;
 
+  apollo : any;
+
+  isDisplayForm : boolean = false;
+
 
   constructor(apollo: Apollo, private QueriesService: QueriesServices, private AuthService: AuthServices) {
     
     // Set some variables for loading displaying
     this.isLoaded = false;
+
+    this.apollo = apollo;
   
    
     // Get all books
@@ -67,4 +73,101 @@ export class LibraryComponent implements OnInit {
 
           );
     })};
-  }
+
+    displayForm(){
+
+      if(!this.isDisplayForm)
+      {
+        let element = document.getElementById("addBookForm");
+        element.classList.remove("bounceOutDown");
+        element.classList.add("bounceInDown");
+        element.style.display = "block";
+        this.isDisplayForm = true;
+      }
+
+      else
+      {
+        let element = document.getElementById("addBookForm");
+        element.classList.remove("bounceInDown");
+        element.classList.add("bounceOutDown");
+        this.isDisplayForm = false;
+      }
+    }
+
+    formProcess(){
+
+      let isbn =   String((<HTMLInputElement>document.getElementById("isbn")).value);
+      let title =  String((<HTMLInputElement>document.getElementById("title")).value);
+      let editor =  String((<HTMLInputElement>document.getElementById("editor")).value);
+      let cover =   String((<HTMLInputElement>document.getElementById("cover")).value);
+      let author =   String((<HTMLInputElement>document.getElementById("author")).value);
+
+      let report = document.getElementById('report');
+
+      if(isbn !== "" && title !== "" && editor !== "" && cover !== "" && author !== "")
+      {
+      
+      let request = new Promise((resolve, reject) => {
+    
+        this.QueriesService.books = "wait";
+        // Asking to the service for use getBooks function.
+        this.books = this.QueriesService.postBooks(this.apollo,isbn,title,author,editor,cover);
+
+        setTimeout(
+
+          () => {
+
+
+            if(this.QueriesService.books !== "wait")
+            {
+              alert('done')
+             
+            }
+
+            else
+            {
+              report.textContent = "";
+              report.textContent = " We're sorry an error as occured.";
+            }
+          }, 5000
+
+          );
+       })
+
+      }
+      
+      else
+      {
+        report.innerHTML = " ";
+
+        if(isbn === "")
+        {
+          report.innerHTML  = report.innerHTML  + "<br> Error : Missing field isbn.";
+        }
+
+        if(title === "")
+        {
+          report.innerHTML  = report.innerHTML  + "<br> Error : Missing field title.";
+        }
+
+        if(author === "")
+        {
+          report.innerHTML  = report.innerHTML  + "<br> Error : Missing field author.";
+        }
+
+        if(editor === "")
+        {
+          report.innerHTML  = report.innerHTML  + "<br> Error : Missing field editor.";
+        }
+
+        if(cover === "")
+        {
+          report.innerHTML = report.innerHTML + "<br> Error : Missing field cover";
+        }
+
+        
+      }
+
+    }
+
+}

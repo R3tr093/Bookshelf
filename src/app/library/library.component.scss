@@ -46,6 +46,8 @@ header {
   font-size: 22px;
 }
 
+
+// New content define some style if the book is available or no
 .istrue
 {
   border-color:lightgreen;
@@ -55,6 +57,9 @@ header {
 {
   border-color: red;
 }
+
+
+// New content button for add a book, should display a form on click
 
 #addBookBtn
 {
@@ -76,4 +81,39 @@ header {
 {
   box-shadow: 0 0px 6px rgba(33, 33, 33, 1);
   transform: scale(1.2);
+}
+
+
+// New content form for add a book
+
+
+#addBookForm
+{
+  height: 50vh;
+  width: 50%;
+  position: fixed;
+  top: 20vh;
+  left: 25%;
+  border: 1px solid black;
+  background: white;
+  display: none;
+
+}
+
+
+// New content report some error in a p
+#report
+{
+  color: red;
+  font-style: italic;
+  margin-top: 10px;
+}
+
+
+// New content close btn for hiding form
+
+#closeFormBtn
+{
+  position: relative;
+  left: 95%;
 }
