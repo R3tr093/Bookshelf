@@ -10,11 +10,13 @@
   <!-- Main frame -->
   <div class="library">
     <div id="Library" *ngIf="isLoaded === true">
+      <div class="Library-Docks" *ngFor="let element of books; let i = index">
       <div routerLink="/article/{{ element.isbn }}" routerLinkActive="active"
-        *ngFor="let element of books; let i = index" class="main-book main-book-{{ i }} ">
-        <img class="main-book-cover" src="{{ element.cover }}" /><br /><br />
-        <span class="main-book-author"><em>{{ element.author }} </em></span><br />
+         class="main-book main-book-{{ i }} ">
+        <img class="main-book-cover" src="{{ element.cover }}" />
+        <span class="main-book-author"><em>{{ element.author }} </em></span>
       </div>
+    </div>
     </div>
   </div>
 </main>
