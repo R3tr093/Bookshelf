@@ -18,7 +18,7 @@ export class LibraryComponent implements OnInit {
 
 
   constructor(apollo: Apollo, private QueriesService: QueriesServices, private AuthService: AuthServices) {
-    
+
     // Set some variables for loading displaying
     this.isLoaded = false;
     this.count = 3000;
