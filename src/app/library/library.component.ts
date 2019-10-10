@@ -58,17 +58,17 @@ export class LibraryComponent implements OnInit {
               resolve(this.books = this.QueriesService.books);
               this.books = Array.from(this.books.data.books.nodes);
 
-              let i = 0;
+              console.log(this.books[0].availabilities[0].school.name)
 
-              while( i = 0 , i < this.books.length, i++ )
-              {
-                if(this.books[i].cover === "")
+              for( var i = 0; i < this.books.length; i++)
+              { 
+
+                if (this.books[i].availabilities[0].school.name !== "Liège" && this.books[i].availabilities[0].school.name !== "Liege"  && this.books[i].availabilities[0].school.name !== "liege"  && this.books[i].availabilities[0].school.name !== "liège")
                 {
-                  this.books[i].cover = "prout";
+                     this.books.splice(i, 1);
                 }
-                i++;
               }
-
+             
 
               this.isLoaded = true;
             }

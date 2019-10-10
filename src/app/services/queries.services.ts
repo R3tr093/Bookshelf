@@ -28,6 +28,11 @@ export class QueriesServices extends Mutation {
                   availabilities
                   {
                     available
+
+                    school
+                    {
+                      name
+                    }
                   } 
                 }
               }
