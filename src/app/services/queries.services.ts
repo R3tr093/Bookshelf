@@ -161,28 +161,11 @@ export class QueriesServices extends Mutation {
       .mutate({
         mutation: gql`mutation
           {
-            addBookReview(bookISBN: "978-2-10-077678-8", review: {
-              lang: "",
-              note: "FIVE"
-            }) {
-      note
-      reviewer {
-        name
-        slug
-      }
-      book {
-        reviews {
-          edges {
-            cursor
-            node {
-              note
+            addBookReview(bookISBN: "dsd",review:{note: FOUR, lang: "FR", comment: "My comment" })
+            {
+              book{title}
+              
             }
-          }
-          totalCount
-        }
-      }
-      uid
-    }
           }
         `,
       })
