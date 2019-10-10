@@ -74,7 +74,9 @@ export class ArticleComponent implements OnInit {
       
 
       let request = new Promise((resolve, reject) => {
-      
+        
+        this.QueriesService.books.data.book = "wait";
+
         // Asking to the service for use getBooks function.
         this.book = this.QueriesService.getBook(apollo,param);
 
@@ -83,17 +85,17 @@ export class ArticleComponent implements OnInit {
           () => {
            
 
-            if(this.QueriesService.books.data.book !== undefined)
+            if(this.QueriesService.books.data.book !== "wait")
             {   
 
               resolve(this.book = this.QueriesService.books.data.book);
               this.title = this.book.title;
-              this.author= this.book.author
-              this.editor=this.book.editor
-              this.cover=this.book.cover
+              this.author = this.book.author
+              this.editor = this.book.editor
+              this.cover = this.book.cover
               this.lang = this.book.lang.name;
-              this.format=this.book.format
-              this.available=this.book.availabilities[0].available ? "Available" : "Not available";
+              this.format = this.book.format
+              this.available = this.book.availabilities[0].available ? "Available" : "Not available";
               this.isLoaded = true;
             }
 

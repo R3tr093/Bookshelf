@@ -826,5 +826,45 @@
       </div>
     </div>
     </div>
+  
+
+  <button id="addBookBtn"  (click)="displayForm()" title="Add a book"></button>
+
+  <div id="addBookForm" class="bounceOutDown animated">
+
+    <button id="closeFormBtn" (click)="displayForm()" > X</button>
+
+    <form>
+
+
+      <label>Title : </label>
+      <input type="text" id="title">
+      <br><br>
+
+      <label>isbn : </label>
+      <input type="text" id="isbn">
+      <br><br>
+
+      <label>Author : </label>
+      <input type="text" id="author">
+      <br><br>
+
+      <label>Editor : </label>
+      <input type="text" id="editor">
+      <br><br>
+
+      <label>Cover link  : </label>
+      <input type="text" id="cover">
+      <br><br>
+
+      <button (click)="formProcess()">Validate</button>
+
+      <p id="report"></p>
+      <p id="validate"></p>
+
+    </form>
+
+
   </div>
+
 </main>

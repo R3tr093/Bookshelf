@@ -28,6 +28,11 @@ export class QueriesServices extends Mutation {
                   availabilities
                   {
                     available
+
+                    school
+                    {
+                      name
+                    }
                   } 
                 }
               }
@@ -113,19 +118,20 @@ export class QueriesServices extends Mutation {
     
 
 
-  postBooks(apollo: Apollo)
+  postBooks(apollo: Apollo, $isbn: String, $title: String, $author : String, $editor : String, $cover : String)
   { 
     apollo
       .mutate({
         mutation: gql`mutation
           {
-            addBook(book: {isbn: "test",title: "hey",author: "paul",editor: "paulInc", schools:["liege"], lang: "FR", format:PHYSICAL})
+            addBook(book: {isbn: "${$isbn}",title: "${$title}",author: "${$author}",editor: "${$editor}", cover: "${$cover}", lang: "FR", format:PHYSICAL, schools:["liege"]})
             {isbn
              title 
              author
              editor
              lang
               {code}
+             cover
              format
             }
           }
@@ -135,9 +141,11 @@ export class QueriesServices extends Mutation {
       .subscribe(
         (value) => {
           console.log("Data has been successfully posted !")
+          this.books = "done";
         },
         (error) => {
           console.log('Oh my god , an error occurred fix it bro ! : ' + error);
+          this.books = "crash";
         },
         () => {
           console.log('Request has been successfully send.!');

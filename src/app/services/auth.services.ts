@@ -61,10 +61,6 @@ export class AuthServices {
           headers
           csrfToken
         }
-      
-        
-          
-        
       }
     `
     }).subscribe(
