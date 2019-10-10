@@ -701,7 +701,7 @@
       <p class="head_title">Lorem ipsum<br>dolor sit</p>
       <p class="head_text">Amet consectetur adipiscing elit, sed do eiusmod tempor<br>incididunt ut labore et dolore magna aliqua.</p>
 
-      <a href="#">
+      <a (click)="displayForm()">
 
       <!-- SVG: Account Button -->
       <svg id="account" width="205px" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -826,4 +826,41 @@
       </div>
     </div>
     </div>
+  </div>
+
+  <div id="addBookForm" class="bounceOutDown animated">
+
+    <button id="closeFormBtn" (click)="displayForm()" > X</button>
+
+    <form>
+
+
+      <label>Title : </label>
+      <input type="text" id="title">
+      <br><br>
+
+      <label>isbn : </label>
+      <input type="text" id="isbn">
+      <br><br>
+
+      <label>Author : </label>
+      <input type="text" id="author">
+      <br><br>
+
+      <label>Editor : </label>
+      <input type="text" id="editor">
+      <br><br>
+
+      <label>Cover link  : </label>
+      <input type="text" id="cover">
+      <br><br>
+
+      <button (click)="formProcess()">Validate</button>
+
+      <p id="report"></p>
+      <p id="validate"></p>
+
+    </form>
+
+
   </div>
