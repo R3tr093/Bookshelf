@@ -821,7 +821,8 @@
       <div class="Library-Docks" *ngFor="let element of books; let i = index">
       <div routerLink="/article/{{ element.isbn }}" routerLinkActive="active"
          class="main-book main-book-{{ i }} ">
-        <img class="main-book-cover" src="{{ element.cover }}" />
+        <img *ngIf="element.cover === ''" class="main-book-cover" src="https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.2st84wz5RoZPMTNCZDg5pwHaE7%26pid%3DApi&f=1" />
+        <img *ngIf="element.cover !== ''" class="main-book-cover" src="{{element.cover}}" />
         <span class="main-book-author"><em>{{ element.author }} </em></span>
       </div>
     </div>
