@@ -15,33 +15,59 @@ header {
 
 // Main Lib CSS
 .library {
+  display: -ms-grid;
   display: grid;
-  grid-template-columns: 1fr 1280px 1fr;
+  -ms-grid-columns: 1fr 1280px 1fr;
+      grid-template-columns: 1fr 1280px 1fr;
 }
 #Library {
-  grid-column: 2;
+  -ms-grid-column: 2;
+      grid-column: 2;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   padding-top: 40px;
   background: #f2efef;
 }
 .main-book {
-  margin: 10px;
-  width: 225px;
-  height: 340px;
+  margin: 15px;
+  width: 150px;
+  height: 210px;
   text-align: center;
   border: 5px solid white;
   background: white;
+  -webkit-transition: all 0.5s cubic-bezier(0.6, 2, 0.4, 1);
+  transition: all 0.5s cubic-bezier(0.6, 2, 0.4, 1);
+  border-radius: 5px;
 }
 .main-book:hover {
-  box-shadow: 0 0px 6px rgba(33, 33, 33, 1);
+  -webkit-transform: scale(1.04);
+  transform: scale(1.04);
+  box-shadow: -10px 10px 5px -10px lightslategray;
+  cursor: pointer;
 }
 .main-book-cover {
-  height: 270px;
-  width: 215px;
+  height: 180px;
+  width: 140px;
 }
 .main-book-author {
-  font-size: 22px;
+  font-size: 16px;
 }
+.Library-Docks {
+  margin: 10px;
+  border-radius: 10px;
+  background-color: whitesmoke;
+  box-shadow: inset 0px 0px 20px 0px lightgray;
+  box-shadow: inset 0px 0px 20px 0px lightgray;
+}
+
+	
