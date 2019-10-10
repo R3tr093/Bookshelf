@@ -57,6 +57,19 @@ export class LibraryComponent implements OnInit {
               // Set the value of this.books with the return of the queriesServices.
               resolve(this.books = this.QueriesService.books);
               this.books = Array.from(this.books.data.books.nodes);
+
+              let i = 0;
+
+              while( i = 0 , i < this.books.length, i++ )
+              {
+                if(this.books[i].cover === "")
+                {
+                  this.books[i].cover = "prout";
+                }
+                i++;
+              }
+
+
               this.isLoaded = true;
             }
 
@@ -103,6 +116,7 @@ export class LibraryComponent implements OnInit {
       let author =   String((<HTMLInputElement>document.getElementById("author")).value);
 
       let report = document.getElementById('report');
+      let validate = document.getElementById('validate');
 
       if(isbn !== "" && title !== "" && editor !== "" && cover !== "" && author !== "")
       {
@@ -118,9 +132,11 @@ export class LibraryComponent implements OnInit {
           () => {
 
 
+            validate.innerHTML = " ";
+
             if(this.QueriesService.books !== "wait")
             {
-              alert('done')
+              validate.innerHTML = validate.innerHTML + " Book successfully submited."
              
             }
 

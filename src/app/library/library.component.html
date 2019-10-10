@@ -12,7 +12,8 @@
     <div id="Library" *ngIf="isLoaded === true">
       <div routerLink="/article/{{ element.isbn }}" routerLinkActive="active"
         *ngFor="let element of books; let i = index" class="is{{element.availabilities[0].available}} main-book main-book-{{ i }} ">
-        <img class="main-book-cover" src="{{ element.cover }}" /><br /><br />
+        <img class="main-book-cover" *ngIf="element.cover === ''" src="https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.2st84wz5RoZPMTNCZDg5pwHaE7%26pid%3DApi&f=1" /><br /><br />
+        <img class="main-book-cover" *ngIf="element.cover !== ''" src="{{ element.cover }}" /><br /><br />
         <span class="main-book-author"><em>{{ element.author }} </em></span><br />
        
       </div>
@@ -51,6 +52,7 @@
       <button (click)="formProcess()">Validate</button>
 
       <p id="report"></p>
+      <p id="validate"></p>
 
     </form>
 
