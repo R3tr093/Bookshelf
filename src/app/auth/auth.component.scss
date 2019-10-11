@@ -12,6 +12,7 @@
 #logSpinner
 {
   display: none;
+  max-height: 100px;
 }
 
 #regSpinner
@@ -131,3 +132,9 @@ h1
       text-decoration: underline;
     }
   }
+
+#flexLog
+{
+  max-height: 70px !important;
+}
+  
