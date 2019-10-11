@@ -59,8 +59,10 @@ export class AuthComponent implements OnInit{
 
           document.getElementById("logSpinner").style.display = "none";
 
-          document.getElementById('logError').textContent = "Error : invalid credentials.";
-
+          if(this.AuthService.report !== "null")
+          {
+            document.getElementById('logError').textContent = "Error : invalid credentials.";
+          }
           this.count = this.count + 500;
           
 
