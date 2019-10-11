@@ -46,7 +46,7 @@ export class AuthComponent implements OnInit{
 
       document.getElementById("logSpinner").style.display = "block";
 
-      let logName =  (<HTMLInputElement>document.getElementById("logName")).value;
+      let logName =  String((<HTMLInputElement>document.getElementById("logName")).value);
 
       let logPass =  (<HTMLInputElement>document.getElementById("logPass")).value;
 

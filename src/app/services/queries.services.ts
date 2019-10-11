@@ -95,6 +95,7 @@ export class QueriesServices extends Mutation {
                 {
                   timestamp
                 }
+                uid
               }
             } 
           }
@@ -173,6 +174,58 @@ export class QueriesServices extends Mutation {
       .subscribe(
         (value) => {
           console.log("Data has been successfully posted !")
+        },
+        (error) => {
+          console.log('Oh my god , an error occurred fix it bro ! : ' + error);
+        },
+        () => {
+          console.log('Request has been successfully send.!');
+        }
+      );
+  }
+
+  editReview(apollo: Apollo,  $id: String, $vote: String, $comment : String)
+  { 
+    apollo
+      .mutate({
+        mutation: gql`mutation
+          {
+            editBookReview(uid: "${$id}",review:{note: ${$vote}, lang: "FR", comment: "${$comment}"})
+            {
+              book{title}
+              
+            }
+          }
+        `,
+      })
+    
+      .subscribe(
+        (value) => {
+          console.log("Data has been successfully posted !")
+        },
+        (error) => {
+          console.log('Oh my god , an error occurred fix it bro ! : ' + error);
+        },
+        () => {
+          console.log('Request has been successfully send.!');
+        }
+      );
+  }  
+
+  delReview(apollo:Apollo, $id)
+  {
+    apollo
+      .mutate({
+        mutation: gql`mutation
+          {
+            deleteBookReview(uid: "${$id}")
+          }
+        `,
+      })
+    
+      .subscribe(
+        (value) => {
+          console.log("Data has been successfully deleted !")
         },
         (error) => {
           console.log('Oh my god , an error occurred fix it bro ! : ' + error);

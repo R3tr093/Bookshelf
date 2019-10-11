@@ -39,6 +39,7 @@ export class ArticleComponent implements OnInit {
   schools : string;
   comments : any;
   commentAuthor : any;
+  bookId : string;
   
   // get apollo
   apollo : Apollo;
@@ -47,14 +48,17 @@ export class ArticleComponent implements OnInit {
   // get data about comment
   isDisplayForm: boolean;
   comment : string;
-  
+
   note : number;
+  isEdit : boolean = false;
+  toEdit : any;
   
 
 
  
 
   constructor(apollo: Apollo, private QueriesService: QueriesServices, private AuthService: AuthServices) {
+
 
     this.isLoaded = false;
 
@@ -103,19 +107,27 @@ export class ArticleComponent implements OnInit {
 
               resolve(this.book = this.QueriesService.books.data.book);
               
+              
 
               let i = 0;
               while(i < this.book.reviews.nodes.length)
               {
                 
-                let check = this.book.reviews.nodes[i].comment;
-                check = String(check);
-                check = check.trim();
+               
                 
-                if(check !== "")
+                if(this.book.reviews.nodes[i].comment)
                 {
                   this.comments.push(this.book.reviews.nodes[i].comment)
                   this.commentAuthor.push(this.book.reviews.nodes[i].reviewer.name)
+                  
+                  //this.bookId = this.book.reviews.nodes[i].uid;
+
+                  if(this.book.reviews.nodes[i].reviewer.name)
+                  {
+                    this.isEdit = true;
+                    this.toEdit = this.book.reviews.nodes[i].comment;
+
+                  }
                 }
                
                 i++;
@@ -169,17 +181,35 @@ export class ArticleComponent implements OnInit {
         }
 
         // post a comment
-        formProcess(){
+        commentProcess(){
 
-          let comment =   String((<HTMLInputElement>document.getElementById("comment")).value);
+          let comment =   String((<HTMLTextAreaElement>document.getElementById("comment")).value);
 
           if(comment.length > 2)
           {
-            this.QueriesService.addReview(this.apollo,this.target,"THREE",comment)
+            this.QueriesService.addReview(this.apollo,this.target,"ONE",comment)
           }
 
          
         }
+
+        editProcess(){
+          let i = 0;
+
+          while(this.bookId = this.book.reviews.nodes.length)
+          {
+            this.bookId = this.book.reviews.nodes[i].uid;
+            this.QueriesService.editReview(this.apollo,this.bookId,"ONE","just edited again !");
+            i++;
+          }
+          
+        }
+
+        deleteProcess(){
+          this.QueriesService.delReview(this.apollo,this.bookId);
+        }
+
+
 }
 
 
