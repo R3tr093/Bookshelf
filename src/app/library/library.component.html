@@ -818,9 +818,12 @@
   <!-- Main frame -->
   <div class="library">
     <div id="Library" *ngIf="isLoaded === true">
-      <div class="Library-Docks" *ngFor="let element of books; let i = index">
-      <div routerLink="/article/{{ element.isbn }}" routerLinkActive="active"
+      <div class="Library-Dock" *ngFor="let element of books; let i = index">
+        
+        <div routerLink="/article/{{ element.isbn }}" routerLinkActive="active"
          class="main-book main-book-{{ i }} ">
+         <div class="main-book validity">
+           <div class="main-book-cover-validity-one"></div><div class="main-book-cover-validity-two"></div></div>
         <img class="main-book-cover" src="{{ element.cover }}" />
         <span class="main-book-author"><em>{{ element.author }} </em></span>
       </div>
