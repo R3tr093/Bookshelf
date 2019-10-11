@@ -1,1 +1,23 @@
+#postComment
+{
+    display: none;
+    height: 25vh;
+    position: relative;
+    left: 25%;
+    top: 15vh;
+    border: 1px solid black;
+    width: 50%;
 
+    
+}
+
+h3
+{
+    width: 100%;
+    text-align: center;
+}
+textarea
+{
+    width: 50%;
+    max-width: 80%;
+}

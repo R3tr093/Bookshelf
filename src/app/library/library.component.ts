@@ -35,8 +35,7 @@ export class LibraryComponent implements OnInit {
     
      
 
-    //DEBUG
-    this.QueriesService.addReview(apollo)
+
 
 
   }

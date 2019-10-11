@@ -15,26 +15,7 @@ export class AppComponent implements OnInit {
   
   books: any;
 
-  constructor(apollo: Apollo, private QueriesService: QueriesServices, private AuthService: AuthServices) {
-
-    
-    
-    
-    //Examples
-
- 
-
-
-
-  
-    // --> Is actually provided by server need parameter to be really usefull
-    
-    //this.QueriesService.postBooks(apollo)
-    
-    
- 
-
-  }
+  constructor(apollo: Apollo, private QueriesService: QueriesServices, private AuthService: AuthServices) {}
 
   ngOnInit(){}
 

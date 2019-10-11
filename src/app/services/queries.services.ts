@@ -155,13 +155,13 @@ export class QueriesServices extends Mutation {
 
 
 
-  addReview(apollo: Apollo)
+  addReview(apollo: Apollo, $isbn: String, $vote: String, $comment : String)
   { 
     apollo
       .mutate({
         mutation: gql`mutation
           {
-            addBookReview(bookISBN: "dsd",review:{note: FOUR, lang: "FR", comment: "My comment" })
+            addBookReview(bookISBN: "${$isbn}",review:{note: ${$vote}, lang: "FR", comment: "${$comment}"})
             {
               book{title}
               
