@@ -27,7 +27,7 @@ export class ArticleComponent implements OnInit {
   isLoaded : boolean;
 
   // Get details about a book
-  book : any;
+  book : any = "wait";
 
   title : string;
   author : string;
@@ -40,6 +40,7 @@ export class ArticleComponent implements OnInit {
   comments : any;
   commentAuthor : any;
   bookId : string;
+
   
   // get apollo
   apollo : Apollo;
@@ -47,10 +48,10 @@ export class ArticleComponent implements OnInit {
 
   // get data about comment
   isDisplayForm: boolean;
-  comment : string;
+  
 
   note : number;
-  isEdit : boolean = false;
+  isEdit : boolean;
   toEdit : any;
   
 
@@ -68,8 +69,11 @@ export class ArticleComponent implements OnInit {
     this.comments = [];
     this.commentAuthor = [];
 
+
     // check the url and call a request for a single book details
     this.urlCheck();
+
+    
    
     
   }
@@ -96,6 +100,7 @@ export class ArticleComponent implements OnInit {
 
         // Asking to the service for use getBooks function.
         this.book = this.QueriesService.getBook(apollo,param);
+    
 
         setTimeout(
       
@@ -113,25 +118,25 @@ export class ArticleComponent implements OnInit {
               while(i < this.book.reviews.nodes.length)
               {
                 
-               
-                
                 if(this.book.reviews.nodes[i].comment)
                 {
                   this.comments.push(this.book.reviews.nodes[i].comment)
-                  this.commentAuthor.push(this.book.reviews.nodes[i].reviewer.name)
-                  
-                  //this.bookId = this.book.reviews.nodes[i].uid;
-
-                  if(this.book.reviews.nodes[i].reviewer.name)
-                  {
-                    this.isEdit = true;
-                    this.toEdit = this.book.reviews.nodes[i].comment;
-
-                  }
+                  this.commentAuthor.push(this.book.reviews.nodes[i].reviewer.name)    
+                          
                 }
-               
                 i++;
                 
+              }
+
+              if(this.book !== "wait")
+              {
+                this.editProcess();
+                
+                setTimeout(()=>{
+                  this.isEdit = this.QueriesService.isEdit;
+                  this.toEdit = this.QueriesService.editComment;
+                },5000)
+
               }
 
               this.title = this.book.title;
@@ -143,6 +148,7 @@ export class ArticleComponent implements OnInit {
               this.available = this.book.availabilities[0].available ? "Available" : "Not available";
               this.schools = this.book.availabilities[0].school.name;
               this.isLoaded = true;
+           
             }
 
             else
@@ -156,6 +162,9 @@ export class ArticleComponent implements OnInit {
           }, this.count
       
           );
+
+          
+
         });
     };
 
@@ -183,7 +192,7 @@ export class ArticleComponent implements OnInit {
         // post a comment
         commentProcess(){
 
-          let comment =   String((<HTMLTextAreaElement>document.getElementById("comment")).value);
+          let comment = String((<HTMLTextAreaElement>document.getElementById("comment")).value);
 
           if(comment.length > 2)
           {
@@ -194,20 +203,37 @@ export class ArticleComponent implements OnInit {
         }
 
         editProcess(){
+         
           let i = 0;
 
-          while(this.bookId = this.book.reviews.nodes.length)
+         
+
+          if(this.isEdit)
           {
-            this.bookId = this.book.reviews.nodes[i].uid;
-            this.QueriesService.editReview(this.apollo,this.bookId,"ONE","just edited again !");
+            let comment = String((<HTMLTextAreaElement>document.getElementById("editComment")).value);
+
+               while(i < this.book.reviews.nodes.length)
+            {
+               this.bookId = this.book.reviews.nodes[i].uid;
+               this.toEdit = this.book.reviews.nodes[i].comment;
+               this.QueriesService.editReview(this.apollo,this.bookId,"ONE",comment);
+               i++;
+            }
+          }
+
+          while(i < this.book.reviews.nodes.length)
+          {
+              this.bookId = this.book.reviews.nodes[i].uid;
+              this.toEdit = this.book.reviews.nodes[i].comment;
+              this.QueriesService.editReview(this.apollo,this.bookId,"ONE",this.book.reviews.nodes[i].comment);
+              
+              
             i++;
           }
-          
+
         }
 
-        deleteProcess(){
-          this.QueriesService.delReview(this.apollo,this.bookId);
-        }
+        
 
 
 }

@@ -39,12 +39,14 @@
 
     <h3>Write a comment </h3><br>
      
- 
-    <textarea id="comment" placeholder="Write your comment here"></textarea>
+    
+    <textarea *ngIf="!isEdit"  id="comment" placeholder="Write your comment here"></textarea>
+    <textarea *ngIf="isEdit" id="editComment" placeholder="{{toEdit}}"></textarea>
+  
 
-    <button (click)="commentProcess()"> Add</button>
-    <button (click)="editProcess()"> Edit</button>
-    <button (click)="deleteProcess()">Delete</button>
+    <button *ngIf="!isEdit"  (click)="commentProcess()"> Add</button>
+    <button *ngIf="isEdit"  (click)="editProcess()"> Edit</button>
+   
 
   </form>
 

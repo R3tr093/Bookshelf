@@ -9,6 +9,8 @@ export class QueriesServices extends Mutation {
 
 
   books : any;
+  isEdit : boolean = false;
+  editComment : String;
   
 
   // -> This function provide all the books and theses titles in the API. ** Take as parameter an instance of apollo **
@@ -88,6 +90,7 @@ export class QueriesServices extends Mutation {
                 reviewer
                 {
                   name
+                  uid
                 }
                 comment
                 note
@@ -194,6 +197,7 @@ export class QueriesServices extends Mutation {
             {
               book{title}
               
+              
             }
           }
         `,
@@ -202,6 +206,9 @@ export class QueriesServices extends Mutation {
       .subscribe(
         (value) => {
           console.log("Data has been successfully posted !")
+          this.isEdit = true;
+          this.editComment = $comment;
+        
         },
         (error) => {
           console.log('Oh my god , an error occurred fix it bro ! : ' + error);
@@ -210,30 +217,5 @@ export class QueriesServices extends Mutation {
           console.log('Request has been successfully send.!');
         }
       );
-  }  
-
-  delReview(apollo:Apollo, $id)
-  {
-    apollo
-      .mutate({
-        mutation: gql`mutation
-          {
-            deleteBookReview(uid: "${$id}")
-          }
-        `,
-      })
-    
-      .subscribe(
-        (value) => {
-          console.log("Data has been successfully deleted !")
-        },
-        (error) => {
-          console.log('Oh my god , an error occurred fix it bro ! : ' + error);
-        },
-        () => {
-          console.log('Request has been successfully send.!');
-        }
-      );
-  }
- 
+  }   
 }
