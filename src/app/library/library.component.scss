@@ -35,7 +35,9 @@
   position: absolute;
   margin-top: 615px;
   margin-left: 250px;
+  cursor: pointer
 }
+
 
 // HEADER
 
@@ -112,16 +114,19 @@ header {
   -webkit-transition: all 0.5s cubic-bezier(0.6, 2, 0.4, 1);
   transition: all 0.5s cubic-bezier(0.6, 2, 0.4, 1);
   border-radius: 5px;
+  border: 1px solid #dbdada6b;
 }
 .main-book:hover {
   -webkit-transform: scale(1.04);
   transform: scale(1.04);
-  box-shadow: -10px 10px 5px -10px #AA977E;
+  box-shadow: -10px 10px 5px -10px #323C3C;
   cursor: pointer;
 }
 .main-book-cover {
   height: 180px;
   width: 140px;
+  margin-top: 4px;
+  border: 1px solid #dbdada6b;
 }
 .main-book-author {
   font-family: 'Avenir';
@@ -130,8 +135,8 @@ header {
 .Library-Docks {
   margin: 10px;
   border-radius: 10px;
-  background-color: #F2E9DA;
-  box-shadow: inset 0px 0px 11px 3px #E5DACA;
+  background-color: #fff9ee;
+  box-shadow: inset 0px 0px 9px 3px #3e3e3e26;
 }
 
 // New content button for add a book, should display a form on click
