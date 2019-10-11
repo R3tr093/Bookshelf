@@ -102,13 +102,11 @@ header {
 }
 .main-book {
   margin: 10px;
-  width: 190px;
+  width: 180px;
   height: 275px;
   text-align: center;
-  border: 5px solid white;
   background: white;
   border-radius: 5px;
-  border: 1px solid #dbdada6b;
   position: relative;
 }
 .main-book {
@@ -123,18 +121,18 @@ header {
   cursor: pointer;
 }
 .main-book:hover .main-book-cover-validity-one {
-  margin-top: -4px;
+  margin-top: -3px;
   transform: rotate(-45deg) scaleX(1);
 }
 .main-book:hover .main-book-cover-validity-two {
   transform: rotate(-45deg) scaleX(1);
-  right: -4px;
+  right: -3px;
   bottom: 1px;
+  
 }
 .main-book-cover {
   height: 220px;
   width: 180px;
-  margin-top: 4px;
   border: 1px solid #dbdada6b;
   position: relative;
   border-radius: 5px;
@@ -149,16 +147,17 @@ header {
   height: 218px;
   width: 178px;
   position: absolute;
-  margin-top: 5px;
   border-radius: 5px;
-  margin-left: 5px;
+  margin-left: 1px;
+  margin-top: 1px;
 }
 .main-book-cover-validity-one {
   border-radius: 3px;
   background: #00b900;
   width: 10px;
   height: 10px;
-  margin-left: 0px;
+  margin-left: 1px;
+
 }
 .main-book-cover-validity-two {
   margin-top: -4px;

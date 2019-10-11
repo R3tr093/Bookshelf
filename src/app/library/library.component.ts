@@ -3,6 +3,7 @@ import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 import { QueriesServices } from '../services/queries.services';
 import { AuthServices} from '../services/auth.services';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-library',
@@ -33,7 +34,13 @@ export class LibraryComponent implements OnInit {
     // Get all books
     this.getBooks(apollo);
     
-     
+    function isUrlValid(userInput) {
+      var res = userInput.match(/^((?:http:\/\/)|(?:https:\/\/))(www.)?((?:[a-zA-Z0-9]+\.[a-z]{3})|(?:\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}(?::\d+)?))([\/a-zA-Z0-9\.]*)$/gm);
+      if(res == null)
+          return false;
+      else
+          return true;
+   }
 
     //DEBUG
     this.QueriesService.addReview(apollo)
@@ -88,6 +95,7 @@ export class LibraryComponent implements OnInit {
         );
     })};
 
+    
     // Hide and show the form
     displayForm(){
 
