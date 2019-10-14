@@ -82,6 +82,7 @@ export class QueriesServices extends Mutation {
             
             reviews
             {
+              totalCount
               nodes
               {
                 reviewer

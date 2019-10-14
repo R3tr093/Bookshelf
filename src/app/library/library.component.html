@@ -827,13 +827,7 @@
         <img class="main-book-cover" *ngIf="element.cover !== '';else elseBlock" src="{{ element.cover }}" />
         <ng-template #elseBlock><img class="main-book-cover" src="http://www.bukovero.com/wp-content/uploads/2016/07/Harry_Potter_and_the_Cursed_Child_Special_Rehearsal_Edition_Book_Cover.jpg'" /></ng-template>
         <div class="titleText">{{ element.title }}</div>
-        <nz-rate
-              [(ngModel)]="booksReviews[i]"
-              nzAllowHalf
-              nzDisabled
-            ></nz-rate
-            >
-
+        <nz-rate [(ngModel)]="booksReviews[i]" nzAllowHalf nzDisabled></nz-rate>
       </div>
     </div>
     </div>

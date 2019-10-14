@@ -21,6 +21,8 @@
         <p class="info_content">Lang : {{lang}}</p>
         <p class="info_content">Format : {{format}}</p>
         <p class="info_content">Available : {{available }}</p>
+        <p class="info_content">User Rating : <nz-rate [(ngModel)]="bookTotalRate" nzAllowHalf nzDisabled></nz-rate></p>
+        
       </section>
 
       <section id="comment_block">
@@ -36,12 +38,11 @@
         <button id="button_block" (click)="displayForm()">Write comment</button>
         <div id="postComment" class="animated">
           <button (click)="displayForm()">X</button>
-          <form>
-            <textarea *ngIf="!isEdit"  id="comment" placeholder="Write your comment here"></textarea>
-            <textarea *ngIf="isEdit" id="editComment" placeholder="{{toEdit}}"></textarea>
+            <textarea *ngIf="!isEdit"  id="comment" placeholder="Write your comment here" name="Comment review"></textarea>
+            <textarea *ngIf="isEdit" id="editComment" placeholder="{{toEdit}}" name="Comment note"></textarea>
+            <nz-rate class="rateForm" [(ngModel)]="myRateVote"></nz-rate>
             <button class="comment_button" *ngIf="!isEdit"  (click)="commentProcess()"> Add</button>
             <button class="comment_button" *ngIf="isEdit"  (click)="editProcess()"> Edit</button>
-          </form>
         </div>
       </section>
 
