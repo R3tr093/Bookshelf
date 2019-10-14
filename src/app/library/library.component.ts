@@ -16,6 +16,8 @@ export class LibraryComponent implements OnInit {
 
   count : number = 0;
   isLoaded : boolean;
+  allNotes: any[] = [];
+  booksReviews: any[] = [];
 
   apollo : any;
 
@@ -83,10 +85,29 @@ export class LibraryComponent implements OnInit {
                      this.books.splice(i, 1);
                 }
               }
-             
-
-              this.isLoaded = true;
+              for (let i = 0; i < this.books.length; i++) {
+                this.allNotes[i] = this.books[i].reviews.nodes;
+              }
+              for (let i = 0; i < this.allNotes.length; i++) {
+                if (this.allNotes[i].length > 0) {
+                  let totalReviews = 0;
+                  this.books[i].reviews.nodes.map((a: any) => {
+                    totalReviews += a.note;
+                  });
+                  this.booksReviews.push(
+                    Math.round(
+                      (totalReviews / this.books[i].reviews.totalCount) * 10
+                    ) / 10
+                  );
+            }else {
+              this.booksReviews.push(0);
             }
+          }
+          console.log("Notes :",this.booksReviews);
+          
+
+          this.isLoaded = true;
+        }
 
             else
             {

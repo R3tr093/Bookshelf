@@ -20,6 +20,12 @@ import { ErrorComponent } from './error/error.component';
 import { LibraryComponent } from './library/library.component';
 import { AuthComponent } from './auth/auth.component';
 import { ArticleComponent } from './article/article.component';
+import { NgZorroAntdModule, NZ_I18N, en_US } from 'ng-zorro-antd';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { registerLocaleData } from '@angular/common';
+import en from '@angular/common/locales/en';
+
+registerLocaleData(en);
 
 
 
@@ -44,7 +50,9 @@ const appRoutes: Routes =
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only
-    )
+    ),
+    NgZorroAntdModule,
+    BrowserAnimationsModule
 
   ],
   declarations: [AppComponent, ErrorComponent, LibraryComponent, AuthComponent, ArticleComponent],
@@ -52,7 +60,8 @@ const appRoutes: Routes =
   providers: [
   
     QueriesServices,
-    AuthServices
+    AuthServices,
+    { provide: NZ_I18N, useValue: en_US }
 
   ]
 })
