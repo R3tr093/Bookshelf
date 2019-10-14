@@ -1,54 +1,72 @@
+<main>
+
+  <!-- Here is the spinner -->
+  <div class="d-flex justify-content-center" *ngIf="isLoaded === false" id="loading">
+    <div class="spinner-grow  text-primary" role="status"></div>
+  </div>
 
 
-<!-- Here is the spinner -->
+  <!-- Main content display many details about a single book -->
+  <div id="main" *ngIf="isLoaded === true">
 
-<div class="d-flex justify-content-center" *ngIf="isLoaded === false" id="loading">
-  <div class="spinner-grow  text-primary" role="status"></div>
-</div>
+    <div id="cover_block">
+      <img src="{{cover}}" alt="">
+    </div>
+    <div id="info_block">
 
+      <section>
+        <p class="info_title">{{title}}</p>
+        <p class="info_content">Autor : {{author}}</p>
+        <p class="info_content">Editor : {{editor}}</p>
+        <p class="info_content">Lang : {{lang}}</p>
+        <p class="info_content">Format : {{format}}</p>
+        <p class="info_content">Available : {{available }}</p>
+      </section>
 
-<!-- Main content display many details about a single book -->
-<div id="main" *ngIf="isLoaded === true">
+      <section id="comment_block">
+        <h3 class="info_title">Comments</h3>
+        <p  class="info_content" *ngFor="let element of comments; let i = index">
+          {{commentAuthor[i]}} :
+          {{element}}
+        </p>
+      </section>
 
+      <section>
+        <!-- Toggle form to write a comment -->
+        <button id="button_block" (click)="displayForm()">Write comment</button>
+        <div id="postComment" class="animated">
+          <button (click)="displayForm()">X</button>
+          <form>
+            <textarea *ngIf="!isEdit"  id="comment" placeholder="Write your comment here"></textarea>
+            <textarea *ngIf="isEdit" id="editComment" placeholder="{{toEdit}}"></textarea>
+            <button class="comment_button" *ngIf="!isEdit"  (click)="commentProcess()"> Add</button>
+            <button class="comment_button" *ngIf="isEdit"  (click)="editProcess()"> Edit</button>
+          </form>
+        </div>
+      </section>
 
-       <p>{{title}}</p>
-       <p>{{author}}</p>
-       <p>{{editor}}</p>
-       <p>{{lang}}</p>
-       <p>{{cover}}</p>
-       <p>{{format}}</p>
-       <p>{{available }}</p>
+      <a href="#" id="close_block">
+        <svg width="50px" version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+        	 viewBox="0 0 500 359" style="enable-background:new 0 0 500 359;" xml:space="preserve">
+        <style type="text/css">
+        	.st2{fill-rule:evenodd;clip-rule:evenodd;fill:#2B165B;}
+        	.st3{fill-rule:evenodd;clip-rule:evenodd;fill:#72DBD1;}
+        </style>
+        <polygon class="st0" points="179.6,356 1.8,178.9 178.1,1.9 178.8,77.7 311.6,77.7 311.6,280.2 178.8,280.2 "/>
+        <polygon class="st1" points="347.6,77.7 412.1,76.9 412.9,280.2 348.4,280.2 "/>
+        <rect x="448.9" y="76.9" class="st1" width="48.8" height="202.6"/>
+        </svg>
+      </a>
 
-       <h3>Comments</h3>
-   <p *ngFor="let element of comments; let i = index">
-    {{commentAuthor[i]}} :
-    {{element}}
-   </p>
+      <svg width="400px" version="1.1" id="blob_block" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+      	 viewBox="0 0 500 500" style="enable-background:new 0 0 500 500;" xml:space="preserve">
+      <style type="text/css">
+      	.st0{fill:#72DBD1;}
+      </style>
+      <path class="st0" d="M500,499.9V70.5c-64.1,5.8-136.6-102.1-204.6-58.9c-53.7,34,5.2,170.1-71.9,265.4
+      	c-53.2,65.8-81.7,136.6-70.1,223L500,499.9L500,499.9z"/>
+      </svg>
 
-
-</div>
-
-<!-- Toggle form to write a comment -->
-
-<button (click)="displayForm()">Write comment</button>
-
-<div id="postComment" class="animated">
-  <button (click)="displayForm()">X</button>
-  <form>
-
-
-    <h3>Write a comment </h3><br>
-     
-    
-    <textarea *ngIf="!isEdit"  id="comment" placeholder="Write your comment here"></textarea>
-    <textarea *ngIf="isEdit" id="editComment" placeholder="{{toEdit}}"></textarea>
-  
-
-    <button *ngIf="!isEdit"  (click)="commentProcess()"> Add</button>
-    <button *ngIf="isEdit"  (click)="editProcess()"> Edit</button>
-   
-
-  </form>
-
-
-</div>
+    </div>
+  </div>
+</main>
