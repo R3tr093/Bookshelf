@@ -18,7 +18,6 @@ export class LibraryComponent implements OnInit {
   isLoaded : boolean;
   allNotes: any[] = [];
   booksReviews: any[] = [];
-
   apollo : any;
 
   isDisplayForm : boolean = false;
@@ -103,9 +102,6 @@ export class LibraryComponent implements OnInit {
               this.booksReviews.push(0);
             }
           }
-          console.log("Notes :",this.booksReviews);
-          
-
           this.isLoaded = true;
         }
 
