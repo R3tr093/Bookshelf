@@ -1,9 +1,13 @@
-<h1></h1>
+
+
+<!-- Here is the spinner -->
 
 <div class="d-flex justify-content-center" *ngIf="isLoaded === false" id="loading">
   <div class="spinner-grow  text-primary" role="status"></div>
 </div>
 
+
+<!-- Main content display many details about a single book -->
 <div id="main" *ngIf="isLoaded === true">
 
 
@@ -15,7 +19,36 @@
        <p>{{format}}</p>
        <p>{{available }}</p>
 
+       <h3>Comments</h3>
+   <p *ngFor="let element of comments; let i = index">
+    {{commentAuthor[i]}} :
+    {{element}}
+   </p>
 
+
+</div>
+
+<!-- Toggle form to write a comment -->
+
+<button (click)="displayForm()">Write comment</button>
+
+<div id="postComment" class="animated">
+  <button (click)="displayForm()">X</button>
+  <form>
+
+
+    <h3>Write a comment </h3><br>
+     
+    
+    <textarea *ngIf="!isEdit"  id="comment" placeholder="Write your comment here"></textarea>
+    <textarea *ngIf="isEdit" id="editComment" placeholder="{{toEdit}}"></textarea>
+  
+
+    <button *ngIf="!isEdit"  (click)="commentProcess()"> Add</button>
+    <button *ngIf="isEdit"  (click)="editProcess()"> Edit</button>
+   
+
+  </form>
 
 
 </div>

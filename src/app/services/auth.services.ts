@@ -67,16 +67,10 @@ export class AuthServices {
         this.isAuth = true;
         this.usrToken = value;    
         router.navigate(['/library']);
-        if( this.usrToken.data.loginWithBasic.token !== undefined)
+        if(this.usrToken.data.loginWithBasic.token !== undefined)
         {
           localStorage.setItem("token", this.usrToken.data.loginWithBasic.token);
         }
-
-        
-       
-       
-       
-
       },
       (error) => {
         this.report = error;

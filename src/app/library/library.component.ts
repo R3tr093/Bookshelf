@@ -24,7 +24,10 @@ export class LibraryComponent implements OnInit {
 
   constructor(apollo: Apollo, private QueriesService: QueriesServices, private AuthService: AuthServices) {
     
+    
     this.AuthService.usrToken = localStorage.getItem('token');
+
+
 
     // Set some variables for loading displaying
     this.isLoaded = false;
@@ -42,8 +45,7 @@ export class LibraryComponent implements OnInit {
           return true;
    }
 
-    //DEBUG
-    this.QueriesService.addReview(apollo)
+
 
 
   }
@@ -69,10 +71,10 @@ export class LibraryComponent implements OnInit {
             {
               // Set the value of this.books with the return of the queriesServices.
               resolve(this.books = this.QueriesService.books);
+              
               this.books = Array.from(this.books.data.books.nodes);
 
-              console.log(this.books[0].availabilities[0].school.name)
-
+              // Return books for the school with the name liege or similar to.
               for( var i = 0; i < this.books.length; i++)
               { 
 

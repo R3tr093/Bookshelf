@@ -46,7 +46,7 @@ export class AuthComponent implements OnInit{
 
       document.getElementById("logSpinner").style.display = "block";
 
-      let logName =  (<HTMLInputElement>document.getElementById("logName")).value;
+      let logName =  String((<HTMLInputElement>document.getElementById("logName")).value);
 
       let logPass =  (<HTMLInputElement>document.getElementById("logPass")).value;
 
@@ -59,8 +59,10 @@ export class AuthComponent implements OnInit{
 
           document.getElementById("logSpinner").style.display = "none";
 
-          document.getElementById('logError').textContent = "Error : invalid credentials.";
-
+          if(this.AuthService.report !== "null")
+          {
+            document.getElementById('logError').textContent = "Error : invalid credentials.";
+          }
           this.count = this.count + 500;
           
 

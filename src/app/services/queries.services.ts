@@ -9,6 +9,8 @@ export class QueriesServices extends Mutation {
 
 
   books : any;
+  isEdit : boolean = false;
+  editComment : String;
   
 
   // -> This function provide all the books and theses titles in the API. ** Take as parameter an instance of apollo **
@@ -88,6 +90,7 @@ export class QueriesServices extends Mutation {
                 reviewer
                 {
                   name
+                  uid
                 }
                 comment
                 note
@@ -95,6 +98,7 @@ export class QueriesServices extends Mutation {
                 {
                   timestamp
                 }
+                uid
               }
             } 
           }
@@ -155,13 +159,13 @@ export class QueriesServices extends Mutation {
 
 
 
-  addReview(apollo: Apollo)
+  addReview(apollo: Apollo, $isbn: String, $vote: String, $comment : String)
   { 
     apollo
       .mutate({
         mutation: gql`mutation
           {
-            addBookReview(bookISBN: "dsd",review:{note: FOUR, lang: "FR", comment: "My comment" })
+            addBookReview(bookISBN: "${$isbn}",review:{note: ${$vote}, lang: "FR", comment: "${$comment}"})
             {
               book{title}
               
@@ -182,5 +186,36 @@ export class QueriesServices extends Mutation {
         }
       );
   }
- 
+
+  editReview(apollo: Apollo,  $id: String, $vote: String, $comment : String)
+  { 
+    apollo
+      .mutate({
+        mutation: gql`mutation
+          {
+            editBookReview(uid: "${$id}",review:{note: ${$vote}, lang: "FR", comment: "${$comment}"})
+            {
+              book{title}
+              
+              
+            }
+          }
+        `,
+      })
+    
+      .subscribe(
+        (value) => {
+          console.log("Data has been successfully posted !")
+          this.isEdit = true;
+          this.editComment = $comment;
+        
+        },
+        (error) => {
+          console.log('Oh my god , an error occurred fix it bro ! : ' + error);
+        },
+        () => {
+          console.log('Request has been successfully send.!');
+        }
+      );
+  }   
 }
