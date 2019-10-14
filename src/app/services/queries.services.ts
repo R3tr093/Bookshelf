@@ -1,17 +1,12 @@
-import { Apollo } from 'apollo-angular';
-import gql from 'graphql-tag';
-import { stringify } from 'querystring';
-import {Mutation} from 'apollo-angular';
-
-
+import { Apollo } from "apollo-angular";
+import gql from "graphql-tag";
+import { stringify } from "querystring";
+import { Mutation } from "apollo-angular";
 
 export class QueriesServices extends Mutation {
-
-
-  books : any;
-  isEdit : boolean = false;
-  editComment : String;
-  
+  books: any;
+  isEdit: boolean = false;
+  editComment: String;
 
   // -> This function provide all the books and theses titles in the API. ** Take as parameter an instance of apollo **
 
@@ -20,44 +15,46 @@ export class QueriesServices extends Mutation {
       .query({
         query: gql`
           {
-              books(all:true) {
-                nodes
-                {
-                  title
-                  author
-                  isbn
-                  cover
-                  availabilities
-                  {
-                    available
+            books(all: true) {
+              nodes {
+                title
+                author
+                isbn
+                cover
+                reviews {
+                  totalCount
+                  nodes {
+                    note
+                  }
+                }
+                availabilities {
+                  available
 
-                    school
-                    {
-                      name
-                    }
-                  } 
+                  school {
+                    name
+                  }
                 }
               }
+            }
           }
-        `,
+        `
       })
       .subscribe(
-        (value) => {
+        value => {
           this.books = value;
           return value;
         },
-        (error) => {
-          console.log('Oh my god , an error occurred fix it bro ! : ' + error);
+        error => {
+          console.log("Oh my god , an error occurred fix it bro ! : " + error);
         },
         () => {
-          console.log('Request has been successfully send.!');
+          console.log("Request has been successfully send.!");
         }
       );
   }
 
-
   // Get a single book by his ID
-  getBook(apollo: Apollo, $bookID: String,) {
+  getBook(apollo: Apollo, $bookID: String) {
     apollo
       .query({
         query: gql`   
@@ -103,27 +100,29 @@ export class QueriesServices extends Mutation {
             } 
           }
         }
-        `,
+        `
       })
       .subscribe(
-        (value) => {
+        value => {
           this.books = value;
-         
         },
-        (error) => {
-          console.log('Oh my god , an error occurred fix it bro ! : ' + error);
+        error => {
+          console.log("Oh my god , an error occurred fix it bro ! : " + error);
         },
         () => {
-          console.log('Request has been successfully send.!');
+          console.log("Request has been successfully send.!");
         }
       );
   }
 
-    
-
-
-  postBooks(apollo: Apollo, $isbn: String, $title: String, $author : String, $editor : String, $cover : String)
-  { 
+  postBooks(
+    apollo: Apollo,
+    $isbn: String,
+    $title: String,
+    $author: String,
+    $editor: String,
+    $cover: String
+  ) {
     apollo
       .mutate({
         mutation: gql`mutation
@@ -139,28 +138,25 @@ export class QueriesServices extends Mutation {
              format
             }
           }
-        `,
+        `
       })
-    
+
       .subscribe(
-        (value) => {
-          console.log("Data has been successfully posted !")
+        value => {
+          console.log("Data has been successfully posted !");
           this.books = "done";
         },
-        (error) => {
-          console.log('Oh my god , an error occurred fix it bro ! : ' + error);
+        error => {
+          console.log("Oh my god , an error occurred fix it bro ! : " + error);
           this.books = "crash";
         },
         () => {
-          console.log('Request has been successfully send.!');
+          console.log("Request has been successfully send.!");
         }
       );
   }
 
-
-
-  addReview(apollo: Apollo, $isbn: String, $vote: String, $comment : String)
-  { 
+  addReview(apollo: Apollo, $isbn: String, $vote: String, $comment: String) {
     apollo
       .mutate({
         mutation: gql`mutation
@@ -171,24 +167,23 @@ export class QueriesServices extends Mutation {
               
             }
           }
-        `,
+        `
       })
-    
+
       .subscribe(
-        (value) => {
-          console.log("Data has been successfully posted !")
+        value => {
+          console.log("Data has been successfully posted !");
         },
-        (error) => {
-          console.log('Oh my god , an error occurred fix it bro ! : ' + error);
+        error => {
+          console.log("Oh my god , an error occurred fix it bro ! : " + error);
         },
         () => {
-          console.log('Request has been successfully send.!');
+          console.log("Request has been successfully send.!");
         }
       );
   }
 
-  editReview(apollo: Apollo,  $id: String, $vote: String, $comment : String)
-  { 
+  editReview(apollo: Apollo, $id: String, $vote: String, $comment: String) {
     apollo
       .mutate({
         mutation: gql`mutation
@@ -200,22 +195,21 @@ export class QueriesServices extends Mutation {
               
             }
           }
-        `,
+        `
       })
-    
+
       .subscribe(
-        (value) => {
-          console.log("Data has been successfully posted !")
+        value => {
+          console.log("Data has been successfully posted !");
           this.isEdit = true;
           this.editComment = $comment;
-        
         },
-        (error) => {
-          console.log('Oh my god , an error occurred fix it bro ! : ' + error);
+        error => {
+          console.log("Oh my god , an error occurred fix it bro ! : " + error);
         },
         () => {
-          console.log('Request has been successfully send.!');
+          console.log("Request has been successfully send.!");
         }
       );
-  }   
+  }
 }

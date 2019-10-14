@@ -151,6 +151,11 @@ header {
   margin-left: 1px;
   margin-top: 1px;
 }
+.titleText{
+  white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+}
 .main-book-cover-validity-one {
   border-radius: 3px;
   background: #00b900;

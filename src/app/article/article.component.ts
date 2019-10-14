@@ -197,6 +197,7 @@ export class ArticleComponent implements OnInit {
           if(comment.length > 2)
           {
             this.QueriesService.addReview(this.apollo,this.target,"ONE",comment)
+            //window.location.reload()
           }
 
          
@@ -218,6 +219,7 @@ export class ArticleComponent implements OnInit {
                this.toEdit = this.book.reviews.nodes[i].comment;
                this.QueriesService.editReview(this.apollo,this.bookId,"ONE",comment);
                i++;
+               //window.location.reload()
             }
           }
 
@@ -226,9 +228,8 @@ export class ArticleComponent implements OnInit {
               this.bookId = this.book.reviews.nodes[i].uid;
               this.toEdit = this.book.reviews.nodes[i].comment;
               this.QueriesService.editReview(this.apollo,this.bookId,"ONE",this.book.reviews.nodes[i].comment);
-              
-              
             i++;
+            //window.location.reload()
           }
 
         }
