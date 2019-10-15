@@ -16,7 +16,7 @@ import { Url } from 'url';
 
 export class ArticleComponent implements OnInit {
 
-  // get the current url 
+  // get the current url
   url : string;
 
   // get the article isbn
@@ -47,22 +47,22 @@ export class ArticleComponent implements OnInit {
   tooltips = ["terrible", "bad", "normal", "good", "wonderful"];
   isRent : boolean;
 
-  
+
   // get apollo
   apollo : Apollo;
 
 
   // get data about comment
   isDisplayForm: boolean;
-  
+
 
   note : number;
   isEdit : boolean = this.QueriesService.isEdit;
   toEdit : any;
-  
 
 
- 
+
+
 
   constructor(apollo: Apollo, private QueriesService: QueriesServices, private AuthService: AuthServices) {
 
@@ -81,9 +81,9 @@ export class ArticleComponent implements OnInit {
     // check the url and call a request for a single book details
     this.urlCheck();
 
-    
-   
-    
+
+
+
   }
 
   ngOnInit() {
@@ -100,7 +100,7 @@ export class ArticleComponent implements OnInit {
 
     // This function call the services queries and resolve by getting data from this call into books. ** Take an instance of apollo as parameter **
     getBook(apollo: Apollo, param){
-      
+
 
       let request = new Promise((resolve, reject) => {
         
@@ -115,7 +115,7 @@ export class ArticleComponent implements OnInit {
         
 
         setTimeout(
-      
+
           () => {
            
             if(this.QueriesService.books.data === undefined)
@@ -128,8 +128,8 @@ export class ArticleComponent implements OnInit {
             {   
 
               resolve(this.book = this.QueriesService.books.data.book);
-              
-              
+
+
 
               let i = 0;
               while(i < this.book.reviews.nodes.length)
@@ -137,11 +137,11 @@ export class ArticleComponent implements OnInit {
                 if(this.book.reviews.nodes[i].comment)
                 {
                   this.comments.push(this.book.reviews.nodes[i].comment)
-                  this.commentAuthor.push(this.book.reviews.nodes[i].reviewer.name)    
-                          
+                  this.commentAuthor.push(this.book.reviews.nodes[i].reviewer.name)
+
                 }
                 i++;
-                
+
               }
 
               if(this.book !== "wait")
@@ -166,7 +166,7 @@ export class ArticleComponent implements OnInit {
               this.available = this.book.availabilities[0].available ? "Available" : "Not available";
               this.schools = this.book.availabilities[0].school.name;
               this.isLoaded = true;
-           
+
                 let totalReviews = 0;
                 this.book.reviews.nodes.map((a: any) => {
                   totalReviews += a.note;
@@ -176,13 +176,13 @@ export class ArticleComponent implements OnInit {
                   (totalReviews / this.book.reviews.totalCount) * 10
                 ) / 10;
 
-                
+
             }
           }, this.count
-      
+
           );
 
-          
+
 
         });
     };
@@ -198,7 +198,7 @@ export class ArticleComponent implements OnInit {
             element.style.display = "block";
             this.isDisplayForm = true;
           }
-    
+
           else
           {
             let element = document.getElementById("postComment");
@@ -218,14 +218,14 @@ export class ArticleComponent implements OnInit {
             this.QueriesService.addReview(this.apollo,this.target, this.myVoteToString[ this.myRateVote - 1],comment)
           }
 
-         
+
         }
 
         editProcess(){
-         
+
           let i = 0;
 
-         
+
 
           if(this.isEdit)
           {
@@ -253,7 +253,7 @@ export class ArticleComponent implements OnInit {
               this.QueriesService.editReview(this.apollo,this.bookId,this.myVoteToString[ this.myRateVote - 1],this.book.reviews.nodes[i].comment);
             
             i++;
-           
+
           }
 
     }
@@ -269,7 +269,3 @@ export class ArticleComponent implements OnInit {
         this.QueriesService.returnBook(this.apollo,this.target)
     }
 }
-
-
-
-  

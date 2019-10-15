@@ -22,21 +22,16 @@ npm install
 ng serve
 ```
 
-## Run tests
-
-```sh
-npm run test
-```
-
 ## Author
 
-👤 **R3TRO - Kardiah - Valden**
+👤 **R3tr093 - Kardiah - ValdenBE**
 
 * Github: [@R3tr093](https://github.com/R3tr093)
+* Github: [@Kardiah](https://github.com/Kardiah)
+* Github: [@ValdenBE](https://github.com/ValdenBE)
 
 ## Show your support
 
 Give a ⭐️ if this project helped you!
 
 ***
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
