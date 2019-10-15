@@ -43,6 +43,7 @@ export class AuthServices {
       },
       (error) => {
         this.report = error;
+        console.log(error)
       },
       () => {
         console.log('Request has been successfully send.!');
