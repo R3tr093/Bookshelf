@@ -8,6 +8,7 @@
 
   <!-- Main content display many details about a single book -->
   <div id="main" *ngIf="isLoaded === true">
+      <nz-back-top></nz-back-top>
 
     <div id="cover_block">
       <img src="{{cover}}" alt="">
@@ -21,7 +22,7 @@
         <p class="info_content">Lang : {{lang}}</p>
         <p class="info_content">Format : {{format}}</p>
         <p class="info_content">Available : {{available }}</p>
-        <p class="info_content">User Rating : <nz-rate [(ngModel)]="bookTotalRate" nzAllowHalf nzDisabled></nz-rate></p>
+        <p class="info_content">User Rating : <nz-rate [(ngModel)]="bookTotalRate" nzAllowHalf nzDisabled [nzTooltips]="tooltips"></nz-rate>  ( {{ book.reviews.totalCount }} votes )</p>
         
       </section>
 
@@ -40,7 +41,7 @@
           <button (click)="displayForm()">X</button>
             <textarea *ngIf="!isEdit"  id="comment" placeholder="Write your comment here" name="Comment review"></textarea>
             <textarea *ngIf="isEdit" id="editComment" placeholder="{{toEdit}}" name="Comment note"></textarea>
-            <nz-rate class="rateForm" [(ngModel)]="myRateVote"></nz-rate>
+            <nz-rate class="rateForm" [(ngModel)]="myRateVote" [nzTooltips]="tooltips"></nz-rate>
             <button class="comment_button" *ngIf="!isEdit"  (click)="commentProcess()"> Add</button>
             <button class="comment_button" *ngIf="isEdit"  (click)="editProcess()"> Edit</button>
         </div>
