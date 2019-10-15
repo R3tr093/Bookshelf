@@ -218,4 +218,33 @@ export class QueriesServices extends Mutation {
         }
       );
   }
+
+    borrowBook(apollo: Apollo, $id: String) {
+    apollo
+      .mutate({
+        mutation: gql`mutation
+          {
+            borrowBook(book: "dsd", school:"liege")
+            {
+              isbn
+            }
+          }
+        `
+      })
+
+      .subscribe(
+        value => {
+          console.log(value)
+        },
+        error => {
+          console.log("Oh my god , an error occurred fix it bro ! : " + error);
+        },
+        () => {
+          console.log("Request has been successfully send.!");
+        }
+      );
+  }
+
+
+  
 }

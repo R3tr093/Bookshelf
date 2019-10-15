@@ -255,6 +255,12 @@ export class ArticleComponent implements OnInit {
           }
 
     }
+
+
+    rentProcess()
+    {
+        this.QueriesService.borrowBook(this.apollo,this.target)
+    }
 }
 
 

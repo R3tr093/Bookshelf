@@ -26,8 +26,6 @@ export class LibraryComponent implements OnInit {
 
   constructor(apollo: Apollo, private QueriesService: QueriesServices, private AuthService: AuthServices) {
     
-    
-
     this.QueriesService.isEdit = false;
     this.AuthService.usrToken = localStorage.getItem('token');
 
