@@ -45,6 +45,7 @@ export class ArticleComponent implements OnInit {
   myRateString : String;
   myVoteToString: string[] = ["ONE","TWO","THREE","FOUR","FIVE",];
   tooltips = ["terrible", "bad", "normal", "good", "wonderful"];
+  isRent : boolean;
 
   
   // get apollo
@@ -146,6 +147,7 @@ export class ArticleComponent implements OnInit {
               if(this.book !== "wait")
               {
                 this.editProcess();
+                console.log(this.book)
            
                 setTimeout(()=>{
                   this.isEdit = this.QueriesService.isEdit;
@@ -260,6 +262,11 @@ export class ArticleComponent implements OnInit {
     rentProcess()
     {
         this.QueriesService.borrowBook(this.apollo,this.target)
+    }
+
+    returnProcess()
+    {
+        this.QueriesService.returnBook(this.apollo,this.target)
     }
 }
 
