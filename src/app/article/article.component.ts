@@ -56,7 +56,7 @@ export class ArticleComponent implements OnInit {
   
 
   note : number;
-  isEdit : boolean;
+  isEdit : boolean = this.QueriesService.isEdit;
   toEdit : any;
   
 
@@ -65,6 +65,8 @@ export class ArticleComponent implements OnInit {
 
   constructor(apollo: Apollo, private QueriesService: QueriesServices, private AuthService: AuthServices) {
 
+    this.QueriesService.isEdit = false;
+    console.log("CHECK :: " + this.isEdit)
     this.isLoaded = false;
 
     this.AuthService.usrToken = localStorage.getItem('token');
@@ -231,6 +233,8 @@ export class ArticleComponent implements OnInit {
 
           if(this.isEdit)
           {
+            
+            
             let comment = String((<HTMLTextAreaElement>document.getElementById("editComment")).value);
 
                while(i < this.book.reviews.nodes.length)
@@ -242,6 +246,7 @@ export class ArticleComponent implements OnInit {
                
              
             }
+            this.isEdit = false;
           }
 
           while(i < this.book.reviews.nodes.length)
@@ -250,6 +255,7 @@ export class ArticleComponent implements OnInit {
               this.toEdit = this.book.reviews.nodes[i].comment;
               this.myRateVote = this.book.reviews.nodes[i].note;
               this.QueriesService.editReview(this.apollo,this.bookId,this.myVoteToString[ this.myRateVote - 1],this.book.reviews.nodes[i].comment);
+            
             i++;
            
           }

@@ -203,8 +203,7 @@ export class QueriesServices extends Mutation {
           console.log("Data has been successfully posted !");
           if(this.isEdit)
           { 
-            window.location.reload();
-
+              window.location.reload();
           }
           this.isEdit = true;
           this.editComment = $comment;

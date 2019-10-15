@@ -28,7 +28,8 @@ export class LibraryComponent implements OnInit {
     
     
 
-    
+    this.QueriesService.isEdit = false;
+    console.log("CHECK :: " + this.QueriesService.isEdit)
     this.AuthService.usrToken = localStorage.getItem('token');
 
 
