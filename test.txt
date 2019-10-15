@@ -1,7 +1,5 @@
---> Display a standard book list
+--> Add unfunctionnal way
 
---> Display a standard single book
+--> carrying rent mode 
 
-------------------------------------
 
---> Filter books by schools

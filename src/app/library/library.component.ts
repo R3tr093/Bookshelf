@@ -26,7 +26,7 @@ export class LibraryComponent implements OnInit {
 
   constructor(apollo: Apollo, private QueriesService: QueriesServices, private AuthService: AuthServices) {
     
-    
+    this.QueriesService.isEdit = false;
     this.AuthService.usrToken = localStorage.getItem('token');
 
 
@@ -39,16 +39,6 @@ export class LibraryComponent implements OnInit {
     // Get all books
     this.getBooks(apollo);
     
-    function isUrlValid(userInput) {
-      var res = userInput.match(/^((?:http:\/\/)|(?:https:\/\/))(www.)?((?:[a-zA-Z0-9]+\.[a-z]{3})|(?:\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}(?::\d+)?))([\/a-zA-Z0-9\.]*)$/gm);
-      if(res == null)
-          return false;
-      else
-          return true;
-   }
-
-
-
 
   }
 

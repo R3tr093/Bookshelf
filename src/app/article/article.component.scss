@@ -116,3 +116,19 @@ section {
   top: 70px;
   right: 80px;
 }
+
+/** RENT BTN **/
+#rentBtn
+{
+  position: fixed;
+  top: 45%;
+  left: 5%;
+  z-index: 100;
+}
+#returnBtn
+{
+  position: fixed;
+  top: 45%;
+  left: 5%;
+  z-index: 100;
+}

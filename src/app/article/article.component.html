@@ -71,4 +71,8 @@
 
     </div>
   </div>
+
+  <!-- Rent section -->
+  <button *ngIf="available === 'Available'" id="rentBtn" (click)="rentProcess()">Rent</button>
+  <button *ngIf="available === 'Not available'" id="returnBtn" (click)="returnProcess()">Return</button>
 </main>

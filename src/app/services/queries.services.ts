@@ -9,6 +9,7 @@ export class QueriesServices extends Mutation {
   editComment: String;
   editNote : String;
 
+
   // -> This function provide all the books and theses titles in the API. ** Take as parameter an instance of apollo **
 
   getBooks(apollo: Apollo) {
@@ -78,7 +79,11 @@ export class QueriesServices extends Mutation {
               {
                 name
               }
-            	available
+              available
+              borrower
+              {
+                uid
+              }
             } 
             
             reviews
@@ -175,6 +180,7 @@ export class QueriesServices extends Mutation {
       .subscribe(
         value => {
           console.log("Data has been successfully posted !");
+          window.location.reload();
         },
         error => {
           console.log("Oh my god , an error occurred fix it bro ! : " + error);
@@ -200,10 +206,14 @@ export class QueriesServices extends Mutation {
 
       .subscribe(
         value => {
-          console.log("Data has been successfully posted !");
+          if(this.isEdit)
+          { 
+              window.location.reload();
+          }
           this.isEdit = true;
           this.editComment = $comment;
           this.editNote = $vote;
+        
         },
         error => {
           console.log("Oh my god , an error occurred fix it bro ! : " + error);
@@ -213,4 +223,60 @@ export class QueriesServices extends Mutation {
         }
       );
   }
+
+    borrowBook(apollo: Apollo, $id: String) {
+    apollo
+      .mutate({
+        mutation: gql`mutation
+          {
+            borrowBook(book:  "${$id}", school:"liege")
+            {
+              isbn
+            }
+          }
+        `
+      })
+
+      .subscribe(
+        value => {
+          console.log(value)
+        },
+        error => {
+          console.log("Oh my god , an error occurred fix it bro ! : " + error);
+        },
+        () => {
+          console.log("Request has been successfully send.!");
+        }
+      );
+  }
+
+
+  returnBook(apollo: Apollo, $id: String) {
+    apollo
+      .mutate({
+        mutation: gql`mutation
+          {
+            returnBook(book:  "${$id}", school:"liege")
+            {
+              isbn
+            }
+          }
+        `
+      })
+
+      .subscribe(
+        value => {
+          console.log(value)
+        },
+        error => {
+          console.log("Oh my god , an error occurred fix it bro ! : " + error);
+        },
+        () => {
+          console.log("Request has been successfully send.!");
+        }
+      );
+  }
+
+
+  
 }

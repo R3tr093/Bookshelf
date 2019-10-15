@@ -23,7 +23,7 @@ export class ArticleComponent implements OnInit {
   target : string;
 
   // follow the loading spinner
-  count : number = 0;
+  count : number = 2000;
   isLoaded : boolean;
 
   // Get details about a book
@@ -45,6 +45,7 @@ export class ArticleComponent implements OnInit {
   myRateString : String;
   myVoteToString: string[] = ["ONE","TWO","THREE","FOUR","FIVE",];
   tooltips = ["terrible", "bad", "normal", "good", "wonderful"];
+  isRent : boolean;
 
   
   // get apollo
@@ -56,7 +57,7 @@ export class ArticleComponent implements OnInit {
   
 
   note : number;
-  isEdit : boolean;
+  isEdit : boolean = this.QueriesService.isEdit;
   toEdit : any;
   
 
@@ -65,8 +66,10 @@ export class ArticleComponent implements OnInit {
 
   constructor(apollo: Apollo, private QueriesService: QueriesServices, private AuthService: AuthServices) {
 
-
+    this.QueriesService.isEdit = false;
     this.isLoaded = false;
+
+    this.AuthService.usrToken = localStorage.getItem('token');
 
     this.apollo = apollo;
 
@@ -101,18 +104,27 @@ export class ArticleComponent implements OnInit {
 
       let request = new Promise((resolve, reject) => {
         
-        this.QueriesService.books.data.book = "wait";
+
+        this.QueriesService.books = "wait";
+
 
         // Asking to the service for use getBooks function.
         this.book = this.QueriesService.getBook(apollo,param);
-    
+
+        
+        
 
         setTimeout(
       
           () => {
            
+            if(this.QueriesService.books.data === undefined)
+            {
+              this.getBook(apollo,this.target)
+              this.count = this.count + 500;
+            }
 
-            if(this.QueriesService.books.data.book !== "wait")
+            else
             {   
 
               resolve(this.book = this.QueriesService.books.data.book);
@@ -135,11 +147,12 @@ export class ArticleComponent implements OnInit {
               if(this.book !== "wait")
               {
                 this.editProcess();
+                console.log(this.book)
            
                 setTimeout(()=>{
                   this.isEdit = this.QueriesService.isEdit;
-
                   this.toEdit = this.QueriesService.editComment;
+                  
                 },5000)
 
               }
@@ -165,16 +178,6 @@ export class ArticleComponent implements OnInit {
 
                 
             }
-
-
-            else
-            {
-              this.getBook(apollo,this.target)
-              this.count = this.count + 500;
-            }
-
-            
-
           }, this.count
       
           );
@@ -226,6 +229,8 @@ export class ArticleComponent implements OnInit {
 
           if(this.isEdit)
           {
+            
+            
             let comment = String((<HTMLTextAreaElement>document.getElementById("editComment")).value);
 
                while(i < this.book.reviews.nodes.length)
@@ -234,8 +239,10 @@ export class ArticleComponent implements OnInit {
                this.toEdit = this.book.reviews.nodes[i].comment;
                this.QueriesService.editReview(this.apollo,this.bookId,this.myVoteToString[ this.myRateVote - 1],comment);
                i++;
+               
              
             }
+            this.isEdit = false;
           }
 
           while(i < this.book.reviews.nodes.length)
@@ -244,10 +251,22 @@ export class ArticleComponent implements OnInit {
               this.toEdit = this.book.reviews.nodes[i].comment;
               this.myRateVote = this.book.reviews.nodes[i].note;
               this.QueriesService.editReview(this.apollo,this.bookId,this.myVoteToString[ this.myRateVote - 1],this.book.reviews.nodes[i].comment);
+            
             i++;
            
           }
 
+    }
+
+
+    rentProcess()
+    {
+        this.QueriesService.borrowBook(this.apollo,this.target)
+    }
+
+    returnProcess()
+    {
+        this.QueriesService.returnBook(this.apollo,this.target)
     }
 }
 
