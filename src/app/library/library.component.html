@@ -821,7 +821,7 @@
     <div id="Library" *ngIf="isLoaded === true">
         <nz-divider nzText="BookList"></nz-divider>
       <div class="Library-Dock" *ngFor="let element of books; let i = index">
-        
+
         <div routerLink="/article/{{ element.isbn }}" routerLinkActive="active"
          class="main-book main-book-{{ i }} ">
          <div class="main-book validity">
@@ -840,25 +840,11 @@
     <button id="closeFormBtn" (click)="displayForm()" > X</button>
 
     <form>
-      <label>Title : </label>
-      <input type="text" id="title">
-      <br><br>
-
-      <label>isbn : </label>
-      <input type="text" id="isbn">
-      <br><br>
-
-      <label>Author : </label>
-      <input type="text" id="author">
-      <br><br>
-
-      <label>Editor : </label>
-      <input type="text" id="editor">
-      <br><br>
-
-      <label>Cover link  : </label>
-      <input type="text" id="cover">
-      <br><br>
+      <input type="text" id="title" placeholder="Title">
+      <input type="text" id="isbn" placeholder="isbn">
+      <input type="text" id="author" placeholder="Author">
+      <input type="text" id="editor" placeholder="Editor">
+      <input type="text" id="cover" placeholder="Cover link">
 
       <button (click)="formProcess()">Validate</button>
 
