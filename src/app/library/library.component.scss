@@ -143,7 +143,7 @@ header {
   font-size: 14px;
 }
 
-.validity {
+.truevalidity {
   background: #00b900;
   height: 218px;
   width: 178px;
@@ -152,6 +152,18 @@ header {
   margin-left: 1px;
   margin-top: 1px;
 }
+
+
+.falsevalidity {
+  background: red;
+  height: 218px;
+  width: 178px;
+  position: absolute;
+  border-radius: 5px;
+  margin-left: 1px;
+  margin-top: 1px;
+}
+
 .titleText{
   white-space: nowrap;
 overflow: hidden;

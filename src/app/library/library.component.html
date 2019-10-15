@@ -824,7 +824,7 @@
 
         <div routerLink="/article/{{ element.isbn }}" routerLinkActive="active"
          class="main-book main-book-{{ i }} ">
-         <div class="main-book validity">
+         <div class="main-book  {{element.availabilities[0].available}}validity">
            <div class="main-book-cover-validity-one"></div><div class="main-book-cover-validity-two"></div></div>
         <img class="main-book-cover" *ngIf="element.cover !== '';else elseBlock" src="{{ element.cover }}" />
         <ng-template #elseBlock><img class="main-book-cover" src="http://www.bukovero.com/wp-content/uploads/2016/07/Harry_Potter_and_the_Cursed_Child_Special_Rehearsal_Edition_Book_Cover.jpg'" /></ng-template>
