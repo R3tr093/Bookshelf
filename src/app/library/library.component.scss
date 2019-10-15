@@ -82,6 +82,7 @@ header {
   display: grid;
   -ms-grid-columns: 1fr 1280px 1fr;
   grid-template-columns: 1fr 1280px 1fr;
+  margin-bottom: 100px;
 }
 #Library {
   -ms-grid-column: 2;
@@ -128,7 +129,7 @@ header {
   transform: rotate(-45deg) scaleX(1);
   right: -3px;
   bottom: 1px;
-  
+
 }
 .main-book-cover {
   height: 220px;
@@ -199,14 +200,38 @@ text-overflow: ellipsis;
 // New content form for add a book
 
 #addBookForm {
-  height: 50vh;
   width: 50%;
+  height: 500px;
+  padding: 30px 50px;
+  border-radius: 10px;
+  background: #2b165b;
+  display: none;
   position: fixed;
   top: 20vh;
   left: 25%;
-  border: 1px solid black;
-  background: white;
-  display: none;
+  z-index: 50;
+
+  input {
+    width: 550px;
+    display: block;
+    margin-bottom: 10px;
+    border-radius: 3px;
+    border: none;
+    background-color: #7e7f9a;
+    padding: 15px 20px;
+  }
+
+  ::placeholder {
+  color: #fff;
+  }
+
+  button {
+    padding: 10px;
+    border-radius: 3px;
+    margin-top: 10px;
+    background-color: #72DBD1;
+    border: none;
+  }
 }
 
 // New content report some error in a p
