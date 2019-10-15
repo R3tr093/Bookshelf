@@ -19,6 +19,7 @@ export class LibraryComponent implements OnInit {
   allNotes: any[] = [];
   booksReviews: any[] = [];
   apollo : any;
+  tooltips = ["terrible", "bad", "normal", "good", "wonderful"];
 
   isDisplayForm : boolean = false;
 

@@ -44,6 +44,7 @@ export class ArticleComponent implements OnInit {
   myRateVote: number = 3;
 
   myVoteToString: string[] = ["ONE","TWO","THREE","FOUR","FIVE",];
+  tooltips = ["terrible", "bad", "normal", "good", "wonderful"];
 
   
   // get apollo
