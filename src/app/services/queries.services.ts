@@ -201,9 +201,15 @@ export class QueriesServices extends Mutation {
       .subscribe(
         value => {
           console.log("Data has been successfully posted !");
+          if(this.isEdit)
+          { 
+            window.location.reload();
+
+          }
           this.isEdit = true;
           this.editComment = $comment;
           this.editNote = $vote;
+        
         },
         error => {
           console.log("Oh my god , an error occurred fix it bro ! : " + error);

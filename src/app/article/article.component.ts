@@ -23,7 +23,7 @@ export class ArticleComponent implements OnInit {
   target : string;
 
   // follow the loading spinner
-  count : number = 0;
+  count : number = 2000;
   isLoaded : boolean;
 
   // Get details about a book
@@ -65,8 +65,9 @@ export class ArticleComponent implements OnInit {
 
   constructor(apollo: Apollo, private QueriesService: QueriesServices, private AuthService: AuthServices) {
 
-
     this.isLoaded = false;
+
+    this.AuthService.usrToken = localStorage.getItem('token');
 
     this.apollo = apollo;
 
@@ -101,10 +102,14 @@ export class ArticleComponent implements OnInit {
 
       let request = new Promise((resolve, reject) => {
         
-        this.QueriesService.books.data.book = "wait";
+
+        this.QueriesService.books = "wait";
+
 
         // Asking to the service for use getBooks function.
         this.book = this.QueriesService.getBook(apollo,param);
+
+        
     
 
         setTimeout(
@@ -112,7 +117,7 @@ export class ArticleComponent implements OnInit {
           () => {
            
 
-            if(this.QueriesService.books.data.book !== "wait")
+            if(this.QueriesService.books.data.book !== "wait" )
             {   
 
               resolve(this.book = this.QueriesService.books.data.book);
@@ -138,8 +143,8 @@ export class ArticleComponent implements OnInit {
            
                 setTimeout(()=>{
                   this.isEdit = this.QueriesService.isEdit;
-
                   this.toEdit = this.QueriesService.editComment;
+                  
                 },5000)
 
               }
@@ -234,6 +239,7 @@ export class ArticleComponent implements OnInit {
                this.toEdit = this.book.reviews.nodes[i].comment;
                this.QueriesService.editReview(this.apollo,this.bookId,this.myVoteToString[ this.myRateVote - 1],comment);
                i++;
+               
              
             }
           }
