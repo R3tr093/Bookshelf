@@ -7,7 +7,7 @@ module.exports = function (config) {
     frameworks: ['jasmine', '@angular-devkit/build-angular'],
     plugins: [
       require('karma-jasmine'),
-      require('karma-chrome-launcher'),  /*comment out this line to disable the karma-chrome-launcher*/
+      // require('karma-chrome-launcher'),  /*comment out this line to disable the karma-chrome-launcher*/
       require('karma-phantomjs-launcher'),  /* add this line to disable the karma-phantomjs-launcher*/
       require('karma-jasmine-html-reporter'),
       require('karma-coverage-istanbul-reporter'),
@@ -33,12 +33,7 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Chrome'],
-    phantomjsLauncher: {
-      // Have phantomjs exit if a ResourceError is encountered (useful if karma exits without killing phantom)
-      exitOnResourceError: true
-    }, /*remove chrome and replace it with PhantomJS */
-    singleRun: true,
-      /*make it true to run test suits only one time*/
+     browsers: ['PhantomJS'], /*remove chrome and replace it with PhantomJS */
+    singleRun: true  /*make it true to run test suits only one time*/
   });
 };
