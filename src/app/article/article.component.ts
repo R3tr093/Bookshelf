@@ -66,7 +66,6 @@ export class ArticleComponent implements OnInit {
   constructor(apollo: Apollo, private QueriesService: QueriesServices, private AuthService: AuthServices) {
 
     this.QueriesService.isEdit = false;
-    console.log("CHECK :: " + this.isEdit)
     this.isLoaded = false;
 
     this.AuthService.usrToken = localStorage.getItem('token');
@@ -112,14 +111,19 @@ export class ArticleComponent implements OnInit {
         this.book = this.QueriesService.getBook(apollo,param);
 
         
-    
+        
 
         setTimeout(
       
           () => {
            
+            if(this.QueriesService.books.data === undefined)
+            {
+              this.getBook(apollo,this.target)
+              this.count = this.count + 500;
+            }
 
-            if(this.QueriesService.books.data.book !== "wait" )
+            else(this.QueriesService.books.data.book !== "wait")
             {   
 
               resolve(this.book = this.QueriesService.books.data.book);
@@ -172,16 +176,6 @@ export class ArticleComponent implements OnInit {
 
                 
             }
-
-
-            else
-            {
-              this.getBook(apollo,this.target)
-              this.count = this.count + 500;
-            }
-
-            
-
           }, this.count
       
           );
