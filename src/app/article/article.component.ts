@@ -123,7 +123,7 @@ export class ArticleComponent implements OnInit {
               this.count = this.count + 500;
             }
 
-            else(this.QueriesService.books.data.book !== "wait")
+            else
             {   
 
               resolve(this.book = this.QueriesService.books.data.book);

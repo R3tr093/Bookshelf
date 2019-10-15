@@ -175,6 +175,7 @@ export class QueriesServices extends Mutation {
       .subscribe(
         value => {
           console.log("Data has been successfully posted !");
+          window.location.reload();
         },
         error => {
           console.log("Oh my god , an error occurred fix it bro ! : " + error);
