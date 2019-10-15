@@ -7,6 +7,7 @@ export class QueriesServices extends Mutation {
   books: any;
   isEdit: boolean = false;
   editComment: String;
+  editNote : String;
 
   // -> This function provide all the books and theses titles in the API. ** Take as parameter an instance of apollo **
 
@@ -192,8 +193,6 @@ export class QueriesServices extends Mutation {
             editBookReview(uid: "${$id}",review:{note: ${$vote}, lang: "FR", comment: "${$comment}"})
             {
               book{title}
-              
-              
             }
           }
         `
@@ -204,6 +203,7 @@ export class QueriesServices extends Mutation {
           console.log("Data has been successfully posted !");
           this.isEdit = true;
           this.editComment = $comment;
+          this.editNote = $vote;
         },
         error => {
           console.log("Oh my god , an error occurred fix it bro ! : " + error);

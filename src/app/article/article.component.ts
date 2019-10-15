@@ -41,8 +41,8 @@ export class ArticleComponent implements OnInit {
   commentAuthor : any;
   bookId : string;
   bookTotalRate: number;
-  myRateVote: number = 3;
-
+  myRateVote: number = 1;
+  myRateString : String;
   myVoteToString: string[] = ["ONE","TWO","THREE","FOUR","FIVE",];
 
   
@@ -134,11 +134,10 @@ export class ArticleComponent implements OnInit {
               if(this.book !== "wait")
               {
                 this.editProcess();
-                console.log(this.book);
-                
-                
+           
                 setTimeout(()=>{
                   this.isEdit = this.QueriesService.isEdit;
+
                   this.toEdit = this.QueriesService.editComment;
                 },5000)
 
@@ -154,7 +153,7 @@ export class ArticleComponent implements OnInit {
               this.schools = this.book.availabilities[0].school.name;
               this.isLoaded = true;
            
-            let totalReviews = 0;
+                let totalReviews = 0;
                 this.book.reviews.nodes.map((a: any) => {
                   totalReviews += a.note;
                 });
@@ -213,7 +212,6 @@ export class ArticleComponent implements OnInit {
           if(comment.length > 2)
           {
             this.QueriesService.addReview(this.apollo,this.target, this.myVoteToString[ this.myRateVote - 1],comment)
-            //window.location.reload()
           }
 
          
@@ -235,7 +233,7 @@ export class ArticleComponent implements OnInit {
                this.toEdit = this.book.reviews.nodes[i].comment;
                this.QueriesService.editReview(this.apollo,this.bookId,this.myVoteToString[ this.myRateVote - 1],comment);
                i++;
-               //window.location.reload()
+             
             }
           }
 
@@ -243,16 +241,13 @@ export class ArticleComponent implements OnInit {
           {
               this.bookId = this.book.reviews.nodes[i].uid;
               this.toEdit = this.book.reviews.nodes[i].comment;
+              this.myRateVote = this.book.reviews.nodes[i].note;
               this.QueriesService.editReview(this.apollo,this.bookId,this.myVoteToString[ this.myRateVote - 1],this.book.reviews.nodes[i].comment);
             i++;
-            //window.location.reload()
+           
           }
 
-        }
-
-        
-
-
+    }
 }
 
 
