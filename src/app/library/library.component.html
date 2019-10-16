@@ -699,7 +699,7 @@
       	C26.31,380.64,53.6,435.95,157.29,494.36z"/>
       </svg>
 
-      <p class="head_title">Lorem ipsum<br>dolor sit</p>
+      <p class="head_title">BookShelf<br>Becode Library</p>
       <p class="head_text">Amet consectetur adipiscing elit, sed do eiusmod tempor<br>incididunt ut labore et dolore magna aliqua.</p>
 
       <a href="#">
@@ -827,10 +827,12 @@
 
         <div routerLink="/article/{{ element.isbn }}" routerLinkActive="active"
          class="main-book main-book-{{ i }} ">
-         <div class="main-book  {{element.availabilities[0].available}}validity">
-           <div class="main-book-cover-validity-one"></div><div class="main-book-cover-validity-two"></div></div>
-        <img class="main-book-cover" *ngIf="element.cover !== '';else elseBlock" src="{{ element.cover }}" />
-        <ng-template #elseBlock><img class="main-book-cover" src="/assets/default.jpg" /></ng-template>
+         <div class="main-book  {{element.availabilities[0].available}}validity valiView">
+           <div class="main-book-cover-validity-one {{element.availabilities[0].available}}validity"></div>
+           <div class="main-book-cover-validity-two {{element.availabilities[0].available}}validity"></div>
+          </div>
+        <img class="main-book-cover" *ngIf="element.cover ;else elseBlock" src="{{ element.cover }}" />
+        <ng-template #elseBlock><img class="main-book-cover" src="../../assets/default.jpg" /></ng-template>
         <div class="titleText">{{ element.title }}</div>
         <nz-rate [(ngModel)]="booksReviews[i]" nzAllowHalf nzDisabled [nzTooltips]="tooltips"></nz-rate>
       </div>

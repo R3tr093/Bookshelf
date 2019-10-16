@@ -142,9 +142,7 @@ header {
   font-family: "Avenir";
   font-size: 14px;
 }
-
-.truevalidity {
-  background: #00b900;
+.valiView {
   height: 218px;
   width: 178px;
   position: absolute;
@@ -152,16 +150,30 @@ header {
   margin-left: 1px;
   margin-top: 1px;
 }
+.truevalidity {
+  background: #00b900;
+}
 
 
 .falsevalidity {
   background: red;
-  height: 218px;
-  width: 178px;
-  position: absolute;
-  border-radius: 5px;
+}
+
+.main-book-cover-validity-one {
+  border-radius: 3px;
+  width: 10px;
+  height: 10px;
   margin-left: 1px;
-  margin-top: 1px;
+
+}
+.main-book-cover-validity-two {
+  margin-top: -4px;
+  border-radius: 3px;
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }
 
 .titleText{
@@ -174,24 +186,7 @@ margin-top: 5px;
 padding-left: 5px;
 padding-right: 5px;
 }
-.main-book-cover-validity-one {
-  border-radius: 3px;
-  background: #00b900;
-  width: 10px;
-  height: 10px;
-  margin-left: 1px;
 
-}
-.main-book-cover-validity-two {
-  margin-top: -4px;
-  border-radius: 3px;
-  background: #00b900;
-  width: 10px;
-  height: 10px;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-}
 
 // New content button for add a book, should display a form on click
 

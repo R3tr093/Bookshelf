@@ -11,7 +11,8 @@
     <nz-back-top></nz-back-top>
 
     <div id="cover_block">
-      <img src="{{cover}}" alt="">
+        <ng-template #elseBlock><img src="../../assets/default.jpg" /></ng-template>
+      <img *ngIf="cover ;else elseBlock"src="{{cover}}" alt="">
     </div>
     <div id="info_block">
 
