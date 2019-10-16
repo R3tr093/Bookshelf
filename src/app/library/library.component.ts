@@ -11,8 +11,10 @@ import { element } from 'protractor';
   styleUrls: ['./library.component.scss']
 })
 export class LibraryComponent implements OnInit {
-
+  
+  unFiltered : any[];
   books: any;
+  filteredBooks: any[];
 
   count: number = 0;
   isLoaded: boolean;
@@ -39,7 +41,7 @@ export class LibraryComponent implements OnInit {
     this.apollo = apollo;
 
     // Get all books
-    this.getBooks(apollo,this.filter,"liege");
+    this.getBooks(apollo);
     
 
   }
@@ -48,7 +50,7 @@ export class LibraryComponent implements OnInit {
   }
 
     // This function call the services queries and resolve by getting data from this call into books. ** Take an instance of apollo as parameter **
-    getBooks(apollo: Apollo, filter, filterValue){
+    getBooks(apollo: Apollo){
 
     let request = new Promise((resolve, reject) => {
 
@@ -66,14 +68,8 @@ export class LibraryComponent implements OnInit {
             resolve(this.books = this.QueriesService.books);
 
             this.books = Array.from(this.books.data.books.nodes);
+            this.unFiltered = this.books;
 
-            // Return books for the school with the name liege or similar to.
-            for (var i = 0; i < this.books.length; i++) {
-
-              if (this.books[i].availabilities[0].school.name !== "Liège" && this.books[i].availabilities[0].school.name !== "Liege" && this.books[i].availabilities[0].school.name !== "liege" && this.books[i].availabilities[0].school.name !== "liège") {
-                this.books.splice(i, 1);
-              }
-            }
             for (let i = 0; i < this.books.length; i++) {
               this.allNotes[i] = this.books[i].reviews.nodes;
             }
@@ -98,51 +94,12 @@ export class LibraryComponent implements OnInit {
             }
             this.isLoaded = true;
           }
-
-              if(filter === true)
-              {
-
-                 // Return books for the school with the name liege or similar to.
-                for( var i = 0; i < this.books.length; i++)
-                 { 
-
-                  if(filterValue === "Liège")
-                  {
-                    if (this.books[i].availabilities[0].school.name !== "Liège")
-                    {
-                      console.log("Deleted :: " + this.books[i].availabilities[0].school.name)
-                      this.books.splice(i);
-                    }
-                  }
-
-                  if(filterValue === "Bruxelles")
-                  {
-                    if (this.books[i].availabilities[0].school.name !== "Anderlecht" && this.books[i].availabilities[0].school.name !== "Bruxelles")
-                    {
-                      console.log("Deleted :: " + this.books[i].availabilities[0].school.name)
-                      this.books.splice(i);
-
-                    }
-                  }
-
-                  if(filterValue === "Charleroi")
-                  {
-                    if (this.books[i].availabilities[0].school.name !== "Charleroi")
-                    {
-                      console.log("Deleted :: " + this.books[i].availabilities[0].school.name)
-                      this.books.splice(i);
-                    
-                    }
-                  }
-                }
-              }
-
           this.isLoaded = true;
         }
 
             else
             {
-              this.getBooks(apollo,this.filter,'liege');
+              this.getBooks(apollo);
               this.count = this.count + 500;
             }
           }, this.count
@@ -224,14 +181,14 @@ export class LibraryComponent implements OnInit {
             if(this.QueriesService.books !== "wait")
             {
               validate.innerHTML = validate.innerHTML + " Book successfully submited.";
-              this.getBooks(this.apollo,this.filter,'liege')
+              this.getBooks(this.apollo)
              
             }
 
             else {
               report.textContent = "";
               report.textContent = " We're sorry an error as occured.";
-              this.getBooks(this.apollo,this.filter,'liege')
+              this.getBooks(this.apollo)
             }
           }, 5000
 
@@ -297,5 +254,30 @@ export class LibraryComponent implements OnInit {
 
     }
 
-  }
+
+    // Filter method;
+
+    filterProcess(val: string)
+    {
+
+      this.books = this.unFiltered;
+
+      this.filteredBooks = [];
+      
+      for(let i = 0; i < this.books.length; i++)
+      {
+        if(this.books[i].availabilities[0].school.name === val)
+        {
+          this.filteredBooks.push(this.books[i])
+        }
+      }
+
+      this.books = this.filteredBooks;
+    }
+
+    unFilterProcess()
+    {
+      this.books = this.unFiltered;
+    }
+}
 

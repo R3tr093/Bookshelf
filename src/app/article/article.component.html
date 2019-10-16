@@ -27,6 +27,7 @@
         <p class="info_content {{available}}validity" *ngIf="!available"><span class="dispoSpan">Disponibility :</span>
           Unavailable</p>
 
+        <p class="info_content" *ngIf="owner !== 'null'">Borrowed by : {{owner}}</p>  
 
         <p class="info_content">User Rating : <nz-rate [(ngModel)]="bookTotalRate" nzAllowHalf nzDisabled
             [nzTooltips]="tooltips"></nz-rate> ( {{ book.reviews.totalCount }} vote·s )</p>
@@ -95,8 +96,8 @@
   </div>
 
   <!-- Rent section -->
-  <button *ngIf="available === 'Available'" id="rentBtn" (click)="rentProcess()">Rent</button>
-  <button *ngIf="available === 'Not available'" id="returnBtn" (click)="returnProcess()">Return</button>
+  <button *ngIf="available" id="rentBtn" (click)="rentProcess()">Rent</button>
+  <button *ngIf="!available" id="returnBtn" (click)="returnProcess()">Return</button>
 
 </main>
 

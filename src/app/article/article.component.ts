@@ -47,6 +47,7 @@ export class ArticleComponent implements OnInit {
   tooltips = ["terrible", "bad", "normal", "good", "wonderful"];
   isRent : boolean;
   isOwner : boolean = this.QueriesService.isNotBorrower;
+  owner : string = "null";
 
 
   // get apollo
@@ -166,6 +167,14 @@ export class ArticleComponent implements OnInit {
               this.format = this.book.format
               this.available = this.book.availabilities[0].available;
               this.schools = this.book.availabilities[0].school.name;
+
+              if(this.book.availabilities[0].borrower !== null && this.book.availabilities[0].borrower !== undefined)
+              {
+                this.owner = this.book.availabilities[0].borrower.name;
+              }
+
+              
+              console.log(this.owner)
               this.isLoaded = true;
 
             if (this.book !== "wait") {
