@@ -152,11 +152,9 @@ export class QueriesServices extends Mutation {
       .subscribe(
         value => {
           this.books = "done";
-          console.log(value)
         },
         error => {
           this.books = "crash";
-          console.log(error)
         },
         () => {
 
@@ -206,14 +204,13 @@ export class QueriesServices extends Mutation {
 
       .subscribe(
         value => {
-          if(this.isEdit)
-          { 
-              window.location.reload();
+          if (this.isEdit) {
+            window.location.reload();
           }
           this.isEdit = true;
           this.editComment = $comment;
           this.editNote = $vote;
-        
+
         },
         error => {
 
@@ -224,7 +221,7 @@ export class QueriesServices extends Mutation {
       );
   }
 
-    borrowBook(apollo: Apollo, $id: String) {
+  borrowBook(apollo: Apollo, $id: String) {
     apollo
       .mutate({
         mutation: gql`mutation
@@ -277,5 +274,5 @@ export class QueriesServices extends Mutation {
   }
 
 
-  
+
 }

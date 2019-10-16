@@ -11,7 +11,8 @@
     <nz-back-top></nz-back-top>
 
     <div id="cover_block">
-      <img src="{{cover}}" alt="">
+      <ng-template #elseBlock><img src="../../assets/default.jpg" /></ng-template>
+      <img *ngIf="cover ;else elseBlock" src="{{cover}}" alt="">
     </div>
     <div id="info_block">
 
@@ -19,15 +20,21 @@
         <p class="info_title">{{title}}</p>
         <p class="info_content">Writed by : {{author}}</p>
         <p class="info_content">Published by : {{editor}}</p>
-        <p class="info_content">Langue : {{lang}}</p>
+        <p class="info_content">Language : {{lang}}</p>
         <p class="info_content">Format : {{format}}</p>
-        <p class="info_content">Available : {{available }}</p>
-        <p class="info_content">User Rating : <nz-rate [(ngModel)]="bookTotalRate" nzAllowHalf nzDisabled [nzTooltips]="tooltips"></nz-rate> ( {{ book.reviews.totalCount }} votes )</p>
+        <p class="info_content {{available}}validity" *ngIf="available"><span class="dispoSpan">Disponibility :</span>
+          Available</p>
+        <p class="info_content {{available}}validity" *ngIf="!available"><span class="dispoSpan">Disponibility :</span>
+          Unavailable</p>
+
+
+        <p class="info_content">User Rating : <nz-rate [(ngModel)]="bookTotalRate" nzAllowHalf nzDisabled
+            [nzTooltips]="tooltips"></nz-rate> ( {{ book.reviews.totalCount }} vote·s )</p>
 
       </section>
 
       <section id="comment_block">
-        <h3 class="info_title">Comments</h3>
+        <h3 class="info_title">Reviews</h3>
         <p class="info_content" *ngFor="let element of comments; let i = index">
           {{commentAuthor[i]}} :
           {{element}}
@@ -36,7 +43,8 @@
 
       <section>
         <!-- Toggle form to write a comment -->
-        <button id="button_block" (click)="displayForm()">Write comment</button>
+        <button id="button_block" (click)="displayForm()" *ngIf="isEdit">Edit Review</button>
+        <button id="button_block" (click)="displayForm()" *ngIf="!isEdit">Add Review</button>
         <div id="postComment" class="animated">
           <button (click)="displayForm()">X</button>
           <textarea *ngIf="!isEdit" id="comment" placeholder="Write your comment here" name="Comment review"></textarea>
@@ -48,7 +56,9 @@
       </section>
 
       <a href="/library" id="close_block">
-        <svg width="50px" version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 500 359" style="enable-background:new 0 0 500 359;" xml:space="preserve">
+        <svg width="50px" version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 500 359"
+          style="enable-background:new 0 0 500 359;" xml:space="preserve">
           <style type="text/css">
             .st2 {
               fill-rule: evenodd;
@@ -61,6 +71,7 @@
               clip-rule: evenodd;
               fill: #72DBD1;
             }
+
           </style>
           <polygon class="st0" points="179.6,356 1.8,178.9 178.1,1.9 178.8,77.7 311.6,77.7 311.6,280.2 178.8,280.2 " />
           <polygon class="st1" points="347.6,77.7 412.1,76.9 412.9,280.2 348.4,280.2 " />
@@ -68,11 +79,14 @@
         </svg>
       </a>
 
-      <svg width="400px" version="1.1" id="blob_block" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 500 500" style="enable-background:new 0 0 500 500;" xml:space="preserve">
+      <svg width="400px" version="1.1" id="blob_block" xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 500 500"
+        style="enable-background:new 0 0 500 500;" xml:space="preserve">
         <style type="text/css">
           .st0 {
             fill: #72DBD1;
           }
+
         </style>
         <path class="st0" d="M500,499.9V70.5c-64.1,5.8-136.6-102.1-204.6-58.9c-53.7,34,5.2,170.1-71.9,265.4
       	c-53.2,65.8-81.7,136.6-70.1,223L500,499.9L500,499.9z" />

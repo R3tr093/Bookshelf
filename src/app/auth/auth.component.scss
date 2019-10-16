@@ -1,139 +1,131 @@
-#register
-{
-    display: none;
+#register {
+  display: none;
 }
 
-.error
-{
-  color : red;
+.error {
+  color: red;
   font-style: italic;
 }
 
-#logSpinner
-{
+#logSpinner {
   display: none;
   max-height: 100px;
 }
 
-#regSpinner
-{
+#regSpinner {
   display: none;
 }
 
-#logIn
-{
-    width: 100%;
-    height: 100vh;
-    position: fixed;
-    top: 50px;
+#logIn {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 50px;
 }
 
 svg {
-    display: block;
-    margin: 0 auto;
-    margin-top: 32px;
-    margin-bottom: 24px;
-  }
+  display: block;
+  margin: 0 auto;
+  margin-top: 32px;
+  margin-bottom: 24px;
+}
 
-h1
-{
-    text-align: center;
-    font-size: 24px;
-    font-weight: 300;
-    letter-spacing: -.5px;
-    color: #333;
-    margin: 20px 0;
+h1 {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 300;
+  letter-spacing: -0.5px;
+  color: #333;
+  margin: 20px 0;
 }
 
 #connect {
-    width: 303px;
-    height: auto;
+  width: 303px;
+  height: auto;
+  background-color: #fff;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #d8dee2;
+  border-radius: 5px;
+
+  input {
+    margin-top: 5px;
+    margin-bottom: 15px;
+    width: 100%;
+    height: 35px;
+    padding: 6px 8px;
+    text-rendering: auto;
+    color: -internal-light-dark-color(black, white);
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    cursor: text;
+    overflow: visible;
+    box-sizing: border-box;
+    font-size: 14px;
     background-color: #fff;
-    margin: 0 auto;
-    padding: 20px;
     border: 1px solid #d8dee2;
-    border-radius: 5px;
+    border-radius: 3px;
+  }
 
-    input {
-      margin-top: 5px;
-      margin-bottom: 15px;
-      width: 100%;
-      height: 35px;
-      padding: 6px 8px;
-      text-rendering: auto;
-      color: -internal-light-dark-color(black, white);
-      letter-spacing: normal;
-      word-spacing: normal;
-      text-transform: none;
-      text-indent: 0px;
-      text-shadow: none;
-      cursor: text;
-      overflow: visible;
-      box-sizing: border-box;
-      font-size: 14px;
-      background-color: #fff;
-      border: 1px solid #d8dee2;
-      border-radius: 3px;
-     }
-
-    button {
-        width: 100%;
-        height: 34px;
-        text-align: center;
-        color: #fff;
-        background-color: #28a745;
-        background-image: linear-gradient(-180deg,#FDD866,#E69365 90%);
-        margin-top: 5px;
-        margin-bottom: 15px;
-        padding: 6px 12px;
-        font-size: 14px;
-        font-weight: 600;
-        line-height: 20px;
-        white-space: nowrap;
-        vertical-align: middle;
-        cursor: pointer;
-        user-select: none;
-        background-repeat: repeat-x;
-        background-position: -1px -1px;
-        background-size: 110% 110%;
-        border: none;
-        border-radius: .25em;
-        -webkit-appearance: none;
-      }
+  button {
+    width: 100%;
+    height: 34px;
+    text-align: center;
+    color: #fff;
+    background-color: #28a745;
+    background-image: linear-gradient(-180deg, #fdd866, #e69365 90%);
+    margin-top: 5px;
+    margin-bottom: 15px;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    user-select: none;
+    background-repeat: repeat-x;
+    background-position: -1px -1px;
+    background-size: 110% 110%;
+    border: none;
+    border-radius: 0.25em;
+    -webkit-appearance: none;
+  }
 }
 
 #create {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-    padding: 12px 0;
-    width: 305px;
-    margin-top: 16px;
-    border: 1px solid #d8dee2;
-    border-radius: 5px;
-    color: #24292e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  padding: 12px 0;
+  width: 305px;
+  margin-top: 16px;
+  border: 1px solid #d8dee2;
+  border-radius: 5px;
+  color: #24292e;
 
-    #createBtn
-    {
-      margin: 0;
-      background: none;
-      border: none;
-    }
-
-    span {
-      text-decoration: none;
-      color: #E69365;
-      cursor: pointer;
-    }
-
-    span:hover {
-      text-decoration: underline;
-    }
+  #createBtn {
+    margin: 0;
+    background: none;
+    border: none;
   }
 
-#flexLog
-{
+  span {
+    text-decoration: none;
+    color: #e69365;
+    cursor: pointer;
+  }
+
+  span:hover {
+    text-decoration: underline;
+  }
+}
+
+#flexLog {
   max-height: 70px !important;
 }
 
