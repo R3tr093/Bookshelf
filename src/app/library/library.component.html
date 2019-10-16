@@ -904,11 +904,10 @@
       <div id="searchBar">
           <span class="searchText">Campus : </span>
           <select>
-
             <option (click)="unFilterProcess()">No filter
-            <option (click)="getBooks(apollo,true,'Liège')">Liège
-            <option (click)="getBooks(apollo,true, 'Bruxelles')">Bruxelles
-            <option (click)="getBooks(apollo,true, 'Charleroi')">Charleroi
+            <option (click)="filterProcess('Liège')">Liège
+            <option (click)="filterProcess('Bruxelles')">Bruxelles
+            <option (click)="filterProcess('Charleroi')">Charleroi
             </select>
       </div>
       <nz-divider id="subNz2"></nz-divider>
