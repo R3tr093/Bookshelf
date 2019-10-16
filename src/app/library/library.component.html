@@ -702,7 +702,7 @@
       <p class="head_title">Lorem ipsum<br>dolor sit</p>
       <p class="head_text">Amet consectetur adipiscing elit, sed do eiusmod tempor<br>incididunt ut labore et dolore magna aliqua.</p>
 
-      <a (click)="displayForm()">
+      <a href="#">
 
       <!-- SVG: Account Button -->
       <svg id="account" width="205px" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -763,6 +763,9 @@
       	C124.5,100.2,113.7,103.2,103,103.2z"/>
       </svg>
 
+    </a>
+
+    <a (click)="displayForm()">
       <!-- SVG: Add Button -->
       <svg id="add" width="150px" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
       	 viewBox="0 0 500 500" style="enable-background:new 0 0 500 500;" xml:space="preserve">
@@ -827,7 +830,7 @@
          <div class="main-book validity">
            <div class="main-book-cover-validity-one"></div><div class="main-book-cover-validity-two"></div></div>
         <img class="main-book-cover" *ngIf="element.cover !== '';else elseBlock" src="{{ element.cover }}" />
-        <ng-template #elseBlock><img class="main-book-cover" src="http://www.bukovero.com/wp-content/uploads/2016/07/Harry_Potter_and_the_Cursed_Child_Special_Rehearsal_Edition_Book_Cover.jpg'" /></ng-template>
+        <ng-template #elseBlock><img class="main-book-cover" src="/assets/default.jpg" /></ng-template>
         <div class="titleText">{{ element.title }}</div>
         <nz-rate [(ngModel)]="booksReviews[i]" nzAllowHalf nzDisabled [nzTooltips]="tooltips"></nz-rate>
       </div>
