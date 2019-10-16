@@ -47,10 +47,9 @@ export class QueriesServices extends Mutation {
           return value;
         },
         error => {
-          console.log("Oh my god , an error occurred fix it bro ! : " + error);
         },
         () => {
-          console.log("Request has been successfully send.!");
+
         }
       );
   }
@@ -114,10 +113,10 @@ export class QueriesServices extends Mutation {
           this.books = value;
         },
         error => {
-          console.log("Oh my god , an error occurred fix it bro ! : " + error);
+
         },
         () => {
-          console.log("Request has been successfully send.!");
+
         }
       );
   }
@@ -150,15 +149,15 @@ export class QueriesServices extends Mutation {
 
       .subscribe(
         value => {
-          console.log("Data has been successfully posted !");
+
           this.books = "done";
         },
         error => {
-          console.log("Oh my god , an error occurred fix it bro ! : " + error);
+
           this.books = "crash";
         },
         () => {
-          console.log("Request has been successfully send.!");
+
         }
       );
   }
@@ -179,14 +178,14 @@ export class QueriesServices extends Mutation {
 
       .subscribe(
         value => {
-          console.log("Data has been successfully posted !");
+
           window.location.reload();
         },
         error => {
-          console.log("Oh my god , an error occurred fix it bro ! : " + error);
+
         },
         () => {
-          console.log("Request has been successfully send.!");
+
         }
       );
   }
@@ -215,10 +214,10 @@ export class QueriesServices extends Mutation {
 
         },
         error => {
-          console.log("Oh my god , an error occurred fix it bro ! : " + error);
+
         },
         () => {
-          console.log("Request has been successfully send.!");
+
         }
       );
   }
@@ -238,13 +237,13 @@ export class QueriesServices extends Mutation {
 
       .subscribe(
         value => {
-          console.log(value)
+
         },
         error => {
-          console.log("Oh my god , an error occurred fix it bro ! : " + error);
+
         },
         () => {
-          console.log("Request has been successfully send.!");
+
         }
       );
   }
@@ -265,13 +264,10 @@ export class QueriesServices extends Mutation {
 
       .subscribe(
         value => {
-          console.log(value)
         },
         error => {
-          console.log("Oh my god , an error occurred fix it bro ! : " + error);
         },
         () => {
-          console.log("Request has been successfully send.!");
         }
       );
   }

@@ -43,7 +43,8 @@
 
       <section>
         <!-- Toggle form to write a comment -->
-        <button id="button_block" (click)="displayForm()">Add Review</button>
+        <button id="button_block" (click)="displayForm()" *ngIf="isEdit">Edit Review</button>
+        <button id="button_block" (click)="displayForm()" *ngIf="!isEdit">Add Review</button>
         <div id="postComment" class="animated">
           <button (click)="displayForm()">X</button>
           <textarea *ngIf="!isEdit" id="comment" placeholder="Write your comment here" name="Comment review"></textarea>

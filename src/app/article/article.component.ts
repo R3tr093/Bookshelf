@@ -142,13 +142,12 @@ export class ArticleComponent implements OnInit {
 
             if (this.book !== "wait") {
               this.editProcess();
-              console.log(this.book)
 
               setTimeout(() => {
                 this.isEdit = this.QueriesService.isEdit;
                 this.toEdit = this.QueriesService.editComment;
 
-              }, 5000)
+              }, 2000)
 
             }
 
@@ -229,8 +228,6 @@ export class ArticleComponent implements OnInit {
         this.toEdit = this.book.reviews.nodes[i].comment;
         this.QueriesService.editReview(this.apollo, this.bookId, this.myVoteToString[this.myRateVote - 1], comment);
         i++;
-
-
       }
       this.isEdit = false;
     }

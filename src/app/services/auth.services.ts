@@ -38,15 +38,15 @@ export class AuthServices {
         (value) => {
           this.usrToken = value;
           localStorage.setItem("token", this.usrToken.data.loginWithBasic.token);
-          console.log("User as registered successfully, you can be proud of you ! ");
+
 
         },
         (error) => {
           this.report = error;
-          console.log(error)
+
         },
         () => {
-          console.log('Request has been successfully send.!');
+
         }
       );
   };
@@ -76,7 +76,6 @@ export class AuthServices {
           this.report = error;
         },
         () => {
-          console.log('Request has been successfully send.!');
         }
       );
   };
