@@ -101,7 +101,7 @@ export class LibraryComponent implements OnInit {
                     if (this.books[i].availabilities[0].school.name !== "Liège")
                     {
                       console.log("Deleted :: " + this.books[i].availabilities[0].school.name)
-                      this.books.splice(i, 1);
+                      this.books.splice(i);
                     }
                   }
 
@@ -110,7 +110,7 @@ export class LibraryComponent implements OnInit {
                     if (this.books[i].availabilities[0].school.name !== "Anderlecht" && this.books[i].availabilities[0].school.name !== "Bruxelles")
                     {
                       console.log("Deleted :: " + this.books[i].availabilities[0].school.name)
-                      this.books.splice(i, 1);
+                      this.books.splice(i);
 
                     }
                   }
@@ -120,7 +120,7 @@ export class LibraryComponent implements OnInit {
                     if (this.books[i].availabilities[0].school.name !== "Charleroi")
                     {
                       console.log("Deleted :: " + this.books[i].availabilities[0].school.name)
-                      this.books.splice(i, 1);
+                      this.books.splice(i);
                     
                     }
                   }
