@@ -164,15 +164,6 @@ export class LibraryComponent implements OnInit {
 
 
   // Hide and show the form
-  displayForm() {
-
-    if (!this.isDisplayForm) {
-      let element = document.getElementById("addBookForm");
-      element.classList.remove("bounceOutDown");
-      element.classList.add("bounceInDown");
-      element.style.display = "block";
-      this.isDisplayForm = true;
-    }
 
     else {
       let element = document.getElementById("addBookForm");
@@ -308,4 +299,3 @@ export class LibraryComponent implements OnInit {
 
   }
 
-}

@@ -96,6 +96,7 @@ export class ArticleComponent implements OnInit {
     this.url = window.location.href;
     const words = this.url.split('/');
     this.target = words[4];
+    this.returnProcess()
     this.getBook(this.apollo, this.target)
   }
 
@@ -163,7 +164,7 @@ export class ArticleComponent implements OnInit {
               }
 
               this.format = this.book.format
-              this.available = this.book.availabilities[0].available ? "Available" : "Not available";
+              this.available = this.book.availabilities[0].available;
               this.schools = this.book.availabilities[0].school.name;
               this.isLoaded = true;
 
@@ -267,9 +268,17 @@ export class ArticleComponent implements OnInit {
 
       i++;
 
-    returnProcess()
-    {
-        this.QueriesService.returnBook(this.apollo,this.target);          
+    }
+
+  }
+
+
+  rentProcess() {
+    this.QueriesService.borrowBook(this.apollo, this.target)
+  }
+
+  returnProcess() {
+    this.QueriesService.returnBook(this.apollo,this.target);          
         
         this.isOwner = this.QueriesService.isNotBorrower;
 
@@ -288,18 +297,6 @@ export class ArticleComponent implements OnInit {
 
           },9000)
         }
-      
-    }
-
   }
 
-
-  rentProcess() {
-    this.QueriesService.borrowBook(this.apollo, this.target)
-  }
-
-  returnProcess() {
-    this.QueriesService.returnBook(this.apollo, this.target)
-  }
-} 
 }
