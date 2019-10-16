@@ -11,8 +11,10 @@ import { element } from 'protractor';
   styleUrls: ['./library.component.scss']
 })
 export class LibraryComponent implements OnInit {
-
+  
+  unFiltered : any[];
   books: any;
+  filteredBooks: any[];
 
   count: number = 0;
   isLoaded: boolean;
@@ -66,14 +68,8 @@ export class LibraryComponent implements OnInit {
             resolve(this.books = this.QueriesService.books);
 
             this.books = Array.from(this.books.data.books.nodes);
+            this.unFiltered = this.books;
 
-            // Return books for the school with the name liege or similar to.
-            for (var i = 0; i < this.books.length; i++) {
-
-              if (this.books[i].availabilities[0].school.name !== "Liège" && this.books[i].availabilities[0].school.name !== "Liege" && this.books[i].availabilities[0].school.name !== "liege" && this.books[i].availabilities[0].school.name !== "liège") {
-                this.books.splice(i, 1);
-              }
-            }
             for (let i = 0; i < this.books.length; i++) {
               this.allNotes[i] = this.books[i].reviews.nodes;
             }
@@ -258,5 +254,30 @@ export class LibraryComponent implements OnInit {
 
     }
 
-  }
+
+    // Filter method;
+
+    filterProcess(val: string)
+    {
+
+      this.books = this.unFiltered;
+
+      this.filteredBooks = [];
+      
+      for(let i = 0; i < this.books.length; i++)
+      {
+        if(this.books[i].availabilities[0].school.name === val)
+        {
+          this.filteredBooks.push(this.books[i])
+        }
+      }
+
+      this.books = this.filteredBooks;
+    }
+
+    unFilterProcess()
+    {
+      this.books = this.unFiltered;
+    }
+}
 

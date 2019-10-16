@@ -904,9 +904,10 @@
       
 
 
-          <input (click)="getBooks(apollo,true,'Liège')" type="radio" name="filter" > Liège
-          <input (click)="getBooks(apollo,true, 'Bruxelles')" type="radio" name="filter" > Bruxelles
-          <input (click)="getBooks(apollo,true, 'Charleroi')" type="radio" name="filter" > Charleroi
+          <input (click)="filterProcess('Liège')" type="radio" name="filter" > Liège
+          <input (click)="filterProcess('Bruxelles')" type="radio" name="filter" > Bruxelles
+          <input (click)="filterProcess('Charleroi')" type="radio" name="filter" > Charleroi
+          <input (click)="unFilterProcess()" type="radio" name="filter" > No filter
 
       <div class="Library-Dock" *ngFor="let element of books; let i = index">
 
