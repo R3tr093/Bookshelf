@@ -45,7 +45,8 @@ export class ArticleComponent implements OnInit {
   myRateString: String;
   myVoteToString: string[] = ["ONE", "TWO", "THREE", "FOUR", "FIVE",];
   tooltips = ["terrible", "bad", "normal", "good", "wonderful"];
-  isRent: boolean;
+  isRent : boolean;
+  isOwner : boolean = this.QueriesService.isNotBorrower;
 
 
   // get apollo
@@ -139,6 +140,32 @@ export class ArticleComponent implements OnInit {
               i++;
 
             }
+              this.title = this.book.title;
+              this.author = this.book.author
+              this.editor = this.book.editor
+              this.cover = this.book.cover
+              this.lang = this.book.lang.name;              
+              
+              if(this.lang === "")
+              {
+                this.lang = this.book.lang.code;
+
+                if(this.lang === "EN")
+                {
+                  this.lang = "English";
+
+                }
+
+                if(this.lang === "FR")
+                {
+                  this.lang = "Français";
+                }
+              }
+
+              this.format = this.book.format
+              this.available = this.book.availabilities[0].available ? "Available" : "Not available";
+              this.schools = this.book.availabilities[0].school.name;
+              this.isLoaded = true;
 
             if (this.book !== "wait") {
               this.editProcess();
@@ -240,6 +267,28 @@ export class ArticleComponent implements OnInit {
 
       i++;
 
+    returnProcess()
+    {
+        this.QueriesService.returnBook(this.apollo,this.target);          
+        
+        this.isOwner = this.QueriesService.isNotBorrower;
+
+        if(this.isOwner)
+        {
+          
+          document.getElementById('report').style.display = "block";
+          document.getElementById('report').classList.remove('slideOutDown');
+          document.getElementById('report').classList.add('slideInUp');
+
+          setTimeout(function(){
+            
+            document.getElementById('report').classList.remove('slideInUp');
+            document.getElementById('report').classList.add('slideOutDown');
+            this.isOwner = false;
+
+          },9000)
+        }
+      
     }
 
   }
@@ -252,4 +301,5 @@ export class ArticleComponent implements OnInit {
   returnProcess() {
     this.QueriesService.returnBook(this.apollo, this.target)
   }
+} 
 }

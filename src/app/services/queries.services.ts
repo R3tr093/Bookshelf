@@ -7,7 +7,9 @@ export class QueriesServices extends Mutation {
   books: any;
   isEdit: boolean = false;
   editComment: String;
-  editNote: String;
+  editNote : String;
+  isNotBorrower : boolean = false;
+  filter : boolean = false;
 
 
   // -> This function provide all the books and theses titles in the API. ** Take as parameter an instance of apollo **
@@ -113,10 +115,8 @@ export class QueriesServices extends Mutation {
           this.books = value;
         },
         error => {
-
         },
         () => {
-
         }
       );
   }
@@ -127,13 +127,15 @@ export class QueriesServices extends Mutation {
     $title: String,
     $author: String,
     $editor: String,
-    $cover: String
+    $cover: String,
+    $lang: String,
+    $school : String
   ) {
     apollo
       .mutate({
         mutation: gql`mutation
           {
-            addBook(book: {isbn: "${$isbn}",title: "${$title}",author: "${$author}",editor: "${$editor}", cover: "${$cover}", lang: "FR", format:PHYSICAL, schools:["liege"]})
+            addBook(book: {isbn: "${$isbn}",title: "${$title}",author: "${$author}",editor: "${$editor}", cover: "${$cover}", lang: "${$lang}", format:PHYSICAL, schools:["${$school}"]})
             {isbn
              title 
              author
@@ -149,11 +151,9 @@ export class QueriesServices extends Mutation {
 
       .subscribe(
         value => {
-
           this.books = "done";
         },
         error => {
-
           this.books = "crash";
         },
         () => {
@@ -178,11 +178,10 @@ export class QueriesServices extends Mutation {
 
       .subscribe(
         value => {
-
           window.location.reload();
         },
         error => {
-
+ 
         },
         () => {
 
@@ -237,13 +236,13 @@ export class QueriesServices extends Mutation {
 
       .subscribe(
         value => {
-
+          window.location.reload();
         },
         error => {
 
         },
         () => {
-
+        
         }
       );
   }
@@ -264,8 +263,10 @@ export class QueriesServices extends Mutation {
 
       .subscribe(
         value => {
+          window.location.reload();
         },
         error => {
+          this.isNotBorrower = true;
         },
         () => {
         }

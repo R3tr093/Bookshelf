@@ -23,13 +23,15 @@ export class LibraryComponent implements OnInit {
 
   isDisplayForm: boolean = false;
 
+  filter : boolean;
+
 
   constructor(apollo: Apollo, private QueriesService: QueriesServices, private AuthService: AuthServices) {
 
     this.QueriesService.isEdit = false;
     this.AuthService.usrToken = localStorage.getItem('token');
 
-
+    this.filter = this.QueriesService.filter;
 
     // Set some variables for loading displaying
     this.isLoaded = false;
@@ -37,16 +39,16 @@ export class LibraryComponent implements OnInit {
     this.apollo = apollo;
 
     // Get all books
-    this.getBooks(apollo);
-
+    this.getBooks(apollo,this.filter,"liege");
+    
 
   }
 
   ngOnInit() {
   }
 
-  // This function call the services queries and resolve by getting data from this call into books. ** Take an instance of apollo as parameter **
-  getBooks(apollo: Apollo) {
+    // This function call the services queries and resolve by getting data from this call into books. ** Take an instance of apollo as parameter **
+    getBooks(apollo: Apollo, filter, filterValue){
 
     let request = new Promise((resolve, reject) => {
 
@@ -88,19 +90,77 @@ export class LibraryComponent implements OnInit {
                 );
               } else {
                 this.booksReviews.push(0);
+                           
+              
+              for (let i = 0; i < this.books.length; i++) {
+                this.allNotes[i] = this.books[i].reviews.nodes;
               }
             }
             this.isLoaded = true;
           }
 
-          else {
-            this.getBooks(apollo);
-            this.count = this.count + 500;
-          }
-        }, this.count
-      );
-    })
-  };
+              if(filter === true)
+              {
+
+                 // Return books for the school with the name liege or similar to.
+                for( var i = 0; i < this.books.length; i++)
+                 { 
+
+                  if(filterValue === "Liège")
+                  {
+                    if (this.books[i].availabilities[0].school.name !== "Liège")
+                    {
+                      console.log("Deleted :: " + this.books[i].availabilities[0].school.name)
+                      this.books.splice(i);
+                    }
+                  }
+
+                  if(filterValue === "Bruxelles")
+                  {
+                    if (this.books[i].availabilities[0].school.name !== "Anderlecht" && this.books[i].availabilities[0].school.name !== "Bruxelles")
+                    {
+                      console.log("Deleted :: " + this.books[i].availabilities[0].school.name)
+                      this.books.splice(i);
+
+                    }
+                  }
+
+                  if(filterValue === "Charleroi")
+                  {
+                    if (this.books[i].availabilities[0].school.name !== "Charleroi")
+                    {
+                      console.log("Deleted :: " + this.books[i].availabilities[0].school.name)
+                      this.books.splice(i);
+                    
+                    }
+                  }
+                }
+              }
+
+          this.isLoaded = true;
+        }
+
+            else
+            {
+              this.getBooks(apollo,this.filter,'liege');
+              this.count = this.count + 500;
+            }
+          }, this.count
+        );
+    })};
+
+    
+    // Hide and show the form
+    displayForm(){
+
+      if(!this.isDisplayForm)
+      {
+        let element = document.getElementById("addBookForm");
+        element.classList.remove("bounceOutDown");
+        element.classList.add("bounceInDown");
+        element.style.display = "block";
+        this.isDisplayForm = true;
+      }
 
 
   // Hide and show the form
@@ -130,33 +190,57 @@ export class LibraryComponent implements OnInit {
     let editor = String((<HTMLInputElement>document.getElementById("editor")).value);
     let cover = String((<HTMLInputElement>document.getElementById("cover")).value);
     let author = String((<HTMLInputElement>document.getElementById("author")).value);
-
     let report = document.getElementById('report');
     let validate = document.getElementById('validate');
+      
+      let lang;
 
-    if (isbn !== "" && title !== "" && editor !== "" && cover !== "" && author !== "") {
+      if((<HTMLInputElement>document.getElementById("fr")).checked)
+      {
+         lang = "FR";
+      }
 
+      if((<HTMLInputElement>document.getElementById("en")).checked)
+      {
+         lang = "EN";
+      }
+
+      
+      let school =  String((<HTMLSelectElement>document.getElementById("school")).value);
+      school = school.toLocaleLowerCase();
+     
+      if(school === "liège")
+      {
+        school = "liege";
+      }
+
+      if(isbn !== "" && title !== "" && editor !== "" && cover !== "" && author !== "" && lang !== "" && school !== "")
+      {
+      
       let request = new Promise((resolve, reject) => {
 
         this.QueriesService.books = "wait";
         // Asking to the service for use getBooks function.
-        this.books = this.QueriesService.postBooks(this.apollo, isbn, title, author, editor, cover);
+        this.books = this.QueriesService.postBooks(this.apollo,isbn,title,author,editor,cover,lang,school);
 
         setTimeout(
 
           () => {
 
-
+            report.innerHTML = " ";
             validate.innerHTML = " ";
 
-            if (this.QueriesService.books !== "wait") {
-              validate.innerHTML = validate.innerHTML + " Book successfully submited."
-
+            if(this.QueriesService.books !== "wait")
+            {
+              validate.innerHTML = validate.innerHTML + " Book successfully submited.";
+              this.getBooks(this.apollo,this.filter,'liege')
+             
             }
 
             else {
               report.textContent = "";
               report.textContent = " We're sorry an error as occured.";
+              this.getBooks(this.apollo,this.filter,'liege')
             }
           }, 5000
 
@@ -165,15 +249,46 @@ export class LibraryComponent implements OnInit {
 
     }
 
-    else {
-      report.innerHTML = " ";
+      else
+      {
+        report.innerHTML = " ";
 
-      if (isbn === "") {
-        report.innerHTML = report.innerHTML + "<br> Error : Missing field isbn.";
-      }
+        if(isbn === "")
+        {
+          report.innerHTML  = report.innerHTML  + "<br> Error : Missing field isbn.";
+        }
 
-      if (title === "") {
-        report.innerHTML = report.innerHTML + "<br> Error : Missing field title.";
+        if(title === "")
+        {
+          report.innerHTML  = report.innerHTML  + "<br> Error : Missing field title.";
+        }
+
+        if(author === "")
+        {
+          report.innerHTML  = report.innerHTML  + "<br> Error : Missing field author.";
+        }
+
+        if(editor === "")
+        {
+          report.innerHTML  = report.innerHTML  + "<br> Error : Missing field editor.";
+        }
+
+        if(cover === "")
+        {
+          report.innerHTML = report.innerHTML + "<br> Error : Missing field cover";
+        }
+
+        if(lang === "")
+        {
+          report.innerHTML = report.innerHTML + "<br> Error : Missing field language";
+        }
+
+        if(school === "")
+        {
+          report.innerHTML = report.innerHTML + "<br> Error : Missing field school";
+        }
+
+        
       }
 
       if (author === "") {

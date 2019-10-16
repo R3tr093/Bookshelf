@@ -18,8 +18,8 @@
 
       <section>
         <p class="info_title">{{title}}</p>
-        <p class="info_content">Autor : {{author}}</p>
-        <p class="info_content">Editor : {{editor}}</p>
+        <p class="info_content">Writed by : {{author}}</p>
+        <p class="info_content">Published by : {{editor}}</p>
         <p class="info_content">Language : {{lang}}</p>
         <p class="info_content">Format : {{format}}</p>
         <p class="info_content {{available}}validity" *ngIf="available"><span class="dispoSpan">Disponibility :</span>
@@ -97,4 +97,7 @@
   <!-- Rent section -->
   <button *ngIf="available === 'Available'" id="rentBtn" (click)="rentProcess()">Rent</button>
   <button *ngIf="available === 'Not available'" id="returnBtn" (click)="returnProcess()">Return</button>
+
 </main>
+
+<h1 id="report" class="animated">You do not rent this book.</h1>

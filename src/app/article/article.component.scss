@@ -147,3 +147,14 @@ section {
   font-size: 18px;
   font-family: "Avenir";
 }
+#report
+{
+  display: none;
+  position: fixed;
+  top: 90%;
+  text-align: center;
+  width: 100%;
+  color: red;
+  font-style: italic;
+  font-family: "Vidaloka", serif;
+}
