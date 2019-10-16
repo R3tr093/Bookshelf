@@ -257,24 +257,34 @@ export class LibraryComponent implements OnInit {
 
     // Filter method;
 
-    filterProcess(val: string)
+    filterProcess()
     {
-
+    
       this.books = this.unFiltered;
-
+    
+      let val = String((<HTMLSelectElement>document.getElementById("filter")).value);
+    
       this.filteredBooks = [];
-      
-      for(let i = 0; i < this.books.length; i++)
+    
+      if(val !== "No filter")
       {
-        if(this.books[i].availabilities[0].school.name === val)
+        for(let i = 0; i < this.books.length; i++)
         {
-          this.filteredBooks.push(this.books[i])
+          if(this.books[i].availabilities[0].school.name === val)
+          {
+            this.filteredBooks.push(this.books[i])
+          }
         }
+        this.books = this.filteredBooks;
       }
-
-      this.books = this.filteredBooks;
+    
+      else
+      {
+        this.unFilterProcess();
+      }
+      
     }
-
+    
     unFilterProcess()
     {
       this.books = this.unFiltered;

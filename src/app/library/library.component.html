@@ -901,15 +901,15 @@
   <div class="library">
     <div id="Library" *ngIf="isLoaded === true">
         <nz-divider nzText="Books-List" id="subNz"></nz-divider>
-      <div id="searchBar">
-          <span class="searchText">Campus : </span>
-          <select>
-            <option (click)="unFilterProcess()">No filter
-            <option (click)="filterProcess('Liège')">Liège
-            <option (click)="filterProcess('Bruxelles')">Bruxelles
-            <option (click)="filterProcess('Charleroi')">Charleroi
+        <div id="searchBar">
+            <span class="searchText">Campus : </span>
+            <select id="filter" (change)="filterProcess()">
+            <option >No filter
+            <option >Liège
+            <option >Bruxelles
+            <option >Charleroi
             </select>
-      </div>
+            </div>
       <nz-divider id="subNz2"></nz-divider>
       
 
