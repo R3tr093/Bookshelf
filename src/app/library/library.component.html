@@ -901,12 +901,16 @@
   <div class="library">
     <div id="Library" *ngIf="isLoaded === true">
         <nz-divider nzText="Books-List" id="subNz"></nz-divider>
+      <div id="searchBar">
+          <span class="searchText">Campus : </span>
+          <select>
+            <option (click)="getBooks(apollo,true,'Liège')">Liège
+            <option (click)="getBooks(apollo,true, 'Bruxelles')">Bruxelles
+            <option (click)="getBooks(apollo,true, 'Charleroi')">Charleroi
+            </select>
+      </div>
+      <nz-divider id="subNz2"></nz-divider>
       
-
-
-          <input (click)="getBooks(apollo,true,'Liège')" type="radio" name="filter" > Liège
-          <input (click)="getBooks(apollo,true, 'Bruxelles')" type="radio" name="filter" > Bruxelles
-          <input (click)="getBooks(apollo,true, 'Charleroi')" type="radio" name="filter" > Charleroi
 
       <div class="Library-Dock" *ngFor="let element of books; let i = index">
 
@@ -938,9 +942,10 @@
      <!-- PIERRE -->
      
       <label>Select language : </label>
-      <input type="radio" id= "fr" name="lang" value="FR" CHECKED> FR
-      <input type="radio" id= "en" name="lang" value="EN" > EN
-
+      <select id="language" name="lang" size="1">
+          <option id= "fr" name="lang" value="FR">Francais
+          <option id= "en" name="lang" value="EN" >Anglais
+      </select>
       <label>Select a campus : </label>
       <select id="school" name="school" size="1">
         <option>Liège

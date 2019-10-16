@@ -229,6 +229,7 @@ header {
     padding: 15px 20px;
   }
 
+
   ::placeholder {
     color: #fff;
   }
@@ -275,4 +276,9 @@ header {
   font-family: "Vidaloka", serif;
   color: #2b165b;
 
+}
+
+.searchText {
+  font-family: "Avenir" !important;
+  font-size: 16px !important;
 }
