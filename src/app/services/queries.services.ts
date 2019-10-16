@@ -48,10 +48,9 @@ export class QueriesServices extends Mutation {
           return value;
         },
         error => {
-          console.log("Oh my god , an error occurred fix it bro ! : " + error);
         },
         () => {
-          console.log("Request has been successfully send.!");
+
         }
       );
   }
@@ -115,10 +114,8 @@ export class QueriesServices extends Mutation {
           this.books = value;
         },
         error => {
-          console.log("Oh my god , an error occurred fix it bro ! : " + error);
         },
         () => {
-          console.log("Request has been successfully send.!");
         }
       );
   }
@@ -129,13 +126,15 @@ export class QueriesServices extends Mutation {
     $title: String,
     $author: String,
     $editor: String,
-    $cover: String
+    $cover: String,
+    $lang: String,
+    $school : String
   ) {
     apollo
       .mutate({
         mutation: gql`mutation
           {
-            addBook(book: {isbn: "${$isbn}",title: "${$title}",author: "${$author}",editor: "${$editor}", cover: "${$cover}", lang: "FR", format:PHYSICAL, schools:["liege"]})
+            addBook(book: {isbn: "${$isbn}",title: "${$title}",author: "${$author}",editor: "${$editor}", cover: "${$cover}", lang: "${$lang}", format:PHYSICAL, schools:["${$school}"]})
             {isbn
              title 
              author
@@ -151,15 +150,15 @@ export class QueriesServices extends Mutation {
 
       .subscribe(
         value => {
-          console.log("Data has been successfully posted !");
           this.books = "done";
+          console.log(value)
         },
         error => {
-          console.log("Oh my god , an error occurred fix it bro ! : " + error);
           this.books = "crash";
+          console.log(error)
         },
         () => {
-          console.log("Request has been successfully send.!");
+
         }
       );
   }
@@ -180,14 +179,13 @@ export class QueriesServices extends Mutation {
 
       .subscribe(
         value => {
-          console.log("Data has been successfully posted !");
           window.location.reload();
         },
         error => {
-          console.log("Oh my god , an error occurred fix it bro ! : " + error);
+ 
         },
         () => {
-          console.log("Request has been successfully send.!");
+
         }
       );
   }
@@ -217,10 +215,10 @@ export class QueriesServices extends Mutation {
         
         },
         error => {
-          console.log("Oh my god , an error occurred fix it bro ! : " + error);
+
         },
         () => {
-          console.log("Request has been successfully send.!");
+
         }
       );
   }
@@ -240,14 +238,13 @@ export class QueriesServices extends Mutation {
 
       .subscribe(
         value => {
-          console.log(value);
           window.location.reload();
         },
         error => {
-          console.log("Oh my god , an error occurred fix it bro ! : " + error);
+
         },
         () => {
-          console.log("Request has been successfully send.!");
+        
         }
       );
   }
@@ -272,11 +269,8 @@ export class QueriesServices extends Mutation {
         },
         error => {
           this.isNotBorrower = true;
-          console.log(this.isNotBorrower)
-          console.log("Oh my god , an error occurred fix it bro ! : " + error);
         },
         () => {
-          console.log("Request has been successfully send.!");
         }
       );
   }

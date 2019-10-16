@@ -135,18 +135,40 @@ export class LibraryComponent implements OnInit {
       let editor =  String((<HTMLInputElement>document.getElementById("editor")).value);
       let cover =   String((<HTMLInputElement>document.getElementById("cover")).value);
       let author =   String((<HTMLInputElement>document.getElementById("author")).value);
+      
+      let lang;
+
+      if((<HTMLInputElement>document.getElementById("fr")).checked)
+      {
+         lang = "FR";
+      }
+
+      if((<HTMLInputElement>document.getElementById("en")).checked)
+      {
+         lang = "EN";
+      }
+
+      
+      let school =  String((<HTMLSelectElement>document.getElementById("school")).value);
+      school = school.toLocaleLowerCase();
+     
+      if(school === "liège")
+      {
+        school = "liege";
+      }
+
 
       let report = document.getElementById('report');
       let validate = document.getElementById('validate');
 
-      if(isbn !== "" && title !== "" && editor !== "" && cover !== "" && author !== "")
+      if(isbn !== "" && title !== "" && editor !== "" && cover !== "" && author !== "" && lang !== "" && school !== "")
       {
       
       let request = new Promise((resolve, reject) => {
     
         this.QueriesService.books = "wait";
         // Asking to the service for use getBooks function.
-        this.books = this.QueriesService.postBooks(this.apollo,isbn,title,author,editor,cover);
+        this.books = this.QueriesService.postBooks(this.apollo,isbn,title,author,editor,cover,lang,school);
 
         setTimeout(
 
@@ -200,6 +222,16 @@ export class LibraryComponent implements OnInit {
         if(cover === "")
         {
           report.innerHTML = report.innerHTML + "<br> Error : Missing field cover";
+        }
+
+        if(lang === "")
+        {
+          report.innerHTML = report.innerHTML + "<br> Error : Missing field language";
+        }
+
+        if(school === "")
+        {
+          report.innerHTML = report.innerHTML + "<br> Error : Missing field school";
         }
 
         

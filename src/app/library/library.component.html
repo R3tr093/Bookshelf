@@ -843,11 +843,24 @@
     <button id="closeFormBtn" (click)="displayForm()" > X</button>
 
     <form>
-      <input type="text" id="title" placeholder="Title">
-      <input type="text" id="isbn" placeholder="isbn">
-      <input type="text" id="author" placeholder="Author">
-      <input type="text" id="editor" placeholder="Editor">
-      <input type="text" id="cover" placeholder="Cover link">
+      <input type="text" id="title" placeholder="Please subscribe a title...">
+      <input type="text" id="isbn" placeholder="Provide the isbn (1-4028-9462-7)">
+      <input type="text" id="author" placeholder="Who is the author ?">
+      <input type="text" id="editor" placeholder="Who is the editor ?">
+      <input type="text" id="cover" placeholder="Provide an url link for the cover...">
+     
+     <!-- PIERRE -->
+     
+      <label>Select language : </label>
+      <input type="radio" id= "fr" name="lang" value="FR" CHECKED> FR
+      <input type="radio" id= "en" name="lang" value="EN" > EN
+
+      <label>Select a campus : </label>
+      <select id="school" name="school" size="1">
+        <option>Liège
+        <option>Bruxelles
+        <option>Charleroi
+        </select>
 
       <button (click)="formProcess()">Validate</button>
 

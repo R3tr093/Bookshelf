@@ -162,7 +162,24 @@ export class ArticleComponent implements OnInit {
               this.author = this.book.author
               this.editor = this.book.editor
               this.cover = this.book.cover
-              this.lang = this.book.lang.name;
+              this.lang = this.book.lang.name;              
+              
+              if(this.lang === "")
+              {
+                this.lang = this.book.lang.code;
+
+                if(this.lang === "EN")
+                {
+                  this.lang = "English";
+
+                }
+
+                if(this.lang === "FR")
+                {
+                  this.lang = "Français";
+                }
+              }
+
               this.format = this.book.format
               this.available = this.book.availabilities[0].available ? "Available" : "Not available";
               this.schools = this.book.availabilities[0].school.name;
