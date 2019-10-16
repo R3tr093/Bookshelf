@@ -83,4 +83,7 @@
   <!-- Rent section -->
   <button *ngIf="available === 'Available'" id="rentBtn" (click)="rentProcess()">Rent</button>
   <button *ngIf="available === 'Not available'" id="returnBtn" (click)="returnProcess()">Return</button>
+
 </main>
+
+<h1 id="report" class="animated">You do not rent this book.</h1>

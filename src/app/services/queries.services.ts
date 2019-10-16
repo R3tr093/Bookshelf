@@ -271,8 +271,9 @@ export class QueriesServices extends Mutation {
           window.location.reload();
         },
         error => {
-          console.log("Oh my god , an error occurred fix it bro ! : " + error);
           this.isNotBorrower = true;
+          console.log(this.isNotBorrower)
+          console.log("Oh my god , an error occurred fix it bro ! : " + error);
         },
         () => {
           console.log("Request has been successfully send.!");

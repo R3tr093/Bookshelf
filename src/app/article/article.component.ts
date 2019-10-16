@@ -46,6 +46,7 @@ export class ArticleComponent implements OnInit {
   myVoteToString: string[] = ["ONE","TWO","THREE","FOUR","FIVE",];
   tooltips = ["terrible", "bad", "normal", "good", "wonderful"];
   isRent : boolean;
+  isOwner : boolean = this.QueriesService.isNotBorrower;
 
 
   // get apollo
@@ -95,7 +96,6 @@ export class ArticleComponent implements OnInit {
     this.url = window.location.href;
     const words = this.url.split('/');
     this.target = words[4];
-    this.returnProcess()
     this.getBook(this.apollo,this.target)
   }
 
@@ -267,6 +267,25 @@ export class ArticleComponent implements OnInit {
 
     returnProcess()
     {
-        this.QueriesService.returnBook(this.apollo,this.target)
+        this.QueriesService.returnBook(this.apollo,this.target);          
+        
+        this.isOwner = this.QueriesService.isNotBorrower;
+
+        if(this.isOwner)
+        {
+          
+          document.getElementById('report').style.display = "block";
+          document.getElementById('report').classList.remove('slideOutDown');
+          document.getElementById('report').classList.add('slideInUp');
+
+          setTimeout(function(){
+            
+            document.getElementById('report').classList.remove('slideInUp');
+            document.getElementById('report').classList.add('slideOutDown');
+            this.isOwner = false;
+
+          },9000)
+        }
+      
     }
 }

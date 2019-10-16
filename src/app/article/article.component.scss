@@ -136,3 +136,15 @@ section {
   left: 5%;
   z-index: 100;
 }
+
+#report
+{
+  display: none;
+  position: fixed;
+  top: 90%;
+  text-align: center;
+  width: 100%;
+  color: red;
+  font-style: italic;
+  font-family: "Vidaloka", serif;
+}
