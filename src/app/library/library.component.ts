@@ -25,15 +25,10 @@ export class LibraryComponent implements OnInit {
 
   isDisplayForm: boolean = false;
 
-  filter : boolean;
-
-
   constructor(apollo: Apollo, private QueriesService: QueriesServices, private AuthService: AuthServices) {
 
     this.QueriesService.isEdit = false;
     this.AuthService.usrToken = localStorage.getItem('token');
-
-    this.filter = this.QueriesService.filter;
 
     // Set some variables for loading displaying
     this.isLoaded = false;
@@ -257,23 +252,112 @@ export class LibraryComponent implements OnInit {
 
     // Filter method;
 
-    filterProcess(val: string)
+    filterProcess()
     {
 
       this.books = this.unFiltered;
 
+      let val = String((<HTMLSelectElement>document.getElementById("filterSchool")).value);
+
       this.filteredBooks = [];
-      
-      for(let i = 0; i < this.books.length; i++)
+
+      if(val !== "No filter")
       {
-        if(this.books[i].availabilities[0].school.name === val)
+        for(let i = 0; i < this.books.length; i++)
         {
-          this.filteredBooks.push(this.books[i])
-        }
+          if(this.books[i].availabilities[0].school.name === val)
+          {
+            this.filteredBooks.push(this.books[i])
+          }         
+        }       
+        this.books = this.filteredBooks;
       }
 
-      this.books = this.filteredBooks;
+      else
+      {
+        this.unFilterProcess();
+      }      
     }
+
+    filterLangProcess()
+    {
+
+      this.books = this.unFiltered;
+
+      let val = String((<HTMLSelectElement>document.getElementById("filterLang")).value);
+      console.log(val)
+      this.filteredBooks = [];
+
+      if(val === "English" || val === "Français")
+      {
+        for(let i = 0; i < this.books.length; i++)
+        {
+          if(this.books[i].lang.name === val)
+          {
+            this.filteredBooks.push(this.books[i])
+          }
+
+         
+        }
+
+        this.books = this.filteredBooks;
+      }
+      
+     
+     
+
+      else
+      {
+        this.unFilterProcess();
+      }      
+    }
+
+    filterAvailableProcess()
+    {
+
+      this.books = this.unFiltered;
+
+      let val = String((<HTMLSelectElement>document.getElementById("filterAvailable")).value);
+
+      if(val === "Available")
+      {
+        this.filteredBooks = [];
+        
+        for(let i = 0; i < this.books.length; i++)
+        {
+          if(this.books[i].availabilities[0].available)
+          {
+            this.filteredBooks.push(this.books[i])
+          }
+
+         
+         
+        }
+        console.log(this.filteredBooks)
+        this.books = this.filteredBooks;
+      }
+
+      else
+      {
+       
+        this.filteredBooks = [];
+
+        for(let i = 0; i < this.books.length; i++)
+        {
+          if(this.books[i].availabilities[0].available === false)
+          {
+            this.filteredBooks.push(this.books[i])
+          }
+
+         
+        }
+
+        this.books = this.filteredBooks;
+      }
+    
+    }
+
+
 
     unFilterProcess()
     {

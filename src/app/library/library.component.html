@@ -903,12 +903,24 @@
         <nz-divider nzText="Books-List" id="subNz"></nz-divider>
       <div id="searchBar">
           <span class="searchText">Campus : </span>
-          <select>
-            <option (click)="unFilterProcess()">No filter
-            <option (click)="filterProcess('Liège')">Liège
-            <option (click)="filterProcess('Bruxelles')">Bruxelles
-            <option (click)="filterProcess('Charleroi')">Charleroi
+          <select id="filterSchool" (change)="filterProcess()">
+            <option >No filter
+            <option >Liège
+            <option >Bruxelles
+            <option >Charleroi
             </select>
+
+            <span class="searchText">Langue : </span>
+            <select id="filterLang" (change)="filterLangProcess()">
+              <option >Français
+              <option >English
+              </select>
+
+              <span class="searchText">Available : </span>
+            <select id="filterAvailable" (change)="filterAvailableProcess()">
+              <option >Available
+              <option >Not available
+              </select>
       </div>
       <nz-divider id="subNz2"></nz-divider>
       

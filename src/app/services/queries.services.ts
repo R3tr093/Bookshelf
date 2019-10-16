@@ -9,7 +9,6 @@ export class QueriesServices extends Mutation {
   editComment: String;
   editNote : String;
   isNotBorrower : boolean = false;
-  filter : boolean = false;
 
 
   // -> This function provide all the books and theses titles in the API. ** Take as parameter an instance of apollo **
@@ -30,6 +29,10 @@ export class QueriesServices extends Mutation {
                   nodes {
                     note
                   }
+                }
+                lang
+                {
+                  name
                 }
                 availabilities {
                   available

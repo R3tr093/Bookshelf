@@ -172,9 +172,7 @@ export class ArticleComponent implements OnInit {
               {
                 this.owner = this.book.availabilities[0].borrower.name;
               }
-
               
-              console.log(this.owner)
               this.isLoaded = true;
 
             if (this.book !== "wait") {
