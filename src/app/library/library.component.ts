@@ -174,12 +174,13 @@ export class LibraryComponent implements OnInit {
 
           () => {
 
-
+            report.innerHTML = " ";
             validate.innerHTML = " ";
 
             if(this.QueriesService.books !== "wait")
             {
-              validate.innerHTML = validate.innerHTML + " Book successfully submited."
+              validate.innerHTML = validate.innerHTML + " Book successfully submited.";
+              this.getBooks(this.apollo)
              
             }
 
@@ -187,6 +188,7 @@ export class LibraryComponent implements OnInit {
             {
               report.textContent = "";
               report.textContent = " We're sorry an error as occured.";
+              this.getBooks(this.apollo)
             }
           }, 5000
 
