@@ -823,6 +823,13 @@
   <div class="library">
     <div id="Library" *ngIf="isLoaded === true">
         <nz-divider nzText="Books-List" id="subNz"></nz-divider>
+      
+
+
+          <input (click)="getBooks(apollo,true,'Liège')" type="radio" name="filter" > Liège
+          <input (click)="getBooks(apollo,true, 'Bruxelles')" type="radio" name="filter" > Bruxelles
+          <input (click)="getBooks(apollo,true, 'Charleroi')" type="radio" name="filter" > Charleroi
+
       <div class="Library-Dock" *ngFor="let element of books; let i = index">
 
         <div routerLink="/article/{{ element.isbn }}" routerLinkActive="active"
@@ -868,6 +875,4 @@
       <p id="validate"></p>
 
     </form>
-
-
   </div>
