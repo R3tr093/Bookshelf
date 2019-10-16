@@ -83,6 +83,7 @@ export class QueriesServices extends Mutation {
               available
               borrower
               {
+                name
                 uid
               }
             } 
