@@ -91,14 +91,14 @@ button {
 .info_content {
   font-size: 18px;
   font-family: "Avenir";
-  color: #7e7f9a;
+
   margin-left: 20px;
 }
 
 #button_block {
   padding: 15px 50px;
   border-radius: 30px;
-  background: linear-gradient(#FDD866, #E69365);
+  background: linear-gradient(#fdd866, #e69365);
   color: #fff;
   text-decoration: none;
   border: none;
@@ -122,17 +122,28 @@ section {
 }
 
 /** RENT BTN **/
-#rentBtn
-{
+#rentBtn {
   position: fixed;
   top: 45%;
   left: 5%;
   z-index: 100;
 }
-#returnBtn
-{
+#returnBtn {
   position: fixed;
   top: 45%;
   left: 5%;
   z-index: 100;
+}
+
+.truevalidity {
+  color: #00b900 !important;
+}
+
+.falsevalidity {
+  color: red !important;
+}
+.dispoSpan {
+  color: rgba(0, 0, 0, 0.65) !important;
+  font-size: 18px;
+  font-family: "Avenir";
 }

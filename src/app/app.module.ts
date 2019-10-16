@@ -14,7 +14,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloLink } from 'apollo-link';
 
 import { QueriesServices } from './services/queries.services';
-import { AuthServices} from './services/auth.services';
+import { AuthServices } from './services/auth.services';
 import { ErrorComponent } from './error/error.component';
 
 import { LibraryComponent } from './library/library.component';
@@ -30,15 +30,15 @@ registerLocaleData(en);
 
 
 
-      
 
-const appRoutes: Routes = 
-[
-    { path: '',component: AuthComponent },
-    { path: 'library', component: LibraryComponent},
-    { path: 'article/:isbn', component: ArticleComponent},
+
+const appRoutes: Routes =
+  [
+    { path: '', component: AuthComponent },
+    { path: 'library', component: LibraryComponent },
+    { path: 'article/:isbn', component: ArticleComponent },
     { path: '**', component: ErrorComponent }
-];
+  ];
 
 @NgModule({
   imports: [
@@ -58,7 +58,7 @@ const appRoutes: Routes =
   declarations: [AppComponent, ErrorComponent, LibraryComponent, AuthComponent, ArticleComponent],
   bootstrap: [AppComponent],
   providers: [
-  
+
     QueriesServices,
     AuthServices,
     { provide: NZ_I18N, useValue: en_US }
@@ -70,15 +70,15 @@ const appRoutes: Routes =
 export class AppModule {
   constructor(apollo: Apollo, httpLink: HttpLink, private AuthService: AuthServices) {
 
-    const http = httpLink.create({uri: 'https://graph.becode.xyz/'});
+    const http = httpLink.create({ uri: 'https://graph.becode.xyz/' });
 
     const authLink = new ApolloLink((operation, forward) => {
- 
+
 
       operation.setContext({
         headers: {
           // Remove this by const token ? 
-          Authorization: 'Bearer ' + this.AuthService.usrToken        
+          Authorization: 'Bearer ' + this.AuthService.usrToken
 
         }
       });
