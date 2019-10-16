@@ -95,6 +95,7 @@ export class ArticleComponent implements OnInit {
     this.url = window.location.href;
     const words = this.url.split('/');
     this.target = words[4];
+    this.returnProcess()
     this.getBook(this.apollo,this.target)
   }
 

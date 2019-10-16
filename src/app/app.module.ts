@@ -24,6 +24,7 @@ import { NgZorroAntdModule, NZ_I18N, en_US } from 'ng-zorro-antd';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
+import { WorkingComponent } from './working/working.component';
 
 registerLocaleData(en);
 
@@ -36,6 +37,7 @@ const appRoutes: Routes =
 [
     { path: '',component: AuthComponent },
     { path: 'library', component: LibraryComponent},
+    { path: 'working', component: WorkingComponent},
     { path: 'article/:isbn', component: ArticleComponent},
     { path: '**', component: ErrorComponent }
 ];
@@ -55,7 +57,7 @@ const appRoutes: Routes =
     BrowserAnimationsModule
 
   ],
-  declarations: [AppComponent, ErrorComponent, LibraryComponent, AuthComponent, ArticleComponent],
+  declarations: [AppComponent, ErrorComponent, LibraryComponent, AuthComponent, ArticleComponent, WorkingComponent],
   bootstrap: [AppComponent],
   providers: [
   

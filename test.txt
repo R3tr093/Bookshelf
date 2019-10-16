@@ -1,5 +1,8 @@
 --> Add unfunctionnal way
 
---> carrying rent mode 
+--> Display return button only if it's possible to return it;
 
+--> Ensure the add book form with more information;
+
+--> Display modal with some information;
 

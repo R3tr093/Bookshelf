@@ -8,6 +8,7 @@ export class QueriesServices extends Mutation {
   isEdit: boolean = false;
   editComment: String;
   editNote : String;
+  isNotBorrower : boolean = false;
 
 
   // -> This function provide all the books and theses titles in the API. ** Take as parameter an instance of apollo **
@@ -239,7 +240,8 @@ export class QueriesServices extends Mutation {
 
       .subscribe(
         value => {
-          console.log(value)
+          console.log(value);
+          window.location.reload();
         },
         error => {
           console.log("Oh my god , an error occurred fix it bro ! : " + error);
@@ -266,10 +268,11 @@ export class QueriesServices extends Mutation {
 
       .subscribe(
         value => {
-          console.log(value)
+          window.location.reload();
         },
         error => {
           console.log("Oh my god , an error occurred fix it bro ! : " + error);
+          this.isNotBorrower = true;
         },
         () => {
           console.log("Request has been successfully send.!");
