@@ -265,10 +265,17 @@ header {
   font-size: 25px;
   font-family: "Avenir";
   margin-bottom: 50px;
+  z-index: 0;
+}
+
+select
+{
+  z-index: 100;
 }
 
 #subNz {
   font-size: 30px;
+  z-index: 0;
 }
 
 #subNz{
@@ -278,6 +285,7 @@ header {
 margin: 0;
 margin-bottom: -5px !important;
 margin-top: 16px !important;
+z-index: 0;
 }
 #subNz2{
   margin-top: 12px;
