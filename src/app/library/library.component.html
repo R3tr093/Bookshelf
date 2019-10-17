@@ -761,7 +761,7 @@
       <p class="head_text">Amet consectetur adipiscing elit, sed do eiusmod tempor<br>incididunt ut labore et dolore
         magna aliqua.</p>
 
-      <a href="#">
+      <a href="http://localhost:4200/working">
 
         <!-- SVG: Account Button -->
         <svg id="account" width="205px" version="1.1" xmlns="http://www.w3.org/2000/svg"
@@ -901,17 +901,17 @@
   <div class="library">
     <div id="Library" *ngIf="isLoaded === true">
         <nz-divider nzText="Books-List" id="subNz"></nz-divider>
-      <div id="searchBar">
+        <div id="searchBar">
           <span class="searchText">Campus : </span>
-          <select>
-            <option (click)="unFilterProcess()">No filter
-            <option (click)="filterProcess('Liège')">Liège
-            <option (click)="filterProcess('Bruxelles')">Bruxelles
-            <option (click)="filterProcess('Charleroi')">Charleroi
-            </select>
-      </div>
+          <select id="filter" (change)="filterProcess()">
+            <option >No filter
+            <option >Liège
+            <option >Bruxelles
+            <option >Charleroi
+          </select>
+        </div>
       <nz-divider id="subNz2"></nz-divider>
-      
+
 
       <div class="Library-Dock" *ngFor="let element of books; let i = index">
 
@@ -939,9 +939,9 @@
       <input type="text" id="author" placeholder="Who is the author ?">
       <input type="text" id="editor" placeholder="Who is the editor ?">
       <input type="text" id="cover" placeholder="Provide an url link for the cover...">
-     
+
      <!-- PIERRE -->
-     
+
       <label>Select language : </label>
       <select id="language" name="lang" size="1">
           <option id= "fr" name="lang" value="FR">Francais

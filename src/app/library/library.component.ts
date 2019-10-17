@@ -11,7 +11,7 @@ import { element } from 'protractor';
   styleUrls: ['./library.component.scss']
 })
 export class LibraryComponent implements OnInit {
-  
+
   unFiltered : any[];
   books: any;
   filteredBooks: any[];
@@ -42,7 +42,7 @@ export class LibraryComponent implements OnInit {
 
     // Get all books
     this.getBooks(apollo);
-    
+
 
   }
 
@@ -86,8 +86,8 @@ export class LibraryComponent implements OnInit {
                 );
               } else {
                 this.booksReviews.push(0);
-                           
-              
+
+
               for (let i = 0; i < this.books.length; i++) {
                 this.allNotes[i] = this.books[i].reviews.nodes;
               }
@@ -106,7 +106,7 @@ export class LibraryComponent implements OnInit {
         );
     })};
 
-    
+
     // Hide and show the form
     displayForm(){
 
@@ -140,7 +140,7 @@ export class LibraryComponent implements OnInit {
     let author = String((<HTMLInputElement>document.getElementById("author")).value);
     let report = document.getElementById('report');
     let validate = document.getElementById('validate');
-      
+
       let lang;
 
       if((<HTMLInputElement>document.getElementById("fr")).checked)
@@ -153,10 +153,10 @@ export class LibraryComponent implements OnInit {
          lang = "EN";
       }
 
-      
+
       let school =  String((<HTMLSelectElement>document.getElementById("school")).value);
       school = school.toLocaleLowerCase();
-     
+
       if(school === "liège")
       {
         school = "liege";
@@ -164,7 +164,7 @@ export class LibraryComponent implements OnInit {
 
       if(isbn !== "" && title !== "" && editor !== "" && cover !== "" && author !== "" && lang !== "" && school !== "")
       {
-      
+
       let request = new Promise((resolve, reject) => {
 
         this.QueriesService.books = "wait";
@@ -182,7 +182,7 @@ export class LibraryComponent implements OnInit {
             {
               validate.innerHTML = validate.innerHTML + " Book successfully submited.";
               this.getBooks(this.apollo)
-             
+
             }
 
             else {
@@ -236,7 +236,7 @@ export class LibraryComponent implements OnInit {
           report.innerHTML = report.innerHTML + "<br> Error : Missing field school";
         }
 
-        
+
       }
 
       if (author === "") {
@@ -257,27 +257,36 @@ export class LibraryComponent implements OnInit {
 
     // Filter method;
 
-    filterProcess(val: string)
+    filterProcess()
+{
+
+  this.books = this.unFiltered;
+
+  let val = String((<HTMLSelectElement>document.getElementById("filter")).value);
+
+  this.filteredBooks = [];
+
+  if(val !== "No filter")
+  {
+    for(let i = 0; i < this.books.length; i++)
     {
-
-      this.books = this.unFiltered;
-
-      this.filteredBooks = [];
-      
-      for(let i = 0; i < this.books.length; i++)
+      if(this.books[i].availabilities[0].school.name === val)
       {
-        if(this.books[i].availabilities[0].school.name === val)
-        {
-          this.filteredBooks.push(this.books[i])
-        }
+        this.filteredBooks.push(this.books[i])
       }
-
-      this.books = this.filteredBooks;
     }
+    this.books = this.filteredBooks;
+  }
 
-    unFilterProcess()
-    {
-      this.books = this.unFiltered;
-    }
+  else
+  {
+    this.unFilterProcess();
+  }
+
 }
 
+unFilterProcess()
+{
+  this.books = this.unFiltered;
+}
+}
