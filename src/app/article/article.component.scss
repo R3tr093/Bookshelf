@@ -97,6 +97,7 @@ button {
 
 #button_block {
   padding: 15px 50px;
+  margin:10px;
   border-radius: 30px;
   background: linear-gradient(#fdd866, #e69365);
   color: #fff;
@@ -109,7 +110,7 @@ section {
 }
 
 #blob_block {
-  position: absolute;
+  position: fixed;
   right: 0;
   bottom: 0;
 }
@@ -157,4 +158,8 @@ section {
   color: red;
   font-style: italic;
   font-family: "Vidaloka", serif;
+}
+.ratePop{
+  margin-left: 3px;
+margin-top: -20px;
 }

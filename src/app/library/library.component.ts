@@ -15,7 +15,7 @@ export class LibraryComponent implements OnInit {
   unFiltered : any[];
   books: any;
   filteredBooks: any[];
-
+  book: any;
   count: number = 0;
   isLoaded: boolean;
   allNotes: any[] = [];

@@ -900,10 +900,12 @@
   <!-- Main frame -->
   <div class="library">
     <div id="Library" *ngIf="isLoaded === true">
+        <nz-affix >
+          <div class="Search">
         <nz-divider nzText="Books-List" id="subNz"></nz-divider>
       <div id="searchBar">
           <span class="searchText">Campus : </span>
-          <select id="filterSchool" (change)="filterProcess()">
+          <select class="Filters" id="filterSchool" (change)="filterProcess()">
             <option >No filter
             <option >Liège
             <option >Bruxelles
@@ -911,18 +913,20 @@
             </select>
 
             <span class="searchText">Langue : </span>
-            <select id="filterLang" (change)="filterLangProcess()">
+            <select class="Filters" id="filterLang" (change)="filterLangProcess()">
               <option >Français
               <option >English
               </select>
 
               <span class="searchText">Available : </span>
-            <select id="filterAvailable" (change)="filterAvailableProcess()">
+            <select  class="Filters" id="filterAvailable" (change)="filterAvailableProcess()">
               <option >Available
               <option >Not available
               </select>
       </div>
       <nz-divider id="subNz2"></nz-divider>
+    </div>
+    </nz-affix>
       
 
       <div class="Library-Dock" *ngFor="let element of books; let i = index">

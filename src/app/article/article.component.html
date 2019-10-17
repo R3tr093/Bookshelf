@@ -30,9 +30,8 @@
         <p class="info_content" *ngIf="owner !== 'null'">Borrowed by : {{owner}}</p>  
 
         <p class="info_content">User Rating : <nz-rate [(ngModel)]="bookTotalRate" nzAllowHalf nzDisabled
-            [nzTooltips]="tooltips"></nz-rate> ( {{ book.reviews.totalCount }} vote·s )</p>
-
-      </section>
+            [nzTooltips]="tooltips"></nz-rate> <nz-badge class="ratePop" [nzStyle]="{ backgroundColor: '#2b165b' }" [nzCount]="book.reviews.totalCount" nzShowZero></nz-badge></p>
+        </section>
 
       <section id="comment_block">
         <h3 class="info_title">Reviews</h3>
@@ -46,6 +45,8 @@
         <!-- Toggle form to write a comment -->
         <button id="button_block" (click)="displayForm()" *ngIf="isEdit">Edit Review</button>
         <button id="button_block" (click)="displayForm()" *ngIf="!isEdit">Add Review</button>
+        <button id="button_block" *ngIf="available" (click)="rentProcess()">Rent the book</button>
+        <button id="button_block" *ngIf="!available" (click)="returnProcess()">Return the book</button>
         <div id="postComment" class="animated">
           <button (click)="displayForm()">X</button>
           <textarea *ngIf="!isEdit" id="comment" placeholder="Write your comment here" name="Comment review"></textarea>
@@ -94,11 +95,6 @@
       </svg>
     </div>
   </div>
-
-  <!-- Rent section -->
-  <button *ngIf="available" id="rentBtn" (click)="rentProcess()">Rent</button>
-  <button *ngIf="!available" id="returnBtn" (click)="returnProcess()">Return</button>
-
 </main>
 
 <h1 id="report" class="animated">You do not rent this book.</h1>
